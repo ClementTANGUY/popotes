@@ -11,7 +11,6 @@ class DishesController < ApplicationController
   end
 
   def show
-
   end
 
   def create
@@ -24,7 +23,6 @@ class DishesController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -44,9 +42,7 @@ class DishesController < ApplicationController
   def find_dish
     @dish = Dish.find(params[:id])
   end
-
   def dish_params
-    params.require(:dish).permit()
+    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :portion_size, :portion_count)
   end
-
 end

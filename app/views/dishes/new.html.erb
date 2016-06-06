@@ -1,0 +1,18 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for @dish do |f| %>
+        <%= f.input :name, label: 'Nom' %>
+        <%= f.input :kind_of_dish, label: 'Type de plat', collection: ["Entrée", "Plat principal", "Dessert/Patisserie"], as: :select %>
+        <%= f.input :speciality, label: 'Spécialité', collection: ["Grandes tables", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
+        <%= f.input :description, label: 'Description' %>
+        <%= f.input :veggie, inline_label: 'Végétarien' %>
+        <%= f.input :cooked, inline_label: 'Plat cuit' %>
+        <%= f.input :be_reheated, inline_label: 'À réchauffer' %>
+        <%= f.input :portion_size, label: 'Taille', collection: ["Petit", "Moyen", "Grand"], as: :select %>
+        <%= f.input :portion_count, label: 'Nombre de portion(s)' %>
+        <%= f.button :submit, 'Ajouter', class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

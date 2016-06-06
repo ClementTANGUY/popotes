@@ -1,0 +1,11 @@
+<p>
+  <%= link_to "Revenir à l'accueil", root_path, class: "btn btn-primary" %>
+</p>
+
+<ul>
+  <% @dishes.each do |dish| %>
+  <li>
+    <%= link_to dish.name, dish_path(dish) %>
+  </li>
+  <% end %>
+</ul>
