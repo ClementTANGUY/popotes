@@ -1,8 +1,8 @@
 <%= simple_form_for @dish do |f| %>
   <%= f.input :name, label: 'Nom' %>
-  <%= f.input :kind_of_dish, label: 'Type de plat', collection: ["Entrée", "Plat principal", "Dessert/Patisserie"], as: :select %>
+  <%= f.input :kind_of_dish, label: 'Type de plat', collection: ["Entrée", "Plat principal", "Dessert & Patisserie"], as: :select %>
   <%= f.input :speciality, label: 'Spécialité', collection: ["Grandes tables", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
-  <%= f.input :description, label: 'Description', required: false %>
+  <%= f.input :description, label: 'Description', placeholder: "Précisez votre recette et les ingrédients utilisés" %>
   <%= f.input :veggie, inline_label: 'Végétarien' %>
   <%= f.input :cooked, inline_label: 'Plat cuit' %>
   <%= f.input :be_reheated, inline_label: 'À réchauffer' %>

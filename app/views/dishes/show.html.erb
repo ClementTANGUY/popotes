@@ -6,13 +6,31 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "ustenciles.jpg" %>');">
   <div class="banner-content">
     <h1><%= @dish.name.upcase %></h1>
-    <p>Spécialité : <%= @dish.speciality %></p>
-      <p><%= @dish.kind_of_dish %></p>
-      <p><%= @dish.description %></p>
-      <p>Végétarien : <%= humanize_boolean(@dish.veggie) %></p>
-      <p>Plat cuit : <%= humanize_boolean(@dish.cooked) %></p>
-      <p>À réchauffer : <%= humanize_boolean(@dish.be_reheated) %></p>
-      <p><%= @dish.portion_count %> <%= @dish.portion_size %></p>
+
+    <p><%= @dish.speciality %>
+      <span class="label label-default">
+        <%= @dish.kind_of_dish %>
+      </span>
+    </p>
+    <p>
+      <%= @dish.description %>
+    </p>
+    <p>Végétarien
+      <span class="label label-default">
+        <%= humanize_boolean(@dish.veggie) %>
+      </span>
+    </p>
+    <p>Plat cuit
+      <span class="label label-default">
+        <%= humanize_boolean(@dish.cooked) %>
+      </span>
+    </p>
+    <p>À réchauffer
+      <span class="label label-default">
+        <%= humanize_boolean(@dish.be_reheated) %>
+      </span>
+    </p>
+    <p><%= @dish.portion_count %> <%= @dish.portion_size %></p>
 
     <a class="btn btn-primary btn-lg">COMMANDEZ</a>
   </div>
