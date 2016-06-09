@@ -1,24 +1,19 @@
-<div class="container text-left">
-
-  <h2 class="text-center"><%= @dish.name %></h2>
     <p>
       <%= link_to "Revenir à vos plats", dishes_path, class: "btn btn-primary" %> <%= link_to "Mettre à jour votre plat", edit_dish_path(@dish), class: "btn btn-warning" %> <%= link_to "Supprimer", dish_path(@dish), method: :delete, class: "btn btn-danger" %>
     </p>
 
-  <h2>
-   Spécialité : <%= @dish.speciality %>
-  </h2>
 
-  <h2>
-   <%= @dish.kind_of_dish %>
-  </h2>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "ustenciles.jpg" %>');">
+  <div class="banner-content">
+    <h1><%= @dish.name.upcase %></h1>
+    <p>Spécialité : <%= @dish.speciality %></p>
+      <p><%= @dish.kind_of_dish %></p>
+      <p><%= @dish.description %></p>
+      <p>Végétarien : <%= humanize_boolean(@dish.veggie) %></p>
+      <p>Plat cuit : <%= humanize_boolean(@dish.cooked) %></p>
+      <p>À réchauffer : <%= humanize_boolean(@dish.be_reheated) %></p>
+      <p><%= @dish.portion_count %> <%= @dish.portion_size %></p>
 
-  <h2>
-   <%= @dish.description %>
-  </h2>
-
-  <h2>
-    Végétarien : <%= humanize_boolean(@dish.veggie) %>
-  </h2>
-
+    <a class="btn btn-primary btn-lg">COMMANDEZ</a>
+  </div>
 </div>
