@@ -6,7 +6,7 @@
   <%= f.input :veggie, inline_label: 'Végétarien' %>
   <%= f.input :cooked, inline_label: 'Plat cuit' %>
   <%= f.input :be_reheated, inline_label: 'À réchauffer' %>
-  <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite", "Moyenne", "Grande"], as: :select %>
+  <%= f.input :portion_size, label: 'Taille de la portion', hint: "Environ 100g, environ 200g ou plus de 300g", collection: ["Petite", "Moyenne", "Grande"], as: :select %>
   <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
   <%= f.button :submit, 'Ajouter', class: "btn btn-success" %>
 <% end %>
