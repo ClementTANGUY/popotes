@@ -22,6 +22,15 @@
   margin-bottom: 0;
 }
 
+.product-body a {
+  color: black;
+}
+
+.product-body a:hover{
+  color: #5898f1;
+  text-decoration: none;
+}
+
 /* Product image */
 .product-image {
   border-radius: 10px;
@@ -66,7 +75,7 @@
   color: #E6E6E6;
 }
 .product-controls a:hover {
-  color: #D3473C !important
+  color: #FF642E !important
 }
 .product-controls-hidden a {
   color: transparent;

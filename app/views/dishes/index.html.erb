@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1 class= "text-center">Toutes les popotes</h1>
+      <h1 class= "text-center">Vos popotes</h1>
 
         <% @dishes.each do |dish| %>
 
@@ -13,7 +13,7 @@
             <%= image_tag "tupperwares.jpg", alt:"kudoz", class:"product-image hidden-xs" %>
             <div class='product-body'>
               <h3>
-                <%= dish.name %>
+                <%= link_to dish.name, dish_path(dish) %>
               </h3>
               <p>
                 <%= dish.speciality %><br>
@@ -21,11 +21,6 @@
               </p>
             </div>
             <ul class="list-inline product-controls hidden-sm hidden-xs">
-              <li>
-                <%= link_to dish_path(dish) do %>
-                <i class="fa fa-eye"></i>
-                <% end %>
-              </li>
               <li>
                 <%= link_to edit_dish_path(dish) do %>
                 <i class="fa fa-pencil"></i>
