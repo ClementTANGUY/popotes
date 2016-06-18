@@ -1,0 +1,7 @@
+<%= simple_form_for @cook do |f| %>
+  <%= f.input :last_name, label: 'Nom' %>
+  <%= f.input :last_name, label: 'Prénom' %>
+  <%= f.input :age, label: 'Âge', collection: 18..99, prompt: "Quel est votre âge" %>
+  <%= f.input :description, label: 'À propos de vous', placeholder: "Dîtes en peu plus sur vous, sur votre cuisine..." %>
+  <%= f.button :submit, 'Créer', class: "btn btn-success" %>
+<% end %>
