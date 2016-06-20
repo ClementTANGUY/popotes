@@ -7,27 +7,60 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <!-- Search form -->
+    <% if user_signed_in? %>
 
-    <!-- Text link -->
-    <a href="" class="navbar-wagon-item navbar-wagon-link">About</a>
+      <!-- Notification link-->
 
-    <!-- Notification link-->
-
-    <!-- Profile picture and dropdown -->
-    <div class="navbar-wagon-item">
-      <div class="dropdown">
-        <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
-        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Log Out</a></li>
-        </ul>
+      <div class="badge-container">
+        <i class="fa fa-shopping-cart"></i>
+        <div class="badge badge-blue">3</div>
       </div>
-    </div>
 
-    <!-- Button (call-to-action) -->
-    <a href="" class="navbar-wagon-item navbar-wagon-button btn">Devenir Chef</a>
+      <!-- Text link -->
+      <a href="" class="navbar-wagon-item navbar-wagon-link">À propos</a>
+
+      <!-- Profile picture and dropdown -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+            </li>
+            <li>
+              <%= link_to "Mes popotes", dishes_path %>
+            </li>
+            <li>
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Button (call-to-action) -->
+      <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+
+    <% else %>
+
+      <!-- Notification link-->
+
+      <div class="badge-container">
+        <i class="fa fa-shopping-cart"></i>
+        <div class="badge badge-blue">3</div>
+      </div>
+
+      <!-- Text link -->
+      <a href="" class="navbar-wagon-item navbar-wagon-link">À propos</a>
+
+      <!-- Sign in link-->
+      <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
+
+      <!-- Sign up link-->
+      <%= link_to "Inscription", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-link" %>
+
+      <!-- Button (call-to-action) -->
+      <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+
+    <% end %>
   </div>
 
   <!-- Dropdown appearing on mobile only -->

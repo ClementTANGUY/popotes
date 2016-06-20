@@ -1,5 +1,7 @@
 class CooksController < ApplicationController
 
+    skip_before_action :authenticate_user!, only: [ :index, :show ]
+
     before_action :find_cook, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -15,6 +17,7 @@ class CooksController < ApplicationController
 
     def create
       @cook = Cook.new(cook_params)
+      @cook.user = current_user
       if @cook.save
         redirect_to cooks_path
       else
@@ -26,16 +29,23 @@ class CooksController < ApplicationController
     end
 
     def update
-      if @cook.update(cook_params)
+      if @cook.user == current_user
+        @cook.update(cook_params)
         redirect_to cooks_path
       else
+        flash[:alert] = "Action impossible, ce n'est pas votre profil."
         render :edit
       end
     end
 
     def destroy
-      @cook.destroy
-      redirect_to cooks_path
+      if @cook.user == current_user
+        @cook.destroy
+        redirect_to cooks_path
+      else
+        flash[:alert] = "Action impossible, ce n'est pas votre profil."
+        redirect_to cooks_path
+      end
     end
 
     private
@@ -45,6 +55,5 @@ class CooksController < ApplicationController
     def cook_params
       params.require(:cook).permit(:last_name, :first_name, :age, :bio)
     end
-  end
 
 end
