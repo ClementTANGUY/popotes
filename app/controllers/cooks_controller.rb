@@ -33,7 +33,7 @@ class CooksController < ApplicationController
         @cook.update(cook_params)
         redirect_to cooks_path
       else
-        flash[:alert] = "Action impossible, ce n'est pas votre profil."
+        flash[:alert] = "Action impossible, ce n'est pas votre profil !"
         render :edit
       end
     end
@@ -43,7 +43,7 @@ class CooksController < ApplicationController
         @cook.destroy
         redirect_to cooks_path
       else
-        flash[:alert] = "Action impossible, ce n'est pas votre profil."
+        flash[:alert] = "Action impossible, ce n'est pas votre profil !"
         redirect_to cooks_path
       end
     end

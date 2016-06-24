@@ -25,9 +25,10 @@
           <img src="http://placehold.it/50x50" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
+              <%= link_to "Mon profil", cook_path(current_user) %>
             </li>
             <li>
-              <%= link_to "Mes popotes", dishes_path %>
+              <%= link_to "Mes popotes", cook_dishes_path(current_user) %>
             </li>
             <li>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>

@@ -1,0 +1,25 @@
+<div class="container padded">
+  <div class="card">
+    <div class="card-category"><%= @cook.first_name %> <%= @cook.last_name.upcase %></div>
+    <div class="card-description">
+      <h3></h3>
+      <p>
+        <%= @cook.age %> ans
+      </p>
+      <p>
+        <%= @cook.bio %>
+      </p>
+      <p>
+        <%= @cook.dishes.size %> <%= "popote".pluralize(@cook.dishes.size) %> <%= "disponible".pluralize(@cook.dishes.size) %>
+      </p>
+    </div>
+    <img class="card-user avatar-large" src="user.jpg">
+    <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
+  </div>
+
+  <p>
+    <%= link_to "Retour", cooks_path, class: "btn btn-primary" %> <%= link_to "Mettre à jour", edit_cook_path(@cook), class: "btn btn-popote" %> <%= link_to "Supprimer", cook_path(@cook), method: :delete, class: "btn btn-danger" %>
+  </p>
+
+</div>
+

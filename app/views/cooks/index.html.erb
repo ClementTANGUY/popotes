@@ -1,19 +1,18 @@
 <div class="container padded">
   <div class="row">
+      <% @cooks.each do |cook| %>
 
-    <% @cooks.each do |cook| %>
-
-    <div class="col-xs-12 col-sm-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-        <div class="card-category"><%= cook.first_name %> <%= cook.last_name.upcase %></div>
-        <div class="card-description">
-          <h2>CHEF</h2>
-          <p><%= cook.bio %></p>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card">
+          <div class="card-category"><%= cook.first_name %> <%= cook.last_name.upcase %></div>
+          <div class="card-description">
+            <h3><%= cook.bio%></h3>
+            <p><%= cook.dishes.size %> <%= "popote".pluralize(cook.dishes.size) %> <%= "disponible".pluralize(cook.dishes.size) %></p>
+          </div>
+          <img class="card-user avatar-large" src="user.jpg">
+          <%= link_to "", cook_dishes_path(cook), class:"card-link" %>
         </div>
-        <img class="card-user avatar" src="user.jpg">
-        <%= link_to "Mes popotes", cook_dishes_path(cook), class:"card-link" %>
       </div>
-    </div>
 
     <% end %>
 
