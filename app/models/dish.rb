@@ -1,4 +1,7 @@
 class Dish < ApplicationRecord
+
+  belongs_to :cook
+
   validates :name, presence: true
   validates :kind_of_dish, inclusion: { in: %w(Entrée Plat\ principal Dessert\ &\ Patisserie),
     message: "%{value} n'est pas autorisé" }
