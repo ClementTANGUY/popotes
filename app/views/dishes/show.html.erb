@@ -42,7 +42,7 @@
 
     <% if @cook.user == current_user %>
       <p>
-        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-primary" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-primary" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?', class: "btn btn-danger" %>
       </p>
     <% else %>
       <p>

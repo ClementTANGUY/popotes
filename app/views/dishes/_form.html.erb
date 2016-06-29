@@ -1,4 +1,4 @@
-<%= simple_form_for @dish do |f| %>
+<%= simple_form_for ([@cook,@dish]) do |f| %>
   <%= f.input :name, label: 'Nom' %>
   <%= f.input :kind_of_dish, label: 'Type de plat', collection: ["Entrée", "Plat principal", "Dessert & Patisserie"], as: :select %>
   <%= f.input :speciality, label: 'Spécialité', collection: ["Grandes tables", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>

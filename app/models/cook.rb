@@ -1,7 +1,7 @@
 class Cook < ApplicationRecord
 
   belongs_to :user
-  has_many :dishes
+  has_many :dishes, dependent: :destroy
 
   validates :user, presence: true, uniqueness: true
   validates :last_name, presence: true
