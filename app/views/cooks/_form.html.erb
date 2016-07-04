@@ -3,5 +3,6 @@
   <%= f.input :first_name, label: 'Prénom' %>
   <%= f.input :age, label: 'Âge', collection: 18..99, prompt: "Quel est votre âge?" %>
   <%= f.input :bio, label: 'À propos de vous', placeholder: "Dîtes-en peu plus sur vous, sur votre cuisine..." %>
+  <%= f.input :avatar, as: :attachinary %>
   <%= f.button :submit, 'Créer', class: "btn btn-success" %>
 <% end %>

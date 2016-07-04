@@ -1,6 +1,5 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "ustenciles.jpg" %>');">
   <div class="banner-content">
-
     <h1><%= @dish.name %></h1>
 
     <p><%= @dish.speciality %>
@@ -39,20 +38,37 @@
         <%= @dish.portion_size %>
       </span>
     </p>
+  </div>
 
-    <% if @cook.user == current_user %>
-      <p>
-        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-primary" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?', class: "btn btn-danger" %>
-      </p>
+
+    <% if @dish.photos? %>
+    <% @dish.photos.each do |photo| %>
+      <div class="banner-snaps">
+        <%= cl_image_tag photo.path, height: 150, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+      </div>
+    <% end %>
     <% else %>
-      <p>
-        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-primary" %>
-      </p>
     <% end %>
 
 
+  <div class="banner-controls">
+    <% if @cook.user == current_user %>
+      <p>
+        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?', class: "btn btn-popote-bis" %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %>
+      </p>
+    <% end %>
   </div>
 </div>
+
+
+
+
+
+
 
 
 

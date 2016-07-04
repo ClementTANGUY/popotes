@@ -53,7 +53,7 @@ class CooksController < ApplicationController
       @cook = Cook.find(params[:id])
     end
     def cook_params
-      params.require(:cook).permit(:last_name, :first_name, :age, :bio)
+      params.require(:cook).permit(:last_name, :first_name, :age, :bio, :avatar)
     end
 
 end

@@ -1,5 +1,6 @@
 class Cook < ApplicationRecord
 
+  has_attachment :avatar
   belongs_to :user
   has_many :dishes, dependent: :destroy
 

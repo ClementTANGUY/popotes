@@ -10,16 +10,18 @@
         <%= @cook.bio %>
       </p>
       <p>
-        <%= @cook.dishes.size %> <%= "popote".pluralize(@cook.dishes.size) %> <%= "disponible".pluralize(@cook.dishes.size) %>
+        <%= @cook.dishes.size %> <%= pluralize_with_0('popote', @cook.dishes.size) %> <%= pluralize_with_0('disponible', @cook.dishes.size) %>
       </p>
     </div>
-    <img class="card-user avatar-large" src="user.jpg">
+    <% if @cook.avatar? %>
+      <%= cl_image_tag @cook.avatar.path, class:"card-user avatar-large" %>
+    <% else %>
+      <%= image_tag "chef.jpg", crop: :thumb, gravity: :face, class:"card-user avatar-large" %>
+    <% end %>
     <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
   </div>
-
   <p>
-    <%= link_to "Retour", cooks_path, class: "btn btn-primary" %> <%= link_to "Mettre à jour", edit_cook_path(@cook), class: "btn btn-popote" %> <%= link_to "Supprimer", cook_path(@cook), method: :delete, class: "btn btn-danger" %>
+    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_path(@cook), method: :delete, class: "btn btn-popote-bis" %>
   </p>
-
 </div>
 
