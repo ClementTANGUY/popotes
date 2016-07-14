@@ -4,9 +4,11 @@
 
       <div class="col-xs-12 col-sm-4">
         <div class="card">
-          <div class="card-category"><%= cook.first_name %> <%= cook.last_name.upcase %></div>
+          <div class="card-category">
+
+          </div>
           <div class="card-description">
-            <h3><%= cook.bio%></h3>
+            <h3><%= cook.first_name %> <%= cook.last_name.upcase %></h3>
             <p><%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %> <%= pluralize_with_0('disponible', cook.dishes.size) %></p>
           </div>
           <% if cook.avatar? %>

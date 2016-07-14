@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_one :cook
 
   # Include default devise modules. Others available are:

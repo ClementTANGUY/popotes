@@ -1,8 +1,8 @@
 <div class="container padded">
   <div class="card">
-    <div class="card-category"><%= @cook.first_name %> <%= @cook.last_name.upcase %></div>
+    <div class="card-category"> </div>
     <div class="card-description">
-      <h3></h3>
+      <h3><%= @cook.first_name %> <%= @cook.last_name.upcase %></h3>
       <p>
         <%= @cook.age %> ans
       </p>
@@ -20,6 +20,7 @@
     <% end %>
     <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
   </div>
+  &nbsp
   <p>
     <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_path(@cook), method: :delete, class: "btn btn-popote-bis" %>
   </p>

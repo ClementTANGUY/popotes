@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630134533) do
+ActiveRecord::Schema.define(version: 20160708194147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,24 @@ ActiveRecord::Schema.define(version: 20160630134533) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+  end
+
+  create_table "cook_places", force: :cascade do |t|
+    t.integer  "cook_id"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cook_id"], name: "index_cook_places_on_cook_id", using: :btree
+    t.index ["place_id"], name: "index_cook_places_on_place_id", using: :btree
+  end
+
+  create_table "cook_specialities", force: :cascade do |t|
+    t.integer  "speciality_id"
+    t.integer  "cook_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["cook_id"], name: "index_cook_specialities_on_cook_id", using: :btree
+    t.index ["speciality_id"], name: "index_cook_specialities_on_speciality_id", using: :btree
   end
 
   create_table "cooks", force: :cascade do |t|
@@ -60,6 +78,24 @@ ActiveRecord::Schema.define(version: 20160630134533) do
     t.index ["cook_id"], name: "index_dishes_on_cook_id", using: :btree
   end
 
+  create_table "places", force: :cascade do |t|
+    t.string   "name"
+    t.string   "full_address"
+    t.string   "zip_code"
+    t.string   "city"
+    t.string   "kind_of_place"
+    t.boolean  "reception_desk"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "specialities", force: :cascade do |t|
+    t.string   "name"
+    t.string   "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -77,6 +113,10 @@ ActiveRecord::Schema.define(version: 20160630134533) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "cook_places", "cooks"
+  add_foreign_key "cook_places", "places"
+  add_foreign_key "cook_specialities", "cooks"
+  add_foreign_key "cook_specialities", "specialities"
   add_foreign_key "cooks", "users"
   add_foreign_key "dishes", "cooks"
 end

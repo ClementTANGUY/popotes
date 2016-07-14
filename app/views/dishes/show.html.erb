@@ -47,9 +47,10 @@
         <%= cl_image_tag photo.path, height: 150, width: 200, crop: :fill, class:"product-image hidden-xs" %>
       </div>
     <% end %>
-    <% else %>
-    <% end %>
 
+    <% else %>
+
+    <% end %>
 
   <div class="banner-controls">
     <% if @cook.user == current_user %>

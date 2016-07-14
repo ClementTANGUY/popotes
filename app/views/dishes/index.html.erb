@@ -21,7 +21,7 @@
             <% if dish.photos? %>
               <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
             <% else %>
-              <%= image_tag "tupperwares.jpg", alt:"kudoz", class:"product-image hidden-xs" %>
+              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
             <% end %>
 
             <div class='product-body'>
@@ -60,10 +60,16 @@
 
           <div class="product">
             <div class='product-upvote'>
-              <div class="product-arrow"></div>
-              <div class='product-count'>0</div>
+              <!-- <div class="product-arrow"></div> -->
+              <div class='product-count'><%= dish.portion_count %></div>
             </div>
-            <%= image_tag "tupperwares.jpg", alt:"kudoz", class:"product-image hidden-xs" %>
+
+            <% if dish.photos? %>
+              <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
+            <% else %>
+              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+            <% end %>
+
             <div class='product-body'>
               <h3>
                 <%= link_to dish.name, cook_dish_path(@cook,dish) %>

@@ -9,15 +9,15 @@
 
     <% if user_signed_in? %>
 
+      <!-- Text link -->
+      <a href="" class="navbar-wagon-item navbar-wagon-link">À propos</a>
+
       <!-- Notification link-->
 
       <div class="badge-container">
         <i class="fa fa-shopping-cart"></i>
         <div class="badge badge-blue">3</div>
       </div>
-
-      <!-- Text link -->
-      <a href="" class="navbar-wagon-item navbar-wagon-link">À propos</a>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -42,9 +42,12 @@
           </ul>
         </div>
       </div>
+      <% if current_user.cook %>
 
+      <% else %>
       <!-- Button (call-to-action) -->
       <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+      <% end %>
 
     <% else %>
 

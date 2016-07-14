@@ -19,7 +19,7 @@ class CooksController < ApplicationController
       @cook = Cook.new(cook_params)
       @cook.user = current_user
       if @cook.save
-        redirect_to cooks_path
+        redirect_to cook_path(@cook)
       else
         render :new
       end
@@ -31,7 +31,7 @@ class CooksController < ApplicationController
     def update
       if @cook.user == current_user
         @cook.update(cook_params)
-        redirect_to cooks_path
+        redirect_to cook_path(@cook)
       else
         flash[:alert] = "Action impossible, ce n'est pas votre profil !"
         render :edit
