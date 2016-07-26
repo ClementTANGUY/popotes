@@ -1,5 +1,5 @@
 <div class="container padded">
-  <div class="card">
+  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))">
     <div class="card-category"> </div>
     <div class="card-description">
       <h3><%= @cook.first_name %> <%= @cook.last_name.upcase %></h3>
@@ -21,8 +21,19 @@
     <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
   </div>
   &nbsp
-  <p>
-    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_path(@cook), method: :delete, class: "btn btn-popote-bis" %>
-  </p>
+
+  <% if @cook.user == current_user %>
+    <p>
+      <%= link_to "Mes commandes", "", class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis" %>
+    </p>
+    <p>
+    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+    </p>
+  <% else %>
+    <p>
+      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+    </p>
+  <% end %>
+
 </div>
 

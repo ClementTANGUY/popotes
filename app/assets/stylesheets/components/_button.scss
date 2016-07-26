@@ -44,7 +44,7 @@
 }
 
 .btn-popote-bis {
-  color: #f2542d;
+  color: #f2542d !important;
   border: 1px solid #f2542d;
   padding: 10px 15px;
   border-radius: 50px;
@@ -54,5 +54,5 @@
 .btn-popote-bis:hover {
   opacity: 1;
   text-decoration: none;
-  color: #f2542d;
+  color: #f2542d !important;
 }

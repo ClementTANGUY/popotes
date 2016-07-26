@@ -6,6 +6,8 @@ class DishesController < ApplicationController
 
   before_action :load_dish, only: [:show, :edit, :update, :destroy]
 
+  before_action :set_order_item, only: [:index, :show]
+
 
   def index
     @dishes = @cook.dishes.all
@@ -13,6 +15,9 @@ class DishesController < ApplicationController
 
   def new
     @dish = @cook.dishes.new
+  end
+
+  def show
   end
 
   def create
@@ -24,9 +29,6 @@ class DishesController < ApplicationController
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
@@ -62,7 +64,11 @@ class DishesController < ApplicationController
     @dish = @cook.dishes.find(params[:id])
   end
 
+  def set_order_item
+    @order_item = current_order.order_items.new(dish: @dish)
+  end
+
   def dish_params
-    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :portion_size, :portion_count, photos: [])
+    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :portion_size, :portion_count, :price, photos: [])
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount Attachinary::Engine => "/attachinary"
   devise_for :users
   root to: 'pages#home'
@@ -9,5 +10,9 @@ Rails.application.routes.draw do
   resources :cooks do
     resources :dishes
   end
+
+  resource :cart, only: [:show]
+
+  resources :order_items, only: [:create, :update, :destroy]
 
 end

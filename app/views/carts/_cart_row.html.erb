@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="product">
+
+        <% if dish.photos? %>
+          <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
+        <% else %>
+          <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+        <% end %>
+
+        <div class='product-body'>
+          <h3><%= dish.name %></h3>
+          <%= simple_form_for order_item, remote: true do |f| %>
+            <p>
+              <span style="color: #FF642E"><%= number_to_currency(order_item.unit_price, locale: :fr) %></span>
+              <%= f.input_field :quantity, label: false, value: order_item.quantity.to_i, min: 1 %>
+              <%= f.input :dish_id, as: :hidden %>
+            </p>
+        </div>
+
+        <ul class="list-inline hidden-sm hidden-xs">
+          <li>
+            Prix total : <span style="color: #FF642E"><%= number_to_currency(order_item.total_price, locale: :fr) %></span>
+          </li>
+          <li>
+            <%= f.button :submit, "Modifier la quantité", class: "btn btn-popote-bis" %>
+          </li>
+          <% end %>
+          <li>
+            <%= link_to "Supprimer", order_item, { data: { confirm: "Êtes-vous sûr de vouloir supprimer la popote '#{order_item.dish.name}' de votre panier ?" }, method: :delete, remote: true, class: "btn btn-popote-bis" } %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

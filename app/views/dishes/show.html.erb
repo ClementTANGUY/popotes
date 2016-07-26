@@ -38,31 +38,39 @@
         <%= @dish.portion_size %>
       </span>
     </p>
+    <p>Prix
+      &nbsp
+      <span class="label label-default">
+        <%= number_to_currency(@dish.price, locale: :fr) %>
+      </span>
+    </p>
+    <div class="banner-controls">
+      <% if @cook.user == current_user %>
+        <p>
+          <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'}, class: "btn btn-popote-bis" %>
+        </p>
+      <% else %>
+        <p>
+          <%= render "addin_cart", dish: @dish, order_item: @order_item %>
+        </br>
+          <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %>
+        </p>
+      <% end %>
+    </div>
   </div>
 
+  <% if @dish.photos? %>
+  <% @dish.photos.each do |photo| %>
+    <div class="banner-snaps">
+      <%= cl_image_tag photo.path, height: 150, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+    </div>
+  <% end %>
 
-    <% if @dish.photos? %>
-    <% @dish.photos.each do |photo| %>
-      <div class="banner-snaps">
-        <%= cl_image_tag photo.path, height: 150, width: 200, crop: :fill, class:"product-image hidden-xs" %>
-      </div>
-    <% end %>
+  <% else %>
 
-    <% else %>
+  <% end %>
 
-    <% end %>
 
-  <div class="banner-controls">
-    <% if @cook.user == current_user %>
-      <p>
-        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?', class: "btn btn-popote-bis" %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to "Retour", cook_dishes_path(@cook), class: "btn btn-popote-bis" %>
-      </p>
-    <% end %>
-  </div>
 </div>
 
 

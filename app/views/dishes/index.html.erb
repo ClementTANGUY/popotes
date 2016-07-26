@@ -6,7 +6,7 @@
 
         <h1 class= "text-center">Mes popotes</h1>
 
-        <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
+        <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis" %>
 
         &nbsp
 
@@ -31,6 +31,7 @@
               <p>
                 <%= dish.speciality %><br>
                 <%= dish.kind_of_dish %>
+                <%= number_to_currency(dish.price, locale: :fr) %>
               </p>
             </div>
 
@@ -41,7 +42,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to cook_dish_path(@cook,dish), method: :delete, confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?' do %>
+                <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
                 <i class="fa fa-trash"></i>
                 <% end %>
               </li>
@@ -77,8 +78,18 @@
               <p>
                 <%= dish.speciality %><br>
                 <%= dish.kind_of_dish %>
+                <%= number_to_currency(dish.price, locale: :fr) %>
               </p>
             </div>
+
+            <ul class="list-inline product-controls hidden-sm hidden-xs">
+              <li>
+                <%= link_to "" do %>
+                <i class="fa fa-shopping-cart"></i>
+                <% end %>
+              </li>
+            </ul>
+
           </div>
 
         <% end %>
