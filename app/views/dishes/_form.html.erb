@@ -8,7 +8,7 @@
   <%= f.input :be_reheated, inline_label: 'À réchauffer' %>
   <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 100g)", "Moyenne (150-250g)", "Grande (>300g)"], as: :select %>
   <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
-  <%= f.input :price, label: 'Prix en euros', placeholder: "15 % de frais s'ajoutent automatiquement pour l'acheteur " %>
+  <%= f.input :price, label: 'Prix en euros', placeholder: "15 % de frais sviennent s'ajouter pour l'acheteur" %>
   <%= f.input :photos, as: :attachinary %>
   <%= f.button :submit, 'Ajouter', class: "btn btn-success" %>
 <% end %>

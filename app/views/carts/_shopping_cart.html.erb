@@ -9,14 +9,20 @@
 <% end %>
 
 <% if @order_items.size == 0 %>
-  <p class="text-center">
-    Vous n'avez aucune popote dans votre panier. <%= link_to "Retour", :back %>
-  </p>
+
+  <div class="container padded text-center">
+    <p>
+      Vous n'avez aucune popote dans votre panier. <%= link_to "Retour", root_path, class:"btn btn-primary" %>
+    </p>
+  </div>
 
 <% else %>
 
   <div class="container">
-  <%= link_to "Trouvez une autre popote ?", cooks_path, class: 'btn btn-popote-bis' %>
+    &nbsp
+    <p>
+      <%= link_to "Une autre popote ?", cooks_path, class: 'btn btn-popote-bis' %>
+    </p>
   </div>
 
   <% @order_items.each do |order_item| %>

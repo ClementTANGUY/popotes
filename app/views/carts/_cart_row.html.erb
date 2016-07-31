@@ -13,7 +13,7 @@
           <h3><%= dish.name %></h3>
           <%= simple_form_for order_item, remote: true do |f| %>
             <p>
-              <span style="color: #FF642E"><%= number_to_currency(order_item.unit_price, locale: :fr) %></span>
+              <span style="color: #FF642E"><%= number_to_currency(order_item.unit_price, locale: :fr) %></span><br>
               <%= f.input_field :quantity, label: false, value: order_item.quantity.to_i, min: 1 %>
               <%= f.input :dish_id, as: :hidden %>
             </p>

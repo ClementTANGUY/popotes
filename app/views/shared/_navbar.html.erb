@@ -33,7 +33,7 @@
               <%= link_to "Mon profil", cook_path(current_user) %>
             </li>
             <li>
-              <%= link_to "Mes popotes", cook_dishes_path(current_user) %>
+              <%= link_to "Mes commandes", "" %>
             </li>
             <li>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
@@ -76,9 +76,9 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li><%= link_to "Connexion", new_user_session_path %></li>
+        <li><%= link_to "Inscription", new_user_registration_path %></li>
+        <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
       </ul>
     </div>
   </div>

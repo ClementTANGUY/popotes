@@ -8,17 +8,22 @@
 
         <div class="form-inputs">
           <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, required: true %>
+          <%= f.input :password, label: "Mot de passe", required: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
+          <%= f.input :password_confirmation, label: "Confirmation du mot de passe", required: true %>
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Je m'inscris" %>
+          <%= f.button :submit, "S'inscrire", class: "btn btn-success" %>
         </div>
 
-        <p>&nbsp;</p>
+        &nbsp
 
-        <small>En créant un compte, vous acceptez les conditions générales de Popote Moi, notamment concernant les règles d'hygiène et de sécurité</small>
+        <p>
+          <small>En créant un compte, vous acceptez les conditions générales d'utilisation de Popote & Moi, notamment en ce qui concerne les règles d'hygiène et de sécurité.<br>
+            <%= link_to "En savoir plus", "" %>
+          </small>
+        </p>
+
       <% end %>
 
       <%= render "devise/shared/links" %>

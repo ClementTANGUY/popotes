@@ -13,6 +13,7 @@ class CooksController < ApplicationController
     end
 
     def show
+      @dishes = @cook.dishes.all
     end
 
     def create
