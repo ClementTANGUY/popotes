@@ -1,8 +1,22 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "lunchbreak.jpg" %>');">
-  <div class="banner-content">
-    <h1></h1>
-    <p>Tous les chefs</p>
-    <%= link_to "DECOUVREZ", cooks_path, class:"btn btn-popote-bis btn-lg" %>
+<div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "lunchbreak.jpg" %>');">
+  <div class="container">
+
+    <h1>POPOTES & MOI</h1>
+
+    <h1>Dégustez une popote à petit prix pour votre pause déjeuner</h1>
+
+    <div class="padded"></div>
+
+    <div class="text-center">
+      <p>
+        Commandez un plat à un collègue de travail ou un autre particulier<br>
+        Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
+      </p>
+
+      <%= link_to "Trouvez un chef", cooks_path, class:"btn btn-popote-bis btn-lg" %>
+
+    </div>
+
   </div>
 </div>
 

@@ -10,10 +10,16 @@ class CooksController < ApplicationController
 
     def new
       @cook = Cook.new
+      @cook_places = @cook.cook_places.build
+      @place = @cook_places.build_place
+      @cook_specialities = @cook.cook_specialities.build
+      @speciality = @cook_specialities.build_speciality
     end
 
     def show
       @dishes = @cook.dishes.all
+      @order_item = current_order.order_items.new(dish: @dish)
+      @places = @cook.places.all
     end
 
     def create
@@ -53,8 +59,9 @@ class CooksController < ApplicationController
     def find_cook
       @cook = Cook.find(params[:id])
     end
+
     def cook_params
-      params.require(:cook).permit(:last_name, :first_name, :age, :bio, :avatar)
+      params.require(:cook).permit(:last_name, :first_name, :age, :bio, :avatar, cook_specialities_attributes: [:id, speciality_attributes: [:name, :level]], cook_places_attributes: [:id, place_attributes: [:name, :full_address, :zip_code, :city, :kind_of_place, :reception_desk]])
     end
 
 end

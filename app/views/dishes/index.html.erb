@@ -1,99 +1,98 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <% if @cook.user == current_user %>
+    <% if @cook.user == current_user %>
 
-        <h1 class= "text-center">Mes popotes</h1>
+      <h1 class= "text-center">Mes popotes</h1>
 
-        <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
+      <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
 
-        &nbsp
+      &nbsp
 
-        <% @dishes.each do |dish| %>
+      <% @dishes.each do |dish| %>
 
-          <div class="product">
-            <div class='product-upvote'>
-              <!-- <div class="product-arrow"></div> -->
-              <div class='product-count'><%= dish.portion_count %></div>
-            </div>
-
-            <% if dish.photos? %>
-              <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
-            <% else %>
-              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
-            <% end %>
-
-            <div class='product-body'>
-              <h3>
-                <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-              </h3>
-              <p>
-                <%= dish.speciality %><br>
-                <%= dish.kind_of_dish %>
-                <%= number_to_currency(dish.price, locale: :fr) %>
-              </p>
-            </div>
-
-            <ul class="list-inline product-controls hidden-sm hidden-xs">
-              <li>
-                <%= link_to edit_cook_dish_path(@cook,dish) do %>
-                <i class="fa fa-pencil"></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
-                <i class="fa fa-trash"></i>
-                <% end %>
-              </li>
-            </ul>
+        <div class="product">
+          <div class='product-upvote'>
+            <!-- <div class="product-arrow"></div> -->
+            <div class='product-count'><%= dish.portion_count %></div>
           </div>
 
-        <% end %>
+          <% if dish.photos? %>
+            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+          <% else %>
+            <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+          <% end %>
 
-      <% else %>
-
-        <h1 class= "text-center">Les popotes de <%= @cook.first_name %></h1>
-
-        &nbsp
-
-        <% @dishes.each do |dish| %>
-
-          <div class="product">
-            <div class='product-upvote'>
-              <!-- <div class="product-arrow"></div> -->
-              <div class='product-count'><%= dish.portion_count %></div>
-            </div>
-
-            <% if dish.photos? %>
-              <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
-            <% else %>
-              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
-            <% end %>
-
-            <div class='product-body'>
-              <h3>
-                <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-              </h3>
-              <p>
-                <%= dish.speciality %><br>
-                <%= dish.kind_of_dish %>
-                <%= number_to_currency(dish.price, locale: :fr) %>
-              </p>
-            </div>
-
-            <ul class="list-inline product-controls hidden-sm hidden-xs">
-              <li>
-                <%= render "addto_cart_index", dish: dish %>
-              </li>
-            </ul>
-
+          <div class='product-body'>
+            <h3>
+              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
+            </h3>
+            <p>
+              <%= dish.speciality %><br>
+              <%= dish.kind_of_dish %>
+              <%= number_to_currency(dish.price, locale: :fr) %>
+            </p>
           </div>
 
-        <% end %>
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <li>
+              <%= link_to edit_cook_dish_path(@cook,dish) do %>
+              <i class="fa fa-pencil"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
+              <i class="fa fa-trash"></i>
+              <% end %>
+            </li>
+          </ul>
+        </div>
 
       <% end %>
 
-    </div>
+    <% else %>
+
+      <h1 class= "text-center">Les popotes de <%= @cook.first_name %></h1>
+
+      &nbsp
+
+      <% @dishes.each do |dish| %>
+
+        <div class="product">
+          <div class='product-upvote'>
+            <!-- <div class="product-arrow"></div> -->
+            <div class='product-count'><%= dish.portion_count %></div>
+          </div>
+
+          <% if dish.photos? %>
+            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+          <% else %>
+            <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+          <% end %>
+
+          <div class='product-body'>
+            <h3>
+              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
+            </h3>
+            <p>
+              <%= dish.speciality %><br>
+              <%= dish.kind_of_dish %>
+              <%= number_to_currency(dish.price, locale: :fr) %>
+            </p>
+          </div>
+
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <li>
+              <%= render "addto_cart_index", dish: dish %>
+            </li>
+          </ul>
+
+        </div>
+
+      <% end %>
+
+    <% end %>
+
   </div>
 </div>
+

@@ -3,6 +3,31 @@
   <%= f.input :first_name, label: 'Prénom' %>
   <%= f.input :age, label: 'Âge', collection: 18..99 %>
   <%= f.input :bio, label: 'À propos de vous', placeholder: "Dîtes-en peu plus sur vous, sur votre cuisine..." %>
+
+  <p>VOS SPECIALITÉS</p>
+    <%= f.simple_fields_for :cook_specialities do |cs| %>
+      <%= cs.simple_fields_for :speciality do |s| %>
+        <%=s.input :name, label: 'Spécialité', collection: ["Gastronomique", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
+        <%=s.input :level, label: 'Niveau', collection: ["Top Chef", "Avancé", "Amateur", "Débutant"], as: :select %>
+      <% end %>
+    <% end %>
+
   <%= f.input :avatar, as: :attachinary %>
-  <%= f.button :submit, 'Créer', class: "btn btn-success" %>
+
+  <p>ADRESSE DE COLLECTE DE VOS POPOTES</p>
+      <%= f.simple_fields_for :cook_places do |cp| %>
+        <%= cp.simple_fields_for :place do |p| %>
+            <%=p.input :name, label: 'Titre'%>
+            <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Lieu public"], as: :select %>
+            <%=p.input :full_address %>
+            <%=p.input :zip_code %>
+            <%=p.input :city %>
+            <%=p.input :reception_desk, inline_label: 'Accueil' %>
+        <% end %>
+      <% end %>
+
+  <%= f.button :submit, 'Créer', class: "btn btn-success" %> <%= link_to "Annulez", :back, class: "btn btn-default" %>
+
 <% end %>
+
+

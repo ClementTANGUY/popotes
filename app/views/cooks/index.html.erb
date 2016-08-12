@@ -1,16 +1,22 @@
-<div class="container padded">
-  <div class="row">
+<div class="row">
+    <div class="col-sm-6 hidden-xs visible-sm-*">
+      <%= render "map" %>
+    </div>
+
+    <div class="col-sm-6">
       <% @cooks.each do |cook| %>
 
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))">
+      <div class="col-md-12 col-lg-6">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/330x175/?food,cook');">
           <div class="card-category">
-
+            <% cook.specialities.each do |speciality| %>
+              <%= speciality.name %> <span class="label label-default"><%= speciality.level %></span>
+            <% end %>
           </div>
           <div class="card-description">
-            <h3><%= cook.first_name %> <%= cook.last_name.upcase %></h3>
+            <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
             <p>
-              <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %> <%= pluralize_with_0('disponible', cook.dishes.size) %>
+              <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
             </p>
           </div>
           <% if cook.avatar? %>
@@ -21,9 +27,10 @@
           <%= link_to "", cook_path(cook), class: "card-link" %>
         </div>
       </div>
-    <% end %>
-  </div>
-</div>
 
+    <% end %>
+    </div>
+
+  </div>
 
 

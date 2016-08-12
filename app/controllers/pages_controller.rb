@@ -8,4 +8,10 @@ class PagesController < ApplicationController
   def about
   end
 
+  def hygiene
+  end
+
+  def features
+  end
+
 end

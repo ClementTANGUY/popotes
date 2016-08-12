@@ -1,7 +1,6 @@
 class Place < ApplicationRecord
 
   has_many :cook_places
-
   has_many :cooks, through: :cook_places
 
   validates :name, presence: true

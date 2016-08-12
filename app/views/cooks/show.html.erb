@@ -1,138 +1,173 @@
-<div class="container padded">
-  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))">
-    <div class="card-category"> </div>
-    <div class="card-description">
-      <h3><%= @cook.first_name %> <%= @cook.last_name.upcase %></h3>
-      <p>
-        <%= @cook.age %> ans
-      </p>
-      <p>
-        <%= @cook.bio %>
-      </p>
-      <p>
-        <%= @cook.dishes.size %> <%= pluralize_with_0('popote', @cook.dishes.size) %> <%= pluralize_with_0('disponible', @cook.dishes.size) %>
-      </p>
-    </div>
-    <% if @cook.avatar? %>
-      <%= cl_image_tag @cook.avatar.path, class:"card-user avatar-large" %>
-    <% else %>
-      <%= image_tag "chef.jpg", crop: :thumb, gravity: :face, class:"card-user avatar-large" %>
+
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2))">
+  <div class="card-category">
+    <% @cook.specialities.each do |speciality| %>
+      <%= speciality.name %> <span class="label label-default"><%= speciality.level %></span>
     <% end %>
-    <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
   </div>
-  &nbsp
+  <div class="card-description">
+    <h2><%= @cook.first_name %> <%= @cook.last_name.upcase %></h2>
+    <p>
+      <%= @cook.age %> ans
+    </p>
+  </div>
 
-  <% if @cook.user == current_user %>
-    <p>
-      <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis" %>
-    </p>
-    <p>
-    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
-    </p>
+  <% if @cook.avatar? %>
+    <%= cl_image_tag @cook.avatar.path, class:"card-user avatar-extra-large" %>
   <% else %>
-    <p>
-      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
-    </p>
+    <%= image_tag "chef.jpg", crop: :thumb, gravity: :face, class:"card-user avatar-extra-large" %>
   <% end %>
+  <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
+</div>
 
-<div class="container">
+<% if @cook.user == current_user %>
+
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-      <% if @cook.user == current_user %>
+      <h1 class= "text-center">Mes popotes</h1>
 
-        <h1 class= "text-center">Mes popotes</h1>
+      <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
 
-        <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
+      <p>&nbsp</p>
 
-        <p>&nbsp</p>
+      <% @dishes.each do |dish| %>
 
-        <% @dishes.each do |dish| %>
-
-          <div class="product">
-            <div class='product-upvote'>
-              <!-- <div class="product-arrow"></div> -->
-              <div class='product-count'><%= dish.portion_count %></div>
-            </div>
-
-            <% if dish.photos? %>
-              <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
-            <% else %>
-              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
-            <% end %>
-
-            <div class='product-body'>
-              <h3>
-                <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-              </h3>
-              <p>
-                <%= dish.speciality %><br>
-                <%= dish.kind_of_dish %>
-                <%= number_to_currency(dish.price, locale: :fr) %>
-              </p>
-            </div>
-
-            <ul class="list-inline product-controls hidden-sm hidden-xs">
-              <li>
-                <%= link_to edit_cook_dish_path(@cook,dish) do %>
-                <i class="fa fa-pencil"></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
-                <i class="fa fa-trash"></i>
-                <% end %>
-              </li>
-            </ul>
+        <div class="product">
+          <div class='product-upvote'>
+            <!-- <div class="product-arrow"></div> -->
+            <div class='product-count'><%= dish.portion_count %></div>
           </div>
 
-        <% end %>
+          <% if dish.photos? %>
+            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+          <% else %>
+            <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+          <% end %>
 
-      <% else %>
-
-        <h1 class= "text-center">Les popotes de <%= @cook.first_name %></h1>
-
-        &nbsp
-
-        <% @dishes.each do |dish| %>
-
-          <div class="product">
-            <div class='product-upvote'>
-              <!-- <div class="product-arrow"></div> -->
-              <div class='product-count'><%= dish.portion_count %></div>
-            </div>
-
-            <% if dish.photos? %>
-              <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
-            <% else %>
-              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
-            <% end %>
-
-            <div class='product-body'>
-              <h3>
-                <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-              </h3>
-              <p>
-                <%= dish.speciality %><br>
-                <%= dish.kind_of_dish %>
-                <%= number_to_currency(dish.price, locale: :fr) %>
-              </p>
-            </div>
-
-            <ul class="list-inline product-controls hidden-sm hidden-xs">
-              <li>
-                <%= link_to "" do %>
-                <i class="fa fa-shopping-basket"></i>
-                <% end %>
-              </li>
-            </ul>
-
+          <div class='product-body'>
+            <h3>
+              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
+            </h3>
+            <p>
+              <%= dish.speciality %><br>
+              <%= dish.kind_of_dish %>
+              <%= number_to_currency(dish.price, locale: :fr) %>
+            </p>
           </div>
 
-        <% end %>
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <li>
+              <%= link_to edit_cook_dish_path(@cook,dish) do %>
+              <i class="fa fa-pencil"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
+              <i class="fa fa-trash"></i>
+              <% end %>
+            </li>
+          </ul>
+        </div>
 
       <% end %>
-
     </div>
   </div>
-</div>
+
+  <div class="container">
+    <h1 class= "text-center">Où récupérer mes popotes</h1>
+
+    <% @places.each do |place| %>
+      <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
+        <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
+        <strong>Accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+      </p>
+    <% end %>
+
+    <h1 class= "text-center">À propos de ma cuisine</h1>
+    <p>
+      " <em><%= @cook.bio %> </em> "
+    </p>
+  </div>
+
+  <div class="container">
+
+      <p>
+        <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis" %>
+      </p>
+      <p>
+      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+      </p>
+  </div>
+
+<% else %>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+      <h1 class= "text-center">Les popotes de <%= @cook.first_name %></h1>
+
+      <p>&nbsp</p>
+
+      <% @dishes.each do |dish| %>
+
+        <div class="product">
+          <div class='product-upvote'>
+            <!-- <div class="product-arrow"></div> -->
+            <div class='product-count'><%= dish.portion_count %></div>
+          </div>
+
+          <% if dish.photos? %>
+            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+          <% else %>
+            <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+          <% end %>
+
+          <div class='product-body'>
+            <h3>
+              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
+            </h3>
+            <p>
+              <%= dish.speciality %><br>
+              <%= dish.kind_of_dish %>
+              <%= number_to_currency(dish.price, locale: :fr) %>
+            </p>
+          </div>
+
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <li>
+              <%= render "addto_cart_show", dish: dish %>
+            </li>
+          </ul>
+
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class= "text-center">Où récupérer ses popotes</h1>
+
+    <% @places.each do |place| %>
+      <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
+        <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
+        <strong>Accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+      </p>
+    <% end %>
+
+    <h1 class= "text-center">À propos de sa cuisine</h1>
+    <p>
+      " <em><%= @cook.bio %> </em> "
+    </p>
+  </div>
+
+  <div class="container">
+    <p>
+      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+    </p>
+  </div>
+
+<% end %>
+
+

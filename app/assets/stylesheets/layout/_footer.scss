@@ -1,1 +1,38 @@
 // Your footer style
+
+#footer{
+  font-weight: 300;
+  color: #616668;
+  background-color: white;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  a {
+    color: $blue;
+    text-decoration:none;
+    &:hover {
+    color: #FF642E;
+    text-decoration:none;
+    }
+  }
+}
+.container {
+margin-right: auto;
+margin-left: auto;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 50px;
+padding-bottom: 50px;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.footer-section h3{
+font-size: 13px;
+color: #616668;
+font-weight: 900;
+text-transform: uppercase;
+letter-spacing: 2px;
+}
+

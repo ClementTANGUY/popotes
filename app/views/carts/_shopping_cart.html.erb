@@ -1,52 +1,34 @@
-<% if !@order_item.nil? && @order_item.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-    <% @order_item.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<% if @order_items.size == 0 %>
-
-  <div class="container padded text-center">
-    <p>
-      Vous n'avez aucune popote dans votre panier. <%= link_to "Retour", root_path, class:"btn btn-primary" %>
-    </p>
-  </div>
-
-<% else %>
-
-  <div class="container">
-    &nbsp
-    <p>
-      <%= link_to "Une autre popote ?", cooks_path, class: 'btn btn-popote-bis' %>
-    </p>
-  </div>
-
-  <% @order_items.each do |order_item| %>
-    <%= render 'carts/cart_row', dish: order_item.dish, order_item: order_item, show_total: true %>
+<div class="container">
+  <% if !@order_item.nil? && @order_item.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+      <% @order_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <div class="product">
-          <div class='product-body'>
-            <h4>SOUS-TOTAL : <%= number_to_currency(current_order.subtotal, locale: :fr)%></h4>
-            <p>FRAIS : <%= number_to_currency(current_order.charge, locale: :fr) %></p>
-            <h4>MONTANT TOTAL : <%= number_to_currency(current_order.total_amount, locale: :fr)%></h4>
-          </div>
+  <% if @order_items.size == 0 %>
 
-          <ul class="list-inline hidden-sm hidden-xs">
-            <li>
-              <%= link_to "Commandez", "", class: "btn btn-primary" %>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div class="container text-center">
+      <p>
+        Vous n'avez aucune popote dans votre panier <%= link_to "Retour", root_path, class:"btn btn-primary" %>
+      </p>
     </div>
-  </div>
 
-<% end %>
+  <% else %>
+
+    <div class="container">
+      &nbsp
+      <p>
+        <%= link_to "Une autre popote ?", cooks_path, class: 'btn btn-popote-bis' %>
+      </p>
+    </div>
+
+    <% @order_items.each do |order_item| %>
+      <%= render 'carts/cart_row', dish: order_item.dish, order_item: order_item, show_total: true %>
+    <% end %>
+
+  <% end %>
+</div>

@@ -8,20 +8,19 @@
 
 Clem = User.create!(email: "clemdelatang@gmail.com", password: "testtest")
 Céline = User.create!(email: "celin.vincent@yahoo.fr", password: "testtest")
+Jean = User.create!(email: "jean.valjean@me.fr", password: "testtest")
+David = User.create!(email: "david.fincher@me.fr", password: "testtest")
 
-Cook_1 = Cook.create!(user: Clem, last_name:"TANGUY", first_name: "Clément", age: "40", bio: "Top chef")
+Cook_1 = Cook.create!(user: Clem, last_name:"TANGUY", first_name: "Clément", age: "40", bio: "Bon réchauffeur, devenu cordon bleu improvisateur")
 Cook_2 = Cook.create!(user: Céline, last_name:"VINCENT", first_name: "Céline", age: "40", bio: "Autodidacte, j'ai appris à cuisine au fil de mes envies et pour faire plaisir. Chaque jour, je cuisine et emmène une part au travail. J'aimerais vous faire partager ma passion")
+Cook_3 = Cook.create!(user: Jean, last_name:"VALJEAN", first_name: "Jean", age: "75", bio: "Encyclopédie de la cuisine romantique")
+Cook_4 = Cook.create!(user: David, last_name:"FINCHER", first_name: "David", age: "53", bio: "Génie de la mise en scène culinaire")
 
 Dish_1 = Dish.create!(cook: Cook_1, name: "Poulet Roti", kind_of_dish: "Plat principal", speciality: "Terroir & Famille", description: "Poulet élevé en plein air, nourri avec une alimentation bio, rôti au four", veggie: "false", cooked: "true", be_reheated: "true", portion_size: "Moyenne (150-250g)", portion_count: "3", price: '8,50')
 Dish_2 = Dish.create!(cook: Cook_1, name: "Spaghetti bolognaise", kind_of_dish: "Plat principal", speciality: "Terroir & Famille", description: "Bolognaise maison sans viande, pleine de bons légumes", veggie: "true", cooked: "true", be_reheated: "true", portion_size: "Moyenne (150-250g)", portion_count: "1", price: '6,00')
 Dish_3 = Dish.create!(cook: Cook_2, name: "Tomates mozzarella", kind_of_dish: "Entrée", speciality: "Cuisines du monde", description: "Tomates du jardin bio, mozza burrata bio de Campanie", veggie: "true", cooked: "false", be_reheated: "false", portion_size: "Grande (>300g)", portion_count: "2", price: '5,00')
 Dish_4 = Dish.create!(cook: Cook_2, name: "Filet de boeuf en croûte", kind_of_dish: "Plat principal", speciality: "Gastronomique", description: "Viande tendre et moelleuse de chez Desnoyer dans une pâte maison délicatement feuilletée", veggie: "false", cooked: "true", be_reheated: "false", portion_size: "Petite (env. 100g)", portion_count: "4", price: '9,00')
 Dish_5 = Dish.create!(cook: Cook_2, name: "Moelleux au chocolat", kind_of_dish: "Dessert & Patisserie", speciality: "Gastronomique", description: "Moelleux au coeur fondant, cacao bio équitable de Madagascar", veggie: "true", cooked: "true", be_reheated: "true", portion_size: "Petite (env. 100g)", portion_count: "6", price: '4,50')
-
-Speciality_1 = Speciality.create!(name: "Gastronomique", level: "Top Chef")
-Speciality_2 = Speciality.create!(name: "Terroir & Famille", level: "Avancé")
-Speciality_3 = Speciality.create!(name: "Cuisines du monde", level: "Amateur")
-Speciality_4 = Speciality.create!(name: "Bio & Diététique", level: "Débutant")
 
 OrderStatus.create!(id: 1, name: "In Progress")
 OrderStatus.create!(id: 2, name: "Placed")

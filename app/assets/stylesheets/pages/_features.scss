@@ -1,0 +1,24 @@
+#flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feature {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.feature p {
+  color: #616668;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+}
+.feature img {
+  width: 120px;
+}
+
