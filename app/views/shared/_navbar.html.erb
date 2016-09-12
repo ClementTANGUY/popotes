@@ -1,8 +1,24 @@
 <div class="navbar-wagon">
-  <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
-    <%= image_tag "Logo.png" %>
-  </a>
+
+  <!-- Left Navigation -->
+  <div class="navbar-wagon-left">
+
+    <!-- Logo -->
+    <a href="/" class="navbar-wagon-brand">
+      <%= image_tag "Logo.png" %>
+    </a>
+
+    <div class="cart-text navbar-wagon-item">
+      <%= render 'shared/cart_text' %>
+    </div>
+
+    <!-- Text link -->
+    <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
+
+    <!-- Button (call-to-action) -->
+    <%= link_to "Vos Chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
+
+  </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -10,10 +26,6 @@
     <% if user_signed_in? %>
 
       <% if !current_user.cook.nil? %>
-
-        <!-- Text link -->
-
-        <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
         <!-- Profile picture and dropdown -->
         <div class="navbar-wagon-item">
@@ -41,33 +53,14 @@
           </div>
         </div>
 
-        <!-- Notification link-->
-
-        <div class="cart-text">
-          <%= render 'shared/cart_text' %>
-        </div>
-
       <% else %>
-
-        <!-- Text link -->
-
-        <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
         <!-- Button (call-to-action) -->
         <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
 
-        <!-- Notification link-->
-
-        <div class="cart-text">
-          <%= render 'shared/cart_text' %>
-        </div>
-
-        <% end %>
+      <% end %>
 
     <% else %>
-
-      <!-- Text link -->
-      <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Sign in link-->
       <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
@@ -78,12 +71,6 @@
       <!-- Button (call-to-action) -->
       <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
 
-      <!-- Notification link-->
-
-      <div class="cart-text">
-        <%= render 'shared/cart_text' %>
-      </div>
-
     <% end %>
 
   </div>
@@ -93,9 +80,22 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><%= link_to "Connexion", new_user_session_path %></li>
-        <li><%= link_to "Inscription", new_user_registration_path %></li>
-        <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+        <% if user_signed_in? %>
+          <% if !current_user.cook.nil? %>
+            <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
+            <li><%= link_to "Mes commandes", "" %></li>
+            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Vos Chefs", cooks_path %></li>
+            <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
+          <% end %>
+        <% else %>
+          <li><%= link_to "Vos Chefs", cooks_path %></li>
+          <li><%= link_to "Connexion", new_user_session_path %></li>
+          <li><%= link_to "Inscription", new_user_registration_path %></li>
+          <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>

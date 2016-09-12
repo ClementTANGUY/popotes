@@ -27,7 +27,7 @@
 
       <h1 class= "text-center">Mes popotes</h1>
 
-      <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary" %>
+      <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary btn-lg" %>
 
       <p>&nbsp</p>
 
@@ -93,10 +93,10 @@
   <div class="container">
 
       <p>
-        <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis" %>
+        <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis btn-lg" %>
       </p>
       <p>
-      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis btn-lg" %>
       </p>
   </div>
 
@@ -164,7 +164,7 @@
 
   <div class="container">
     <p>
-      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+      <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis btn-lg" %>
     </p>
   </div>
 

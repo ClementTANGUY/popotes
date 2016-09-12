@@ -10,5 +10,5 @@
   <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
   <%= f.input :price, label: 'Prix en euros', placeholder: "15 % de frais sviennent s'ajouter pour l'acheteur" %>
   <%= f.input :photos, as: :attachinary %>
-  <%= f.button :submit, 'Ajouter', class: "btn btn-success" %>
+  <%= f.button :button, "Créer".html_safe, class: "btn btn-success btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
 <% end %>

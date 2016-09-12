@@ -47,13 +47,13 @@
     <div class="banner-controls">
       <% if @cook.user == current_user %>
         <p>
-          <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'}, class: "btn btn-popote-bis" %>
+          <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'}, class: "btn btn-popote-bis btn-lg" %>
         </p>
       <% else %>
         <p>
           <%= render "addto_cart_show", dish: @dish, order_item: @order_item %>
         </br>
-          <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis" %>
+          <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
         </p>
       <% end %>
     </div>

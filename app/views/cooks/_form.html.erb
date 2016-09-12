@@ -26,7 +26,7 @@
         <% end %>
       <% end %>
 
-  <%= f.button :submit, 'Créer', class: "btn btn-success" %> <%= link_to "Annulez", :back, class: "btn btn-default" %>
+  <%= f.button :button, "OK".html_safe, class: "btn btn-success btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %> <%= link_to "Annulez", :back, class: "btn btn-default btn-lg" %>
 
 <% end %>
 
