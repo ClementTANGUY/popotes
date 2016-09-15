@@ -1,3 +1,17 @@
 // Place all the styles related to the Cooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#map-container {
+  height: 500px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  margin-top: 25px;
+  border-width: 7px;
+ }
+#map {
+  height: 484px;
+  width: 100%;
+ }
