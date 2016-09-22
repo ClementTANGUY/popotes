@@ -19,10 +19,10 @@
         <%= cp.simple_fields_for :place do |p| %>
             <%=p.input :name, label: 'Titre'%>
             <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Lieu public"], as: :select %>
-            <%=p.input :full_address %>
-            <%=p.input :zip_code %>
-            <%=p.input :city %>
-            <%=p.input :reception_desk, inline_label: 'Accueil' %>
+            <%=p.input :full_address, label: 'Adresse' %>
+            <%=p.input :zip_code , label: 'Code Postal'%>
+            <%=p.input :city, label: 'Ville' %>
+            <%=p.input :reception_desk, inline_label: "Le lieu bénéficie d'un comptoir d'accueil" %>
         <% end %>
       <% end %>
 
@@ -30,4 +30,6 @@
 
 <% end %>
 
-
+<%= content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyCUNbO6X73HGm-pZxzoL3rFogIbhkkYxio"></script>
+<% end %>

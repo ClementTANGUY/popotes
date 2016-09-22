@@ -13,3 +13,19 @@
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
 }
+
+.find_search{
+  text-align: center;
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgba(255, 255, 255, 0.7);
+  .panel-transparent{
+  background: none;
+  }
+   .panel-transparent .panel-heading{
+  background: rgba(46, 51, 56, 0.3)!important;
+  }
+  .panel-transparent .panel-body{
+  background: rgba(46, 51, 56, 0.3)!important;
+  }
+}

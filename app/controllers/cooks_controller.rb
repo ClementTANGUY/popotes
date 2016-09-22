@@ -5,7 +5,18 @@ class CooksController < ApplicationController
     before_action :find_cook, only: [:show, :edit, :update, :destroy]
 
     def index
-      @cooks = Cook.all
+      if params[:location]
+        @places = Place.geocoded.near(params[:location], 1)
+        @cooks = Cook.all
+      else
+        @places = Place.geocoded
+        @cooks = Cook.all
+      end
+      @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+        marker.lat place.latitude
+        marker.lng place.longitude
+        marker.infowindow render_to_string(partial: "/cooks/map_box", locals: { place: place})
+      end
     end
 
     def new

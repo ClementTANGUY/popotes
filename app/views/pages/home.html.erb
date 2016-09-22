@@ -1,19 +1,30 @@
 <div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "lunchbreak.jpg" %>');">
   <div class="container">
-
     <h1>POPOTES & MOI</h1>
 
     <h2>Dégustez une popote à petit prix pour votre pause déjeuner</h2>
 
     <div class="padded"></div>
-    <p>&nbsp;</p>
 
-    <div class="text-center">
-      <p>
-        Commandez un plat à un collègue de travail ou un autre particulier<br>
-        Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
-      </p>
-
+    <div class="container padded">
+      <div class="find_search">
+        <div class="panel panel-transparent">
+          <div class="panel-heading">
+              Commandez un plat à un collègue de travail ou un autre particulier<br>
+              Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
+          </div>
+          <div class="panel-body">
+            <%= form_tag cooks_path, method: :get, class: "row" do %>
+              <div class="col-sm-10">
+                <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Entrez une adresse"%>
+              </div>
+              <div class="col-sm-2">
+                <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

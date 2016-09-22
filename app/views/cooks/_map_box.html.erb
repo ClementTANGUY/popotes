@@ -1,0 +1,28 @@
+<% @cooks.each do |cook| %>
+  <div class="map_box" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/330x175/?food,cook');">
+    <div class="map_box-category">
+      <% cook.specialities.each do |speciality| %>
+        <%= speciality.name %> <span class="label label-default"><%= speciality.level %></span>
+      <% end %>
+    </div>
+    <div class="map_box-description">
+      <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
+      <p>
+        <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
+        <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
+      </p>
+    </div>
+    <% if cook.avatar? %>
+      <%= cl_image_tag cook.avatar.path, crop: :thumb, gravity: :face, class:"map_box-user avatar-large" %>
+    <% else %>
+      <%= image_tag "chef.jpg", class:"map_box-user avatar-large" %>
+    <% end %>
+    <%= link_to "", cook_path(cook), class: "map_box-link" %>
+  </div>
+<% end %>
+
+
+
+
+
+

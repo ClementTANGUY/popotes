@@ -1,36 +1,53 @@
 <div class="row">
+
   <div class="col-sm-6 hidden-xs visible-sm-*">
     <%= render "map" %>
   </div>
 
+  <% if @places.empty? %>
+    <% if user_signed_in? %>
+      <div class="col-sm-6 text-center">
+        <div class="padded"></div>
+        <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
+          Tentez votre chance ailleurs :
+        </h4>
+        <%= form_tag cooks_path, method: :get do %>
+          <%= text_field_tag :location, params[:location], placeholder: "Entrez une adresse"%>
+          <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
+        <% end %>
+        <% if current_user.cook.nil? %>
+        <h4>Ou soyez le premier à proposer vos talents</h4>
+          <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+        <% else %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="col-sm-6 text-center">
+        <div class="padded"></div>
+        <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
+          Tentez votre chance ailleurs :
+        </h4>
+        <%= form_tag cooks_path, method: :get do %>
+          <%= text_field_tag :location, params[:location], placeholder: "Entrez une adresse"%>
+          <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
+        <% end %>
+        <h4>Ou soyez le premier à proposer vos talents</h4>
+        <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+      </div>
+    <% end %>
+
+  <% else  %>
+
   <div class="col-sm-6" style="overflow-y: auto; height: 500px;">
     <% @cooks.each do |cook| %>
-
-    <div class="col-md-12 col-lg-6">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/330x175/?food,cook');">
-        <div class="card-category">
-          <% cook.specialities.each do |speciality| %>
-            <%= speciality.name %> <span class="label label-default"><%= speciality.level %></span>
-          <% end %>
-        </div>
-        <div class="card-description">
-          <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
-          <p>
-            <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
-          </p>
-        </div>
-        <% if cook.avatar? %>
-          <%= cl_image_tag cook.avatar.path, crop: :thumb, gravity: :face, class:"card-user avatar-large" %>
-        <% else %>
-          <%= image_tag "chef.jpg", class:"card-user avatar-large" %>
-        <% end %>
-        <%= link_to "", cook_path(cook), class: "card-link" %>
-      </div>
-    </div>
-
-  <% end %>
+        <%= render partial: "cooks_cards", locals: {cook: cook} %>
+    <% end %>
   </div>
 
+  <% end %>
+
 </div>
+
+
 
 

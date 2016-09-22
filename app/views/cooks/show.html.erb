@@ -79,8 +79,8 @@
 
     <% @places.each do |place| %>
       <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
-        <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
-        <strong>Accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+        <%= place.full_address %> <%= place.zip_code %> <%= place.city %> <br>
+        <strong>Comptoir d'accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
       </p>
     <% end %>
 
@@ -152,7 +152,7 @@
     <% @places.each do |place| %>
       <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
         <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
-        <strong>Accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+        <strong>Comptoir d'accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
       </p>
     <% end %>
 
