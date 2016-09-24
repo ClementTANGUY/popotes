@@ -19,7 +19,7 @@ class Place < ApplicationRecord
   end
 
   def full_place_changed?
-      full_address_changed? || zip_code_changed? || city_changed? || country_changed?
+      full_address_changed? || zip_code_changed? || city_changed?
   end
 
 end

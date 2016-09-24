@@ -9,8 +9,8 @@ class CooksController < ApplicationController
         @places = Place.geocoded.near(params[:location], 1)
         @cooks = Cook.all
       else
-        @places = Place.geocoded
-        @cooks = Cook.all
+        @places = Place.where.not(latitude: nil, longitude: nil)
+        @cooks = Cook.order(created_at: :asc)
       end
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
         marker.lat place.latitude
