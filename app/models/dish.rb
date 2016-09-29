@@ -16,5 +16,7 @@ class Dish < ApplicationRecord
     message: "%{value} n'est autorisé" }
   validates :portion_count, presence: true
   validates :price, presence: true
+  validates :exp_date, presence: true
+  validates :collect_date, presence: true
 
 end

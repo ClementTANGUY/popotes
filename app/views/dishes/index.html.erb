@@ -23,14 +23,15 @@
             <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
           <% end %>
 
-          <div class='product-body'>
+          <div id="clock" class='product-body'>
             <h3>
               <%= link_to dish.name, cook_dish_path(@cook,dish) %>
             </h3>
             <p>
               <%= dish.speciality %><br>
               <%= dish.kind_of_dish %>
-              <%= number_to_currency(dish.price, locale: :fr) %>
+              <%= number_to_currency(dish.price, locale: :fr) %><br>
+              Commandez avant <span class="label label-default expiration-date"></span>
             </p>
           </div>
 
@@ -77,7 +78,8 @@
             <p>
               <%= dish.speciality %><br>
               <%= dish.kind_of_dish %>
-              <%= number_to_currency(dish.price, locale: :fr) %>
+              <%= number_to_currency(dish.price, locale: :fr) %><br>
+              Commandez avant <span class="label label-default expiration-date"></span>
             </p>
           </div>
 
@@ -93,6 +95,13 @@
 
     <% end %>
 
+    <div class="container">
+      <p>
+        <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
+      </p>
+    </div>
+
   </div>
 </div>
+
 

@@ -7,3 +7,4 @@ fr:
           separator: ','
           precision: 2
           format: "%n %u"
+

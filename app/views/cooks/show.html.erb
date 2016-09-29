@@ -52,7 +52,8 @@
             <p>
               <%= dish.speciality %><br>
               <%= dish.kind_of_dish %>
-              <%= number_to_currency(dish.price, locale: :fr) %>
+              <%= number_to_currency(dish.price, locale: :fr) %><br>
+              Commandez avant <span class="label label-default expiration-date"></span>
             </p>
           </div>
 
@@ -75,12 +76,12 @@
   </div>
 
   <div class="container">
-    <h1 class= "text-center">Où récupérer mes popotes</h1>
+    <h1 class= "text-center">Adresse</h1>
 
     <% @places.each do |place| %>
-      <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
+      <p><span class="label label-default"><%= place.kind_of_place %></span><br>
         <%= place.full_address %> <%= place.zip_code %> <%= place.city %> <br>
-        <strong>Comptoir d'accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+        Accueil : <span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
       </p>
     <% end %>
 
@@ -130,7 +131,8 @@
             <p>
               <%= dish.speciality %><br>
               <%= dish.kind_of_dish %>
-              <%= number_to_currency(dish.price, locale: :fr) %>
+              <%= number_to_currency(dish.price, locale: :fr) %><br>
+              Commandez avant <span class="label label-default expiration-date"></span>
             </p>
           </div>
 
@@ -147,12 +149,12 @@
   </div>
 
   <div class="container">
-    <h1 class= "text-center">Où récupérer ses popotes</h1>
+    <h1 class= "text-center">Adresse</h1>
 
     <% @places.each do |place| %>
-      <p><strong>Adresse de retrait :</strong> <span class="label label-default"><%= place.kind_of_place %></span><br>
+      <p><span class="label label-default"><%= place.kind_of_place %></span><br>
         <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
-        <strong>Comptoir d'accueil : </strong><span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+        Accueil : <span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
       </p>
     <% end %>
 
@@ -169,5 +171,7 @@
   </div>
 
 <% end %>
+
+
 
 
