@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/derekprior/momentjs-rails.git
-  revision: fa8ac4899554775945704fd6b7a7b3c5ce1bde17
-  specs:
-    momentjs-rails (2.15.1)
-      railties (>= 3.1)
-
-GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 81b9d7d3439225c7613e570afb44596acfa97a76
   specs:
@@ -140,6 +133,8 @@ GEM
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     netrc (0.11.0)
     nio4r (1.2.1)
@@ -262,7 +257,7 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails
   listen (~> 3.0.5)
-  momentjs-rails (~> 2.9)!
+  momentjs-rails
   pg
   pry-byebug
   pry-rails

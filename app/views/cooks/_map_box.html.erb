@@ -1,4 +1,4 @@
-<% @cooks.each do |cook| %>
+<% place.cooks.each do |cook| %>
   <div class="map_box" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/330x175/?food,cook');">
     <div class="map_box-category">
       <% cook.specialities.each do |speciality| %>
@@ -20,6 +20,7 @@
     <%= link_to "", cook_path(cook), class: "map_box-link" %>
   </div>
 <% end %>
+
 
 
 

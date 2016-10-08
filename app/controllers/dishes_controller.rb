@@ -10,7 +10,7 @@ class DishesController < ApplicationController
 
 
   def index
-    @dishes = @cook.dishes.all
+    @dishes = @cook.dishes.order(updated_at: :desc)
   end
 
   def new

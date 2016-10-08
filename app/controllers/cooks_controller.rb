@@ -15,7 +15,7 @@ class CooksController < ApplicationController
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
         marker.lat place.latitude
         marker.lng place.longitude
-        marker.infowindow render_to_string(partial: "/cooks/map_box", locals: { place: place})
+        marker.infowindow render_to_string(partial: "/cooks/map_box", locals: { place: place })
       end
     end
 
@@ -28,7 +28,7 @@ class CooksController < ApplicationController
     end
 
     def show
-      @dishes = @cook.dishes.all
+      @dishes = @cook.dishes.order(updated_at: :desc)
       @order_item = current_order.order_items.new(dish: @dish)
       @places = @cook.places.all
     end

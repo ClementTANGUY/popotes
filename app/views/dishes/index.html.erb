@@ -1,62 +1,16 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-    <% if @cook.user == current_user %>
+      <h1 class= "text-center">Popotes</h1>
 
-      <h1 class= "text-center">Mes popotes</h1>
+      <% if @cook.user == current_user %>
 
-      <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary btn-lg" %>
+        <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-primary btn-lg" %>
 
-      &nbsp
-
-      <% @dishes.each do |dish| %>
-
-        <div class="product">
-          <div class='product-upvote'>
-            <!-- <div class="product-arrow"></div> -->
-            <div class='product-count'><%= dish.portion_count %></div>
-          </div>
-
-          <% if dish.photos? %>
-            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
-          <% else %>
-            <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
-          <% end %>
-
-          <div id="clock" class='product-body'>
-            <h3>
-              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-            </h3>
-            <p>
-              <%= dish.speciality %><br>
-              <%= dish.kind_of_dish %>
-              <%= number_to_currency(dish.price, locale: :fr) %><br>
-              Commandez avant <span class="label label-default expiration-date"></span>
-            </p>
-          </div>
-
-          <ul class="list-inline product-controls hidden-sm hidden-xs">
-            <li>
-              <%= link_to edit_cook_dish_path(@cook,dish) do %>
-              <i class="fa fa-pencil"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
-              <i class="fa fa-trash"></i>
-              <% end %>
-            </li>
-          </ul>
-        </div>
+      <% else %>
 
       <% end %>
 
-    <% else %>
-
-      <h1 class= "text-center">Les popotes de <%= @cook.first_name %></h1>
-
-      &nbsp
-
       <% @dishes.each do |dish| %>
 
         <div class="product">
@@ -66,34 +20,56 @@
           </div>
 
           <% if dish.photos? %>
+
             <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+
           <% else %>
+
             <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+
           <% end %>
 
           <div class='product-body'>
-            <h3>
-              <%= link_to dish.name, cook_dish_path(@cook,dish) %>
-            </h3>
+
+            <h3><%= link_to dish.name, cook_dish_path(@cook,dish) %></h3>
+
             <p>
               <%= dish.speciality %><br>
               <%= dish.kind_of_dish %>
               <%= number_to_currency(dish.price, locale: :fr) %><br>
-              Commandez avant <span class="label label-default expiration-date"></span>
+              <%= render "countdown", dish: dish %>
             </p>
+
           </div>
 
-          <ul class="list-inline product-controls hidden-sm hidden-xs">
-            <li>
-              <%= render "addto_cart_index", dish: dish %>
-            </li>
-          </ul>
+          <% if @cook.user == current_user %>
+
+            <ul class="list-inline product-controls hidden-sm hidden-xs">
+              <li>
+                <%= link_to edit_cook_dish_path(@cook,dish) do %>
+                <i class="fa fa-pencil"></i>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
+                <i class="fa fa-trash"></i>
+                <% end %>
+              </li>
+            </ul>
+
+          <% else %>
+
+            <ul class="list-inline product-controls hidden-sm hidden-xs">
+              <li>
+                <%= render "addto_cart_index", dish: dish, order_item: @order_item %>
+              </li>
+            </ul>
+
+          <% end %>
 
         </div>
 
       <% end %>
-
-    <% end %>
 
     <div class="container">
       <p>
@@ -103,5 +79,7 @@
 
   </div>
 </div>
+
+
 
 

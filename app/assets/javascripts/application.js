@@ -5,10 +5,11 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+
 //= require underscore
 //= require gmaps/google
-//= require moment
-//= require moment/fr
+
+//= require moment-with-locales
 //= require bootstrap-datetimepicker
 //= require pickers
 

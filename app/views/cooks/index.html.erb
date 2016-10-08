@@ -5,42 +5,33 @@
   </div>
 
   <% if @places.empty? %>
-    <% if user_signed_in? %>
-      <div class="col-sm-6 text-center">
-        <div class="padded"></div>
-        <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
-          Tentez votre chance ailleurs :
-        </h4>
-        <%= form_tag cooks_path, method: :get do %>
-          <%= text_field_tag :location, params[:location], placeholder: "Entrez une adresse"%>
-          <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
-        <% end %>
-        <% if current_user.cook.nil? %>
-        <h4>Ou soyez le premier à proposer vos talents</h4>
-          <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
-        <% else %>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="col-sm-6 text-center">
-        <div class="padded"></div>
-        <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
-          Tentez votre chance ailleurs :
-        </h4>
-        <%= form_tag cooks_path, method: :get do %>
-          <%= text_field_tag :location, params[:location], placeholder: "Entrez une adresse"%>
-          <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
-        <% end %>
-        <h4>Ou soyez le premier à proposer vos talents</h4>
+
+    <div class="col-sm-6 text-center">
+      <div class="padded"></div>
+      <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
+        Tentez votre chance ailleurs :
+      </h4>
+      <%= form_tag cooks_path, method: :get do %>
+        <%= text_field_tag :location, params[:location], placeholder: "Entrez une adresse"%>
+        <%= submit_tag "Trouvez !", class: "btn btn-primary" %>
+      <% end %>
+
+      <% if !user_signed_in? || current_user.cook.nil? %>
+
+      <h4>Ou soyez le premier à proposer vos talents</h4>
         <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
-      </div>
-    <% end %>
+
+      <% else %>
+
+      <% end %>
+
+    </div>
 
   <% else  %>
 
   <div class="col-sm-6" style="overflow-y: auto; height: 500px;">
     <% @cooks.each do |cook| %>
-        <%= render partial: "cooks_cards", locals: {cook: cook} %>
+        <%= render "cooks_cards", cook: cook %>
     <% end %>
   </div>
 

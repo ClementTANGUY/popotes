@@ -1,7 +1,6 @@
 $(document).on('ready page:change', function() {
   $('.datetimepicker').datetimepicker({
     // put here your custom picker options, that should be applied for all pickers
-
     icons: {
       date: 'fa fa-calendar',
       time: 'fa fa-clock-o',
