@@ -6,7 +6,7 @@ class CooksController < ApplicationController
 
     def index
       if params[:location]
-        @places = Place.geocoded.near(params[:location], 1)
+        @places = Place.where.not(latitude: nil, longitude: nil).near(params[:location], 1)
         @cooks = Cook.all
       else
         @places = Place.where.not(latitude: nil, longitude: nil)

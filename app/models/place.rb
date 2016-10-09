@@ -3,7 +3,6 @@ class Place < ApplicationRecord
   has_many :cook_places
   has_many :cooks, through: :cook_places
 
-  validates :name, presence: true
   validates :full_address, presence: true
   validates :zip_code, presence: true
   validates :city, presence: true
@@ -12,7 +11,7 @@ class Place < ApplicationRecord
   validates :reception_desk, presence: true
 
   geocoded_by :full_place
-  after_validation :geocode, if: :full_place_changed?
+  after_validation :geocode, if: ->(obj){ obj.full_place.present? and obj.full_place_changed? }
 
   def full_place
     "#{full_address}, #{zip_code}, #{city}"

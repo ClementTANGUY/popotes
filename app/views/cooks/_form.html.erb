@@ -14,10 +14,9 @@
 
   <%= f.input :avatar, as: :attachinary %>
 
-  <p>ADRESSE DE COLLECTE DE VOS POPOTES</p>
+  <p>ADRESSE DE COLLECTE DE VOS PLATS</p>
       <%= f.simple_fields_for :cook_places do |cp| %>
         <%= cp.simple_fields_for :place do |p| %>
-            <%=p.input :name, label: 'Titre'%>
             <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Lieu public"], as: :select %>
             <%=p.input :full_address, label: 'Adresse' %>
             <%=p.input :zip_code , label: 'Code Postal'%>
