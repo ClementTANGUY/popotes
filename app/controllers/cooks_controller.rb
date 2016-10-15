@@ -7,11 +7,12 @@ class CooksController < ApplicationController
     def index
       if params[:location]
         @places = Place.where.not(latitude: nil, longitude: nil).near(params[:location], 1)
-        @cooks = Cook.all
-      else
-        @places = Place.where.not(latitude: nil, longitude: nil)
         @cooks = Cook.order(created_at: :asc)
+      else
+        @cooks = Cook.order(created_at: :asc)
+        @places = Place.where.not(latitude: nil, longitude: nil)
       end
+
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
         marker.lat place.latitude
         marker.lng place.longitude

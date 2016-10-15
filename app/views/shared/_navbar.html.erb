@@ -16,7 +16,7 @@
     <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to "Vos Chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
+    <%= link_to "Tous les Chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
 
   </div>
 
@@ -54,6 +54,8 @@
         </div>
 
       <% else %>
+
+        <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"navbar-wagon-item navbar-wagon-link hidden-xs"  %>
 
         <!-- Button (call-to-action) -->
         <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
