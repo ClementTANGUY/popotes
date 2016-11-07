@@ -15,7 +15,7 @@
   <% if @cook.avatar? %>
     <%= cl_image_tag @cook.avatar.path, class:"card-user avatar-extra-large" %>
   <% else %>
-    <%= image_tag "chef.jpg", crop: :thumb, gravity: :face, class:"card-user avatar-extra-large" %>
+    <%= image_tag "chef.jpg", width: 100, height: 125, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"card-user avatar-extra-large" %>
   <% end %>
   <%= link_to "", cook_dishes_path(@cook), class:"card-link" %>
 </div>
@@ -42,7 +42,7 @@
 
           <% if dish.photos? %>
 
-            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+            <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"product-image hidden-xs" %>
 
           <% else %>
 

@@ -12,7 +12,7 @@
       </p>
     </div>
     <% if cook.avatar? %>
-      <%= cl_image_tag cook.avatar.path, crop: :thumb, gravity: :face, class:"card-user avatar-large" %>
+      <%= cl_image_tag cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"card-user avatar-large" %>
     <% else %>
       <%= image_tag "chef.jpg", class:"card-user avatar-large" %>
     <% end %>

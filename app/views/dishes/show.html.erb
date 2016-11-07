@@ -62,7 +62,7 @@
   <% if @dish.photos? %>
 
   <% @dish.photos.each do |photo| %>
-    <%= cl_image_tag photo.path, height: 150, width: 200, crop: :fill, class:"product-image hidden-xs" %>
+    <%= cl_image_tag photo.path, height: 150, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"product-image hidden-xs" %>
   <% end %>
 
   <% else %>
