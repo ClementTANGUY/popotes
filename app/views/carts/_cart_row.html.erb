@@ -3,51 +3,34 @@
     <div class="product">
 
       <% if dish.photos? %>
-        <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, crop: :fill, class:"product-image hidden-xs" %>
+        <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, quality: 80, fetch_format: :auto, crop: :fill, class:"product-image hidden-xs" %>
       <% else %>
         <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
       <% end %>
 
       <div class='product-body'>
-        <h3><%= dish.name %></h3>
+        <h3><%= dish.name%></h3>
         <%= simple_form_for order_item, remote: true do |f| %>
           <p>
-            <span style="color: #FF642E"><%= number_to_currency(order_item.unit_price, locale: :fr) %></span><br>
             <%= f.input_field :quantity, label: false, value: order_item.quantity.to_i, min: 1 %>
+            <%= f.button :button, class: 'btn btn-warning' do %>
+              <i class='fa fa-refresh'></i>
+            <% end %>
             <%= f.input :dish_id, as: :hidden %>
+            Total = <span class="label label-warning"><%= number_to_currency(order_item.total_price, locale: :fr) %></span>
           </p>
-      </div>
-
-      <ul class="list-inline">
-        <li>
-          Prix total : <span style="color: #FF642E"><%= number_to_currency(order_item.total_price, locale: :fr) %></span>
-        </li>
-        <li>
-          <%= f.button :submit, "Modifier la quantité", class: "btn btn-popote-bis" %>
-        </li>
         <% end %>
-        <li>
-          <%= link_to "Supprimer", order_item, { data: { confirm: "Êtes-vous sûr de vouloir supprimer la popote '#{order_item.dish.name}' de votre panier ?" }, method: :delete, remote: true, class: "btn btn-popote-bis" } %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <div class="product">
-      <div class='product-body'>
-        <h4>SOUS-TOTAL : <%= number_to_currency(current_order.subtotal, locale: :fr)%></h4>
-        <p>FRAIS : <%= number_to_currency(current_order.charge, locale: :fr) %></p>
-        <h4>MONTANT TOTAL : <%= number_to_currency(current_order.total_amount, locale: :fr)%></h4>
       </div>
 
-      <ul class="list-inline">
+      <ul class="list-inline product-controls">
         <li>
-          <%= link_to "Commandez", "", class: "btn btn-primary" %>
+          <%= link_to order_item, data: { confirm: "Êtes-vous sûr de vouloir supprimer la popote '#{order_item.dish.name}' de votre panier ?" }, method: :delete, remote: true do %>
+          <i class="fa fa-trash"></i>
+          <% end %>
         </li>
       </ul>
     </div>
   </div>
 </div>
+
+

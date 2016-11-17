@@ -2,15 +2,14 @@ class DishesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
 
-  before_action :load_cook
+  before_action :set_cook
 
-  before_action :load_dish, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
   before_action :set_order_item, only: [:index, :show]
 
 
   def index
-    @dishes = @cook.dishes.order(updated_at: :desc)
   end
 
   def new
@@ -56,11 +55,11 @@ class DishesController < ApplicationController
 
   private
 
-  def load_cook
+  def set_cook
     @cook = Cook.find(params[:cook_id])
   end
 
-  def load_dish
+  def set_dish
     @dish = @cook.dishes.find(params[:id])
   end
 

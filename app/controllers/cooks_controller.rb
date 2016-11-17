@@ -2,7 +2,7 @@ class CooksController < ApplicationController
 
     skip_before_action :authenticate_user!, only: [:index, :show]
 
-    before_action :find_cook, only: [:show, :edit, :update, :destroy]
+    before_action :set_cook, only: [:show, :edit, :update, :destroy]
 
     def index
       if params[:location]
@@ -31,6 +31,7 @@ class CooksController < ApplicationController
     def show
       @dishes = @cook.dishes.order(updated_at: :desc)
       @order_item = current_order.order_items.new(dish: @dish)
+      @specialities = @cook.specialities.all
       @places = @cook.places.all
     end
 
@@ -68,7 +69,7 @@ class CooksController < ApplicationController
     end
 
     private
-    def find_cook
+    def set_cook
       @cook = Cook.find(params[:id])
     end
 

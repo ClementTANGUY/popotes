@@ -22,13 +22,32 @@
     <div class="container">
       &nbsp
       <p>
-        <%= link_to "Une autre popote ?", cooks_path, class: 'btn btn-popote-bis btn-lg' %>
+        <%= link_to "Encore faim ?", cooks_path, class: 'btn btn-popote-bis btn-lg' %>
       </p>
     </div>
 
     <% @order_items.each do |order_item| %>
       <%= render 'carts/cart_row', dish: order_item.dish, order_item: order_item, show_total: true %>
     <% end %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <p>
+              SOUS-TOTAL = <%= number_to_currency(current_order.subtotal, locale: :fr)%>
+            </p>
+            <p>
+              FRAIS = <%= number_to_currency(current_order.charge, locale: :fr) %>
+            </p>
+            <p>
+              MONTANT TOTAL = <%= number_to_currency(current_order.total_amount, locale: :fr)%>
+            </p>
+            <p>
+              <%= link_to "Commandez", "", class: "btn btn-primary btn-lg" %>
+            </p>
+        </div>
+      </div>
+    </div>
 
   <% end %>
 </div>
