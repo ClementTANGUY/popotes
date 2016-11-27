@@ -16,7 +16,7 @@
         $(this).html(event.strftime(format));
       })
       .on('finish.countdown', function(event) {
-        $(this).html('Indisponible')
+        $(this).html('Temps écoulé')
           .parent().addClass('disabled');
       });
 

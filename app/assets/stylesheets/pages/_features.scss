@@ -1,10 +1,9 @@
-#flex {
+.feature-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.feature {
+.feature{
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -12,13 +11,25 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
-.feature p {
+.feature h4{
   color: #616668;
-  text-align: center;
+  font-weight: bold;
+}
+.feature p {
+  display: none;
+  color: #616668;
   font-size: 18px;
   font-weight: 300;
 }
-.feature img {
+.icon{
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.icon img {
   width: 120px;
 }
 

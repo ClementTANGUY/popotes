@@ -5,7 +5,7 @@ class CooksController < ApplicationController
     before_action :set_cook, only: [:show, :edit, :update, :destroy]
 
     def index
-      if params[:location]
+      if params[:location].present?
         @places = Place.where.not(latitude: nil, longitude: nil).near(params[:location], 1)
         @cooks = Cook.order(created_at: :asc)
       else
