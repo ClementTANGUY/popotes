@@ -44,45 +44,52 @@
         <%= number_to_currency(@dish.price, locale: :fr) %>
       </span>
     </p>
+
+
+
     <div class="banner-controls">
       <% if @cook.user == current_user %>
         <p>
           <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'}, class: "btn btn-popote-bis btn-lg" %>
         </p>
+
       <% else %>
+
         <p>
           <%= render "add_to_cart", dish: @dish, order_item: @order_item %>
         </br>
           <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
         </p>
+
       <% end %>
     </div>
+
   </div>
 
   <% if @dish.photos? %>
 
-  <% @dish.photos.each do |photo| %>
+    <% @dish.photos.each do |photo| %>
 
-    <a href="#", data-toggle="modal" data-target=".enlargePhoto-<%= photo.id %>">
-      <%= cl_image_tag photo.path, height: 150, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"hidden-xs" %>
-    </a>
+      <a href="#", data-toggle="modal" data-target=".enlargePhoto-<%= photo.id %>">
+        <%= cl_image_tag photo.path, height: 150, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"hidden-xs" %>
+      </a>
 
-    <div class="modal enlargePhoto-<%= photo.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%= cl_image_tag photo.path, height: 400, width: 550, quality: 80, fetch_format: :auto, crop: :fill %>
+      <div class="modal enlargePhoto-<%= photo.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= cl_image_tag photo.path, height: 400, width: 550, quality: 80, fetch_format: :auto, crop: :fill %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-  <% end %>
+    <% end %>
 
   <% else %>
 

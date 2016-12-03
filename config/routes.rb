@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   get "/features" => "pages#features"
 
   resources :cooks do
-    resources :dishes
+    resources :dishes, except: [:index]
+  end
+
+  resources :cooks do
+    resources :places, only: [:destroy]
   end
 
   resource :cart, only: [:show]

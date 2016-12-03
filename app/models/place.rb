@@ -6,7 +6,7 @@ class Place < ApplicationRecord
   validates :full_address, presence: true
   validates :zip_code, presence: true
   validates :city, presence: true
-  validates :kind_of_place, presence: true, inclusion: { in: %w(Domicile Bureaux/Agence Magasin/Restaurant Lieu\ public),
+  validates :kind_of_place, presence: true, inclusion: { in: %w(Domicile Bureaux/Agence Magasin/Restaurant Parc/Lieu\ public),
     message: "%{value} n'est pas autorisé" }
   validates :reception_desk, presence: true
 
