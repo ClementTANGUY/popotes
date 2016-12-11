@@ -22,7 +22,7 @@
     <div class="container">
       &nbsp
       <p>
-        <%= link_to "Encore faim ?", cooks_path, class: 'btn btn-popote-bis btn-lg' %>
+        <%= link_to "Encore faim ?", :back, class: 'btn btn-popote-bis btn-lg' %>
       </p>
     </div>
 
@@ -43,7 +43,7 @@
               MONTANT TOTAL = <%= number_to_currency(current_order.total_amount, locale: :fr)%>
             </p>
             <p>
-              <%= link_to "Commandez", "", class: "btn btn-primary btn-lg" %>
+              <%= link_to "Je commande", "", class: "btn btn-popote btn-lg" %>
             </p>
         </div>
       </div>

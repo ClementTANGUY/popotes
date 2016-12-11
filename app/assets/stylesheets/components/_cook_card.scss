@@ -1,4 +1,4 @@
-.card {
+.cook_card {
   height: 175px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
@@ -7,29 +7,29 @@
   margin-top: 10px;
   position: relative;
 }
-.card-user {
+.cook_card-user {
   position: absolute;
   right: 10px;
   top: 10px;
 }
-.card-category {
+.cook_card-category {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 13px;
+  font-size: 14px;
 }
-.card-description {
+.cook_card-description {
   position: absolute;
   bottom: 25px;
   left: 10px;
 }
-.card-description h2 {
-  font-size: 24px;
+.cook_card-description h2 {
+  font-size: 22px;
 }
-.card-description p {
+.cook_card-description p {
   font-size: 13px;
   }
-.card-link {
+.cook_card-link {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -38,6 +38,6 @@
   background: black;
   opacity: 0;
 }
-.card-link:hover{
+.cook_card-link:hover{
   opacity: 0.1;
 }

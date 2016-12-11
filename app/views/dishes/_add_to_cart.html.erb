@@ -2,8 +2,8 @@
   <div class="col-xs-4 col-xs-offset-4">
     <%= simple_form_for order_item, remote: true do |f| %>
       <%= f.input :quantity, value: 1, label: false, placeholder: 'Quantité', min: 1  %>
-      <%= f.input :dish_id, as: :hidden %>
-      <%= f.button :submit, "Ajouter au panier", class: "btn btn-primary" %>
+      <%= f.input :dish_id, value: dish.id, as: :hidden %>
+      <%= f.button :submit, "Ajouter au panier", class: "btn btn-warning" %>
     <% end %>
   </div>
 </div>

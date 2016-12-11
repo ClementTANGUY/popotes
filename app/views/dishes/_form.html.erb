@@ -6,7 +6,7 @@
   <%= f.input :veggie, inline_label: 'Végétarien' %>
   <%= f.input :cooked, inline_label: 'Plat cuit' %>
   <%= f.input :be_reheated, inline_label: 'À réchauffer' %>
-  <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 100g)", "Moyenne (150-250g)", "Grande (>300g)"], as: :select %>
+  <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 150g)", "Moyenne (200-300g)", "Grande (>300g)"], as: :select %>
   <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
   <%= f.input :price, label: 'Prix en euros', placeholder: "15 % de frais viennent s'ajouter pour l'acheteur" %>
   <div class='row datetimerange'>
@@ -14,6 +14,6 @@
       <%= f.input :collect_date, label: "Quand exactement récupérer votre plat ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
   </div>
   <%= f.input :photos, as: :attachinary %>
-  <%= f.button :button, "Créer".html_safe, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"}, class: "btn btn-success btn-lg"%>  <%= link_to "Annulez", :back, class: "btn btn-default btn-lg" %>
+  <%= f.button :button, "Créer".html_safe, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."}, class: "btn btn-popote btn-lg"%>  <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
 <% end %>
 

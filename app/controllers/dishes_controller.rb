@@ -6,17 +6,15 @@ class DishesController < ApplicationController
 
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
 
-  before_action :set_order_item, only: [:index, :show]
-
-
   def index
+  end
+
+  def show
+    @order_item = current_order.order_items.new(dish: @dish)
   end
 
   def new
     @dish = @cook.dishes.new
-  end
-
-  def show
   end
 
   def create
@@ -61,10 +59,6 @@ class DishesController < ApplicationController
 
   def set_dish
     @dish = @cook.dishes.find(params[:id])
-  end
-
-  def set_order_item
-    @order_item = current_order.order_items.new(dish: @dish)
   end
 
   def dish_params

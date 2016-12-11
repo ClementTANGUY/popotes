@@ -5,15 +5,7 @@
       <%= image_tag "locate.svg" %>
     </div>
     <div class="feature text-center">
-      <h4>Repérez les chefs, choissisez leurs popotes, géolocalisez les lieux de collecte proposés</h4>
-      <p>
-        <em>
-          Maria, le cordon-bleu de la compta a mijoté un bœuf-carotte pour un régiment.<br>
-          Trois portions seront disponibles le lendemain pour ses collègues de bureau ou à l'accueil de son immeuble, pour ceux qui ne travaillent pas dans ses locaux.<br>
-          William, passionné de cuisine, a réalisé un risotto au safran et à se damner.<br>
-          Lors de sa ballade habituelle après déjeuner, il est d'accord pour livrer deux parts de son trésor autour de sa boîte.
-        </em>
-      </p>
+
     </div>
   </div>
 
@@ -22,14 +14,7 @@
       <%= image_tag "notify.svg" %>
     </div>
     <div class="feature text-center">
-      <h4>Réservez vos portions en deux coups de cuillère à pot jusqu'à votre départ au boulot</h4>
-      <p>
-        <em>
-          Un compte-à-rebours se déclenche lorsque le chef valide la date et l'heure limites pour commander ses plats.<br>
-          Il complète un descriptif complet et précis de leur composition dans ses annonces.<br>
-          Le nombres de portion(s), le lieu de collecte indiqué sur la carte grâce à la géolocalisation, et l'heure précise de rendez-vous sont également renseignés.
-        </em>
-      </p> 
+
     </div>
   </div>
 
@@ -38,17 +23,7 @@
       <%= image_tag "payonline.svg" %>
     </div>
     <div class="feature text-center">
-      <h4>Commandez et payez simplement votre Vatel en ligne</h4>
-      <p>
-        <em>
-          L'oseille, c'est pour les plats...<br>
-          Aucun échange de liquide, vous l'aurez compris, ni de messages entre utilisateurs.<br>
-          CB, PayPal, cartes Ticket-Restaurant© et Chèques-Déjeuner©, coupons prépayés en ligne, payez très facilement.<br>
-          Parce qu'il faut bien que l'on mange nous aussi, après les frais de service, on en croque donc légèrement au passage :<br>
-          Pour l'acheteur, 15% de commission sur les plats commandés et 10% de commission pour le chef.<br>
-          Les chefs se constituent ainsi une petite cagnotte, qu'ils récupèrent par virement en fin de mois.
-          </em>
-      </p>
+
     </div>
   </div>
 
@@ -57,14 +32,7 @@
       <%= image_tag "collect.svg" %>
     </div>
     <div class="feature text-center">
-      <h4>Récupérez votre plat en chemin, à proximité, devant, à l'accueil ou sur votre lieu de travail</h4>
-      <p>
-        <em>
-          Nous proposons également aux utilisateurs de commander des gamelles uniformisées pour chaque type de préparation, leur permettant ainsi de se les échanger.<br>
-          Nettoyées, réutilisées pour de nouvelles popotes lors de commandes suivantes, l'échange permet de diminuer l'impact sur l'environnement.<br> 
-          Vous pouvez aussi échanger vos propres boîtes alimentaires, utiliser des barquettes individuelles, cartonnées et jetables, recyclables bien-sûr !
-        </em>
-      </p>
+
     </div>
   </div>
 
@@ -73,17 +41,7 @@
       <%= image_tag "rating.svg" %>
     </div>
     <div class="feature text-center">
-      <h4>Évaluez votre repas, encensez votre gueulton, condamnez les  supplices</h4>
-      <p>
-        <em>
-        "Perle rare »<br>
-        "Prince des papilles »<br>
-        "Alchimiste gustatif »<br>
-        "Cuistot de cantoches »<br>
-        "Infâme opportuniste »<br>
-        </em>
-        Les radins, les gros dégueulasses seront naturellement bannis. Entre-nous, misez davantage sur l'hygiène des particuliers, à plus forte raison lorsqu'ils cuisinent aussi pour eux-mêmes, que sur celle de nombreux lieux publics…
-      </p>
+
     </div>
   </div>
 
@@ -91,11 +49,15 @@
 
 <% content_for(:after_js) do %>
   <script type="text/javascript">
+    function showFeature () {
+    $(this).closest('.feature-box').find('.feature p').show();
+    }
     $(document).ready(function() {
-      $('.icon').on('mouseover','img', function() {
-      $(this).closest('.feature-box').find('.feature p').show();
-      });
+      $('.icon').on('mouseover', 'img', showFeature);
+      $('.feature').on('mouseover', 'h4', showFeature);
     });
   </script>
 <% end %>
+
+
 

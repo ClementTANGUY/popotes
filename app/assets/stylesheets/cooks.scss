@@ -61,3 +61,35 @@
  .map_box-link:hover{
    opacity: 0.1;
  }
+
+ .cook {
+   height: 175px;
+   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+   background-size: cover !important;
+   color: white;
+   background-color: $blue;
+   margin-top: 10px;
+   position: relative;
+ }
+ .cook-user {
+   position: absolute;
+   right: 8px;
+   top: 20px;
+ }
+ .cook-category {
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   font-size: 14px;
+ }
+ .cook-description {
+   position: absolute;
+   bottom: 25px;
+   left: 10px;
+ }
+ .cook-description h2 {
+   font-size: 22px;
+ }
+ .cook-description p {
+   font-size: 13px;
+   }

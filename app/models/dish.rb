@@ -12,7 +12,7 @@ class Dish < ApplicationRecord
   validates :speciality, inclusion: { in: %w(Gastronomique Terroir\ &\ Famille Cuisines\ du\ monde Bio\ &\ Diététique),
     message: "%{value} n'est pas autorisé" }
   validates :description, presence: true
-  validates :portion_size, inclusion: { in: %w(Petite\ (env.\ 100g) Moyenne\ (150-250g) Grande\ (>300g)),
+  validates :portion_size, inclusion: { in: %w(Petite\ (env.\ 150g) Moyenne\ (200-300g) Grande\ (>300g)),
     message: "%{value} n'est autorisé" }
   validates :portion_count, presence: true
   validates :price, presence: true

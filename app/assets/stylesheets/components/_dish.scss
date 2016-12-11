@@ -1,4 +1,4 @@
-.product {
+.dish {
   display: flex;
   align-items: center;
   padding: 20px;
@@ -7,39 +7,45 @@
 }
 
 /* Body design */
-.product-body {
+.dish-body {
   flex: 1 1 auto;
 }
-.product-body h3 {
+.dish-body h3 {
   font-weight: bold;
   font-size: 23px;
   margin-top: 0;
 }
 
-.product-body p {
+.dish-body h5{
+  font-weight: bold;
+  color: #FF642E;
+}
+
+.dish-body p {
   font-weight: lighter;
   color: #999999;
+  line-height: 28px;
   margin-bottom: 0;
 }
 
-.product-body a {
-  color: black;
+.dish-body a {
+  color: #999999;
 }
 
-.product-body a:hover{
-  color: #5898f1;
+.dish-body a:hover{
+  color: #FF642E;
   text-decoration: none;
 }
 
-/* Product image */
-.product-image {
+/* dish image */
+.dish-image {
   border-radius: 10px;
   margin-right: 20px;
   width: 200px;
 }
 
 /* Upvote design */
-.product-upvote {
+.dish-upvote {
   padding-right: 20px;
   text-align: center;
   transition: all 0.15s ease;
@@ -47,10 +53,10 @@
   font-size: 13px;
   line-height: 20px;
 }
-.product-count {
+.dish-count {
   margin: 2px 0 0;
 }
-.product-arrow {
+.dish-arrow {
   transition: all 0.15s ease;
   width: 0;
   height: 0;
@@ -63,21 +69,21 @@
 }
 
 /* Controls design */
-.product-controls {
+.dish-controls {
   display: flex;
   align-items: center;
   text-align: center;
   margin: 0px;
 }
-.product-controls a {
+.dish-controls a {
   padding: 0 20px;
   font-size: 17px;
   color: #E6E6E6;
 }
-.product-controls a:hover {
+.dish-controls a:hover {
   color: #FF642E !important;
 }
-.product-controls-hidden a {
+.dish-controls-hidden a {
   color: transparent;
   font-size: 15px;
   transition: all 0.15s ease;
@@ -85,16 +91,15 @@
 }
 
 /* Hover effects */
-.product:hover {
+.dish:hover {
   background: #f7f7fa;
   cursor: pointer;
 }
-.product-upvote:hover {
-
+.dish-upvote:hover {
   cursor: pointer;
 }
-.product:hover .product-upvote { transform: scale(1.2) }
-.product:hover .product-controls-hidden a { color: #E6E6E6 }
-.product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
+.dish:hover .dish-upvote { transform: scale(1.2) }
+.dish:hover .dish-controls-hidden a { color: #E6E6E6 }
+.dish-upvote:hover .dish-arrow { border-bottom: 9px solid #5898f1 }
 
 

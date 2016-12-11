@@ -50,6 +50,7 @@ CookSpeciality.create!(cook_id: "5", speciality_id: "5")
 OrderStatus.create!(id: 1, name: "In Progress")
 OrderStatus.create!(id: 2, name: "Placed")
 OrderStatus.create!(id: 3, name: "Cancelled")
+OrderStatus.create!(id: 4, name: "Paid")
 
 
 

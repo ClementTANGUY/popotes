@@ -8,7 +8,7 @@
     <div class="map_box-description">
       <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
       <p>
-        <%= place.full_address %> <%= place.zip_code %> <%= place.city %><br>
+        <%= place.full_place %><br>
         <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
       </p>
     </div>

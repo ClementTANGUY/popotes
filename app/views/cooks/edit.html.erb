@@ -3,6 +3,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1 class="text-center">Modifier votre profil</h1>
       <%= render "form" %>
+      <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-popote-bis btn-lg" %>
     </div>
   </div>
 </div>
