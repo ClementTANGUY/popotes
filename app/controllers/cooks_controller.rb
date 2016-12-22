@@ -5,13 +5,13 @@ class CooksController < ApplicationController
     before_action :set_cook, only: [:show, :edit, :update, :destroy]
 
     def index
-      if params[:location].present?
-        @places = Place.geocoded.near(params[:location], 1)
+      if params[:location]
+        @places = Place.near(params[:location], 0.5)
         @places.each do |place|
-        @cooks = place.cooks.order(created_at: :asc)
+        @cooks = place.cooks
         end
       else
-        @places = Place.geocoded.all
+        @places = Place.all
         @cooks = Cook.order(created_at: :asc)
       end
 
@@ -25,7 +25,7 @@ class CooksController < ApplicationController
 
     def show
       @dishes = @cook.dishes.order(updated_at: :desc)
-      @order_item = current_order.order_items.new(dish: @dish)
+
       @specialities = @cook.specialities
       @places = @cook.places
     end

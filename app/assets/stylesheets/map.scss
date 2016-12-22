@@ -1,0 +1,59 @@
+#map-container {
+  height: 500px;
+  border-radius: 16px 16px;
+  border-color: #fff;
+  border-style: solid;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  margin-top: 10px;
+  border-width: 7px;
+ }
+
+#map {
+  height: 484px;
+  width: 100%;
+ }
+
+ .map_box {
+   height: 175px;
+   width: 330px;
+   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+   background-size: cover !important;
+   color: white;
+   background-color: $blue;
+   margin-top: 10px;
+   position: relative;
+ }
+ .map_box-user {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+ }
+ .map_box-category {
+   position: absolute;
+   top: 10px;
+   left: 10px;
+   font-size: 13px;
+ }
+ .map_box-description {
+   position: absolute;
+   bottom: 10px;
+   left: 10px;
+ }
+ .map_box-description h2 {
+   font-size: 24px;
+ }
+ .map_box-description p {
+   font-size: 13px;
+   }
+ .map_box-link {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 100%;
+   z-index:2;
+   background: black;
+   opacity: 0;
+ }
+ .map_box-link:hover{
+   opacity: 0.1;
+ }

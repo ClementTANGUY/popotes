@@ -10,6 +10,10 @@ class Order < ApplicationRecord
 
     before_save :update_total_amount
 
+    def total_quantity
+      order_items.collect { |oi| oi.valid? ? (oi.quantity) : 0 }.sum
+    end
+
     def subtotal
       order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
     end

@@ -89,9 +89,9 @@
 
         <% else %>
 
-          <ul class="list-inline dish-controls hidden-sm hidden-xs">
+          <ul class="list-inline dish-controls">
             <li>
-              <%= render "add_to_cart", dish: dish %>
+              <%= render "add_to_cart", cook: @cook, dish: dish %>
             </li>
           </ul>
 

@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <div class="product">
+    <div class="dish">
 
       <% if dish.photos? %>
-        <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, quality: 80, fetch_format: :auto, crop: :fill, class:"product-image hidden-xs" %>
+        <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, quality: 80, fetch_format: :auto, crop: :fill, class:"dish-image hidden-xs" %>
       <% else %>
-        <%= image_tag "tupperwares.jpg", alt:"Popote", class:"product-image hidden-xs" %>
+        <%= image_tag "tupperwares.jpg", alt:"Popote", class:"dish-image hidden-xs" %>
       <% end %>
 
-      <div class='product-body'>
+      <div class='dish-body'>
         <h3><%= dish.name%></h3>
         <%= simple_form_for order_item, remote: true do |f| %>
           <p>
-            <%= f.input_field :quantity, label: false, value: order_item.quantity.to_i, min: 1 %>
+            <%= f.number_field :quantity, label: false, value: order_item.quantity.to_i, min: 1 %>
             <%= f.button :button, class: 'btn btn-warning' do %>
               <i class='fa fa-refresh'></i>
             <% end %>
@@ -22,7 +22,7 @@
         <% end %>
       </div>
 
-      <ul class="list-inline product-controls">
+      <ul class="list-inline dish-controls">
         <li>
           <%= link_to order_item, data: { confirm: "Êtes-vous sûr de vouloir supprimer la popote '#{order_item.dish.name}' de votre panier ?" }, method: :delete, remote: true do %>
           <i class="fa fa-trash"></i>

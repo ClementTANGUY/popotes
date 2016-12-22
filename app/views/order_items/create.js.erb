@@ -1,5 +1,6 @@
 <% if @order.errors.any? || @order_item.errors.any? %>
-alert("not valid.")
+alert("not valid")
 <% else %>
   $(".cart-text").html("<%= j render 'shared/cart_text' %>")
 <% end %>
+

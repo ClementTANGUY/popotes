@@ -13,9 +13,6 @@ Rails.application.routes.draw do
 
   resources :cooks do
     resources :dishes, except: [:index]
-  end
-
-  resources :cooks do
     resources :places, only: [:destroy]
   end
 

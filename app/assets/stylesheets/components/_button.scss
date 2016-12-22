@@ -11,6 +11,7 @@
   text-decoration: none;
   color: #999999;
 }
+
 .btn-treehouse {
   color: white;
   padding: 10px 15px;
@@ -36,12 +37,13 @@
   background: #FF642E;
   transition: background 0.3s ease;
 }
-.btn-popote:hover {
+.btn-popote:hover{
   opacity: 1;
   background: #f2542d;
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
+
 .btn-popote-bis {
   color: #f2542d !important;
   border: 1px solid #f2542d;

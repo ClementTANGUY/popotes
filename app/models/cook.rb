@@ -13,7 +13,7 @@ class Cook < ApplicationRecord
   has_many :cook_places
   has_many :places, through: :cook_places
   accepts_nested_attributes_for :cook_places, allow_destroy: true
-
+  accepts_nested_attributes_for :places
 
   validates :user, presence: true, uniqueness: true
   validates :last_name, presence: true

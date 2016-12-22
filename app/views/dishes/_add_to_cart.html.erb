@@ -1,10 +1,1 @@
-<div class="row">
-  <div class="col-xs-4 col-xs-offset-4">
-    <%= simple_form_for order_item, remote: true do |f| %>
-      <%= f.input :quantity, value: 1, label: false, placeholder: 'Quantité', min: 1  %>
-      <%= f.input :dish_id, value: dish.id, as: :hidden %>
-      <%= f.button :submit, "Ajouter au panier", class: "btn btn-warning" %>
-    <% end %>
-  </div>
-</div>
-
+<%= link_to "Ajouter au panier", order_items_path(dish_id: dish.id), remote: true, method: :post, class:"btn btn-popote" %>

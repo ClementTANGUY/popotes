@@ -56,8 +56,10 @@
       <% else %>
 
         <p>
-          <%= render "add_to_cart", dish: @dish, order_item: @order_item %>
+          <%= render "add_to_cart", dish: @dish %>
+        </p>
         </br>
+        <p>
           <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
         </p>
 
