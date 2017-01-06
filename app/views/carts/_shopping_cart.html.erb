@@ -1,6 +1,7 @@
 <div class="container">
   <% if !@order_item.nil? && @order_item.errors.any? %>
-    <div class="alert alert-danger">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <ul>
       <% @order_item.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>

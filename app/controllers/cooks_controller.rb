@@ -7,9 +7,7 @@ class CooksController < ApplicationController
     def index
       if params[:location]
         @places = Place.near(params[:location], 0.5)
-        @places.each do |place|
-        @cooks = place.cooks
-        end
+        @cooks = Cook.joins(:places).where("place.id = ?", @places.ids)
       else
         @places = Place.all
         @cooks = Cook.order(created_at: :asc)

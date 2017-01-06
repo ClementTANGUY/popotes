@@ -9,18 +9,18 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     @dish = Dish.find(params[:dish_id])
-    @order_item = OrderItem.where("order_id = ? AND dish_id = ?", @order.id, @dish.id)
+    @order_item = OrderItem.where("order_id = ? AND dish_id = ?", @order, @dish)
     respond_to do |format|
-      if @order_item.sum("quantity") <= @dish.portion_count
-        @order_item = @order.order_items.new(dish_id: @dish.id, quantity: "1")
-        @order.save
-        session[:order_id] = @order.id
-        format.html
-        format.js {  flash[:notice] = "Plat ajouté à votre panier !" }
-      else
-        format.html
-        format.js {  flash[:alert] = "Quantité désirée supérieure au nombre de portion(s) disponible(s) !" }
-      end
+    if (@order_item.sum("quantity") < @dish.portion_count)
+      @order_item = @order.order_items.new(dish_id: @dish.id, quantity: "1")
+      @order.save
+      session[:order_id] = @order.id
+      format.html { flash[:notice] = "Plat ajouté à votre panier !" }
+      format.js { flash[:notice] = "Plat ajouté à votre panier !" }
+    else
+      format.html { flash[:alert] = "Seulement #{@dish.portion_count} #{'portion'.pluralize(@dish.portion_count)} #{'disponible'.pluralize(@dish.portion_count)}" }
+      format.js { flash[:alert] = "Seulement #{@dish.portion_count} #{'portion'.pluralize(@dish.portion_count)} #{'disponible'.pluralize(@dish.portion_count)}" }
+    end
     end
   end
 

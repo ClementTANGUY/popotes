@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  validate :dish_quantity
+  validate :order_item_quantity
   validate :dish_present
   validate :order_present
 
@@ -24,20 +24,20 @@ class OrderItem < ApplicationRecord
   end
 
 private
-  def dish_quantity
-    if dish.portion_count < quantity
-      errors.add(:quantité, "supérieure au nombre de portion(s) disponible(s)")
+  def order_item_quantity
+    if quantity > dish.portion_count
+      errors.add(:Seulement, "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)}")
     end
   end
   def dish_present
     if dish.nil?
-      errors.add(:plat, "invalide ou inexistant")
+      errors.add(:Plat, "invalide ou inexistant")
     end
   end
 
   def order_present
     if order.nil?
-      errors.add(:commande, "invalide")
+      errors.add(:Commande, "invalide")
     end
   end
 
