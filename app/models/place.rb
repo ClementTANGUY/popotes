@@ -8,7 +8,6 @@ class Place < ApplicationRecord
   validates :city, presence: true
   validates :kind_of_place, presence: true, inclusion: { in: %w(Domicile Bureaux/Agence Magasin/Restaurant Parc/Lieu\ public),
     message: "%{value} n'est pas autorisé" }
-  validates :reception_desk, presence: true
 
   geocoded_by :full_place
   after_validation :geocode, if: ->(obj){ obj.full_place.present? and obj.full_place_changed? }

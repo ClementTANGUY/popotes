@@ -9,7 +9,9 @@
       <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
       <p>
         <% cook.places.each do |place| %>
-          <%= place.full_place %>
+          <% if place.active %>
+           <%= place.full_place %>
+          <% end %>
           <% if params[:location] %>
             <span class="label label-warning"><%= number_to_human(place.distance_from(params[:location]), units: {unit: "Km", mili: "m"}) %></span>
           <% end %>

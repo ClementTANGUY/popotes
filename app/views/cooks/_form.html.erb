@@ -1,10 +1,12 @@
 <%= simple_form_for @cook do |f| %>
+
   <%= f.input :last_name, label: 'Nom' %>
   <%= f.input :first_name, label: 'Prénom' %>
   <%= f.input :age, label: 'Âge', collection: 18..99 %>
   <%= f.input :bio, label: 'À propos de vous', placeholder: "Dîtes-en peu plus sur vous, sur votre cuisine..." %>
 
-  <p>VOS SPECIALITÉS</p>
+  <p>VOS SPECIALITÉS DE POPOTES</p>
+
     <%= f.simple_fields_for :cook_specialities do |cs| %>
       <%= cs.simple_fields_for :speciality do |s| %>
         <%=s.input :name, label: 'Spécialité', collection: ["Gastronomique", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
@@ -12,10 +14,15 @@
       <% end %>
     <% end %>
 
+  <p>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</p>
+
   <%= f.input :avatar, label: 'Photo', as: :attachinary %>
 
   <p>ADRESSE DE COLLECTE DE VOS PLATS</p>
+
     <%= f.simple_fields_for :cook_places do |cp| %>
+
+      <p></p>
 
       <%= cp.simple_fields_for :place do |p| %>
 
@@ -24,25 +31,32 @@
           <%=p.input :full_address, label: 'Adresse' %>
           <%=p.input :zip_code , label: 'Code Postal'%>
           <%=p.input :city, label: 'Ville' %>
-          <%=p.input :reception_desk, inline_label: "Quelqu'un pour vous accueillir ?" %>
+          <%=p.input :active, inline_label: "Utiliser cette adresse ?" %>
 
           <% if p.object.new_record? %>
-            <%= link_to "Supprimez", "", remote: true, class: "destroy_duplicate_nested_form btn btn-default" %>
+            <%= link_to "Supprimer cette adresse", "", remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
           <% else %>
-            <%= link_to "Supprimez", cook_place_path(@cook, p.object), method: :delete, remote: true, class: "destroy_duplicate_nested_form btn btn-default" %>
-            <%= p.input :id, as: :hidden %>
+            <%= link_to "Supprimer cette adresse", cook_place_path(@cook, p.object), method: :delete, remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
           <% end %>
+          <%= p.input :id, as: :hidden %>
         </div>
 
       <% end %>
 
-    <%= link_to "Ajoutez une adresse", "", class: "duplicate_nested_form btn btn-primary" %><br>
-
   <% end %>
+
+  <p></p>
+
+  <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %><br>
 
 
   <div class="padded text-center">
-    <%= f.button :button, "CRÉER".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."} %> <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
+    <% if f.object.new_record? %>
+      <%= f.button :button, "Créer".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."} %>
+    <% else %>
+      <%= f.button :button, "Mettre à jour".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."} %>
+    <% end %>
+    <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
   </div>
 
 <% end %>

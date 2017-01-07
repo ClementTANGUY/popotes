@@ -106,14 +106,14 @@
 
 <div class="container">
 
-  <h1 class= "text-center">Adresse de retrait</h1>
+  <h1 class= "text-center"><%= "#{@places.size} #{pluralize_with_0('Adresse', @places.size)} de retrait #{pluralize_with_0('utilisée', @places.size)}" %></h1>
 
   <% @places.each do |place| %>
 
     <p>
       <span class="label label-default"><%= place.kind_of_place %></span><br>
       <%= place.full_address %> <%= place.zip_code %> <%= place.city %> <br>
-      Quelqu'un pour vous accueillir : <span class="label label-default"><%= humanize_boolean(place.reception_desk) %></span>
+      Adresse active : <span class="label label-default"><%= humanize_boolean(place.active) %></span>
     </p>
 
   <% end %>

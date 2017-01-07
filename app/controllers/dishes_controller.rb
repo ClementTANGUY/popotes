@@ -20,7 +20,7 @@ class DishesController < ApplicationController
     @dish = @cook.dishes.new(dish_params)
     if @cook.user == current_user
       @dish.save
-      redirect_to cook_path(@cook), notice: "Votre plat a bien été créé"
+      redirect_to cook_path(@cook), notice: "Votre popote a bien été créée"
     else
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       render :new
@@ -33,7 +33,7 @@ class DishesController < ApplicationController
   def update
     if @cook.user == current_user
       @dish.update(dish_params)
-      redirect_to cook_path(@cook), notice: "Votre plat a bien été mis à jour"
+      redirect_to cook_path(@cook), notice: "Votre popote a bien été mise à jour"
     else
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       render :edit
@@ -43,7 +43,7 @@ class DishesController < ApplicationController
   def destroy
     if @cook.user == current_user
       @dish.destroy
-      redirect_to cook_path(@cook), notice: "Votre plat a bien été supprimée"
+      redirect_to cook_path(@cook), notice: "Votre popote a bien été supprimée"
     else
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       redirect_to cook_dishes_path(@cook)

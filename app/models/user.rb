@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_one :cook
+  has_one :cook, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

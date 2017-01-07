@@ -28,11 +28,11 @@ Dish.create!(cook: Cook_2, name: "Filet de boeuf en croûte", kind_of_dish: "Pla
 Dish.create!(cook: Cook_2, name: "Moelleux au chocolat", kind_of_dish: "Dessert & Patisserie", speciality: "Gastronomique", description: "Moelleux au coeur fondant, cacao bio équitable de Madagascar", veggie: "true", cooked: "true", be_reheated: "true", portion_size: "Petite (env. 150g)", portion_count: "6", price: '4,50', exp_date: "30/11/2016 20:00:00", collect_date: "13/11/2016 13:00:00")
 
 Place.delete_all
-Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", reception_desk: "true")
-Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", reception_desk: "true")
-Place.create!(full_address: "5 Rue Vivienne", zip_code: "75002", city: "Paris", kind_of_place: "Bureaux/Agence", reception_desk: "true")
-Place.create!(full_address: "243 rue Saint-Honoré", zip_code: "75001", city: "Paris", kind_of_place: "Magasin/Restaurant", reception_desk: "true")
-Place.create!(full_address: "43 rue Gabrie Lamé", zip_code: "75012", city: "Paris", kind_of_place: "Bureaux/Agence", reception_desk: "true")
+Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
+Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
+Place.create!(full_address: "5 Rue Vivienne", zip_code: "75002", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")
+Place.create!(full_address: "243 rue Saint-Honoré", zip_code: "75001", city: "Paris", kind_of_place: "Magasin/Restaurant", active: "true")
+Place.create!(full_address: "43 rue Gabrie Lamé", zip_code: "75012", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")
 
 Speciality.delete_all
 Speciality.create!(name: "Terroir & Famille", level: "Top Chef")

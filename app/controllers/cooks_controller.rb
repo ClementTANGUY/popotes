@@ -6,8 +6,12 @@ class CooksController < ApplicationController
 
     def index
       if params[:location]
+        @cooks = []
         @places = Place.near(params[:location], 0.5)
-        @cooks = Cook.joins(:places).where("place.id = ?", @places.ids)
+        @places.each do |place|
+          @cooks << place.cooks
+        end
+        @cooks.flatten!
       else
         @places = Place.all
         @cooks = Cook.order(created_at: :asc)
@@ -49,6 +53,8 @@ class CooksController < ApplicationController
     end
 
     def edit
+      @cook_places = @cook.cook_places.build
+      @place = @cook_places.build_place
     end
 
     def update
@@ -77,7 +83,7 @@ class CooksController < ApplicationController
     end
 
     def cook_params
-      params.require(:cook).permit(:last_name, :first_name, :age, :bio, :avatar, cook_specialities_attributes: [:id, :_destroy, speciality_attributes: [:id, :name, :level]], cook_places_attributes: [:id, :_destroy, place_attributes: [:id, :name, :full_address, :zip_code, :city, :kind_of_place, :reception_desk]])
+      params.require(:cook).permit(:last_name, :first_name, :age, :bio, :avatar, cook_specialities_attributes: [:id, :_destroy, speciality_attributes: [:id, :name, :level]], cook_places_attributes: [:id, :_destroy, place_attributes: [:id, :name, :full_address, :zip_code, :city, :kind_of_place, :active]])
     end
 
 end
