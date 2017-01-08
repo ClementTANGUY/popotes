@@ -5,7 +5,15 @@
   <%= f.input :age, label: 'Âge', collection: 18..99 %>
   <%= f.input :bio, label: 'À propos de vous', placeholder: "Dîtes-en peu plus sur vous, sur votre cuisine..." %>
 
-  <p>VOS SPECIALITÉS DE POPOTES</p>
+  <p></p>
+
+  <p style="font-weight: bold;">UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</p>
+
+  <%= f.input :avatar, label: 'Photo', as: :attachinary %>
+
+  <p></p>
+
+  <p style="font-weight: bold;">VOS SPECIALITÉS</p>
 
     <%= f.simple_fields_for :cook_specialities do |cs| %>
       <%= cs.simple_fields_for :speciality do |s| %>
@@ -14,41 +22,36 @@
       <% end %>
     <% end %>
 
-  <p>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</p>
+  <p></p>
 
-  <%= f.input :avatar, label: 'Photo', as: :attachinary %>
+  <p style="font-weight: bold;">ADRESSE DE COLLECTE DE VOS POPOTES</p>
 
-  <p>ADRESSE DE COLLECTE DE VOS PLATS</p>
+  <%= f.simple_fields_for :cook_places do |cp| %>
 
-    <%= f.simple_fields_for :cook_places do |cp| %>
+    <%= cp.simple_fields_for :place do |p| %>
 
-      <p></p>
+      <div class="duplicatable_nested_form">
+        <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Parc/Lieu public"], as: :select %>
+        <%=p.input :full_address, label: 'N°/ Voie' %>
+        <%=p.input :zip_code , label: 'Code Postal'%>
+        <%=p.input :city, label: 'Ville' %>
+        <%=p.input :active, inline_label: "Utiliser cette adresse" %>
 
-      <%= cp.simple_fields_for :place do |p| %>
+        <% if p.object.new_record? %>
+          <%= link_to "Supprimer cette adresse", "", remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
+        <% else %>
+          <%= link_to "Supprimer cette adresse", cook_place_path(@cook, p.object), method: :delete, remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
+        <% end %>
+        <%= p.input :id, as: :hidden %>
+      </div>
 
-        <div class="duplicatable_nested_form">
-          <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Parc/Lieu public"], as: :select %>
-          <%=p.input :full_address, label: 'Adresse' %>
-          <%=p.input :zip_code , label: 'Code Postal'%>
-          <%=p.input :city, label: 'Ville' %>
-          <%=p.input :active, inline_label: "Utiliser cette adresse ?" %>
-
-          <% if p.object.new_record? %>
-            <%= link_to "Supprimer cette adresse", "", remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
-          <% else %>
-            <%= link_to "Supprimer cette adresse", cook_place_path(@cook, p.object), method: :delete, remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
-          <% end %>
-          <%= p.input :id, as: :hidden %>
-        </div>
-
-      <% end %>
+    <% end %>
 
   <% end %>
 
   <p></p>
 
   <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %><br>
-
 
   <div class="padded text-center">
     <% if f.object.new_record? %>
@@ -58,6 +61,7 @@
     <% end %>
     <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
   </div>
+
 
 <% end %>
 

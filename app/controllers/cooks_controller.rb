@@ -7,13 +7,13 @@ class CooksController < ApplicationController
     def index
       if params[:location]
         @cooks = []
-        @places = Place.near(params[:location], 0.5)
+        @places = Place.active.near(params[:location], 0.5)
         @places.each do |place|
           @cooks << place.cooks
         end
         @cooks.flatten!
       else
-        @places = Place.all
+        @places = Place.active.all
         @cooks = Cook.order(created_at: :asc)
       end
 
@@ -53,8 +53,6 @@ class CooksController < ApplicationController
     end
 
     def edit
-      @cook_places = @cook.cook_places.build
-      @place = @cook_places.build_place
     end
 
     def update
