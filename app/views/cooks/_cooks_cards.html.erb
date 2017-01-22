@@ -6,18 +6,19 @@
       <% end %>
     </div>
     <div class="cook_card-description">
-      <h2><%= cook.first_name %> <%= cook.last_name.upcase %></h2>
+      <h2><%= cook.first_name %></h2>
       <p>
         <% cook.places.each do |place| %>
           <% if place.active %>
-           <%= place.full_place %>
+            <%= place.full_address %><br>
+            <%= "#{place.zip_code} #{place.city}" %>
           <% end %>
           <% if params[:location] %>
             <span class="label label-warning"><%= number_to_human(place.distance_from(params[:location]), units: {unit: "Km", mili: "m"}) %></span>
           <% end %>
         <% end %><br>
-        <%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
       </p>
+      <%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
     </div>
     <% if cook.avatar? %>
       <%= cl_image_tag cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook_card-user avatar-large" %>

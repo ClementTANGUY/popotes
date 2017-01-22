@@ -15,11 +15,11 @@ class Place < ApplicationRecord
   after_validation :geocode, if: ->(obj){ obj.full_place.present? and obj.full_place_changed? }
 
   def full_place
-    "#{full_address}, #{zip_code}, #{city}"
+    "#{full_address}, #{zip_code} #{city}"
   end
 
   def full_place_changed?
-      full_address_changed? || zip_code_changed? || city_changed?
+    full_address_changed? || zip_code_changed? || city_changed?
   end
 
 end

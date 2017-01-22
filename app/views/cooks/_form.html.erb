@@ -1,65 +1,66 @@
 <%= simple_form_for @cook do |f| %>
 
-  <%= f.input :last_name, label: 'Nom' %>
-  <%= f.input :first_name, label: 'Prénom' %>
-  <%= f.input :age, label: 'Âge', collection: 18..99 %>
-  <%= f.input :bio, label: 'À propos de vous', placeholder: "Dîtes-en peu plus sur vous, sur votre cuisine..." %>
-
-  <p></p>
-
-  <p style="font-weight: bold;">UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</p>
-
-  <%= f.input :avatar, label: 'Photo', as: :attachinary %>
-
-  <p></p>
-
-  <p style="font-weight: bold;">VOS SPECIALITÉS</p>
-
-    <%= f.simple_fields_for :cook_specialities do |cs| %>
-      <%= cs.simple_fields_for :speciality do |s| %>
-        <%=s.input :name, label: 'Spécialité', collection: ["Gastronomique", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
-        <%=s.input :level, label: 'Niveau', collection: ["Top Chef", "Avancé", "Amateur", "Débutant"], as: :select %>
+  <% if !@cook.nil? && @cook.errors.any? %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <ul>
+      <% @cook.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
-    <% end %>
-
-  <p></p>
-
-  <p style="font-weight: bold;">ADRESSE DE COLLECTE DE VOS POPOTES</p>
-
-  <%= f.simple_fields_for :cook_places do |cp| %>
-
-    <%= cp.simple_fields_for :place do |p| %>
-
-      <div class="duplicatable_nested_form">
-        <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Parc/Lieu public"], as: :select %>
-        <%=p.input :full_address, label: 'N°/ Voie' %>
-        <%=p.input :zip_code , label: 'Code Postal'%>
-        <%=p.input :city, label: 'Ville' %>
-        <%=p.input :active, inline_label: "Utiliser cette adresse" %>
-
-        <% if p.object.new_record? %>
-          <%= link_to "Supprimer cette adresse", "", remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
-        <% else %>
-          <%= link_to "Supprimer cette adresse", cook_place_path(@cook, p.object), method: :delete, remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
-        <% end %>
-        <%= p.input :id, as: :hidden %>
-      </div>
-
-    <% end %>
-
+      </ul>
+    </div>
   <% end %>
 
+  <div class="field">
+    <%= f.input :last_name, label: 'Nom' %>
+    <%= f.input :first_name, label: 'Prénom' %>
+    <%= f.input :age, label: 'Âge', collection: 18..99 %>
+    <%= f.input :bio, label: 'À propos de vous, de votre cuisine' %>
+  </div>
+
+
+  <h4>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</h4>
+
+  <div class="field">
+    <%= f.input :avatar, label: 'Photo', as: :attachinary %>
+  </div>
+
+  <h4>VOS SPECIALITÉS</h4>
+    <div class="items">
+      <%= f.simple_fields_for :cook_specialities do |cs| %>
+        <%= cs.simple_fields_for :speciality do |s| %>
+        <%= render 'speciality', s: s %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
+  <p style="color: #FF642E; font-weight: lighter";>Créez et gérer jusqu'à 3 adresses</p>
+  <div class="items">
+    <%= f.simple_fields_for :cook_places do |cp| %>
+      <%= cp.simple_fields_for :place do |p| %>
+      <%= render 'place', p: p %>
+      <% end %>
+    <% end %>
+  </div>
+
   <p></p>
 
-  <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %><br>
+  <div class="action">
+    <p>
+      <% if @cook.places.size < 3 %>
+        <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %>
+      <% end %>
+    </p>
+    <p>
+      <% if f.object.new_record? %>
+        <%= f.button :button, "Créer".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
+      <% else %>
+        <%= f.button :button, "Mettre à jour".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
+      <% end %>
 
-  <div class="padded text-center">
-    <% if f.object.new_record? %>
-      <%= f.button :button, "Créer".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."} %>
-    <% else %>
-      <%= f.button :button, "Mettre à jour".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> 2 sec..."} %>
-    <% end %>
-    <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
+      <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
+    </p>
   </div>
 
 

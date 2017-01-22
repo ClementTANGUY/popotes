@@ -1,0 +1,13 @@
+<fieldset class="item">
+  <div class="duplicatable_nested_form">
+    <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Magasin/Restaurant", "Parc/Lieu public"], as: :select %>
+    <%=p.input :full_address, label: 'N° Voie' %>
+    <%=p.input :zip_code , label: 'Code Postal' %>
+    <%=p.input :city, label: 'Ville' %>
+    <%=p.input :active, inline_label: "Définir comme votre adresse active" %>
+
+    <%= link_to 'Supprimer', '', remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
+
+    <%= p.input :id, as: :hidden %>
+  </div>
+</fieldset>

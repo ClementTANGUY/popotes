@@ -1,42 +1,34 @@
-
-<div class="container">
-  <div class="cook">
-    <div class="cook-category">
-      <% @specialities.each do |speciality| %>
-        Spécialité <span class="label label-default"><%= speciality.name %></span> niveau <span class="label label-default"><%= speciality.level %></span>
-      <% end %>
-    </div>
-    <div class="cook-description">
-      <h2><%= @cook.first_name %> <%= @cook.last_name.upcase %></h2>
-      <p>
-        <%= @cook.age %> ans
-      </p>
-    </div>
-
-    <% if @cook.avatar? %>
-      <%= cl_image_tag @cook.avatar.path, class:"cook-user avatar-extra-large" %>
-    <% else %>
-      <%= image_tag "chef.jpg", width: 100, height: 125, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook-user avatar-extra-large" %>
-    <% end %>
+<div class="cook">
+  <div class="cook-category">
+    <%= @cook.first_name %> <%= @cook.last_name.upcase %>
+    <p>
+      <%= @cook.age %> ans
+    </p>
   </div>
-</div>
-
-<div class="container">
+  <div class="cook-link">
   <% if @cook.user == current_user %>
-    <p><%= link_to "Retour", cooks_path, class: "btn btn-popote-bis btn-lg" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis btn-lg" %></p>
+    <p><%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %></p>
   <% else %>
-    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis btn-lg" %>
+    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+  <% end %>
+  </div>
+
+  <% if @cook.avatar? %>
+    <%= cl_image_tag @cook.avatar.path, class:"cook-user avatar-extra-large" %>
+  <% else %>
+    <%= image_tag "chef.jpg", width: 100, height: 125, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook-user avatar-extra-large" %>
   <% end %>
 </div>
+
 
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-    <h1 class="text-center">Plats</h1>
+    <h1 class="text-center">Popotes</h1>
 
     <% if @cook.user == current_user %>
 
-      <p><%= link_to "Ajouter un plat", new_cook_dish_path(@cook,@dish), class: "btn btn-popote btn-lg" %></p>
+      <p><%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-popote" %></p>
 
     <% else %>
 
@@ -106,23 +98,32 @@
 
 <div class="container">
 
-  <h1 class= "text-center"><%= "#{pluralize_with_0('Adresse', @places.size)} de retrait #{pluralize_with_0('utilisée', @places.size)}" %></h1>
+  <h1 class= "text-center">Ma cuisine</h1>
+  <p>
+    <% @specialities.each do |speciality| %>
+      Spécialité <span class="label label-default"><%= speciality.name %></span> , niveau <span class="label label-warning"><%= speciality.level %></span>
+    <% end %>
+  </p>
+  <p>
+    " <em><%= @cook.bio %> </em> "
+  </p>
+
+  <h1 class= "text-center"><%= "#{pluralize_with_0('Adresse', @places.size)} de retrait" %></h1>
 
   <% @places.each do |place| %>
     <p>
-      <%= place.full_place %>
-      <span class="label label-default"><%= place.kind_of_place %></span>
+      <%= place.full_place %> <span class="label label-default"><%= place.kind_of_place %></span>
       <% if place.active %>
         <span class="label label-warning">Adresse active</span>
       <% end %>
     </p>
   <% end %>
 
-  <h1 class= "text-center">Cuisine</h1>
-
-  <p>
-    " <em><%= @cook.bio %> </em> "
-  </p>
+  <% if @cook.user == current_user %>
+    <p class="text-center padded">
+      <%= link_to "Supprimer mon profil", cook_path(@cook), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre profil ?'}, class: "btn btn-danger btn-lg" %>
+    </p>
+  <% end %>
 
 </div>
 
