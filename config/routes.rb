@@ -18,6 +18,11 @@ Rails.application.routes.draw do
 
   resource :cart, only: [:show]
 
-  resources :order_items, only: [:create, :update, :destroy]
+  resources :order_items, only: [:create, :update, :destroy] do
+    member do
+      post 'increment'
+      post 'decrement'
+    end
+  end
 
 end

@@ -35,7 +35,9 @@
     </div>
 
   <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
-  <p style="color: #FF642E; font-weight: lighter";>Créez et gérer jusqu'à 3 adresses</p>
+  <p class="cook-address">
+    Créez et gérez jusqu'à 3 adresses
+  </p>
   <div class="items">
     <%= f.simple_fields_for :cook_places do |cp| %>
       <%= cp.simple_fields_for :place do |p| %>

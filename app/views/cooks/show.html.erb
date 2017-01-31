@@ -1,3 +1,4 @@
+<div class="flash"></div>
 <div class="cook">
   <div class="cook-category">
     <%= @cook.first_name %> <%= @cook.last_name.upcase %>
@@ -79,13 +80,14 @@
             </li>
           </ul>
 
-        <% else %>
+        <% elsif dish.exp_date > DateTime.now %>
 
           <ul class="list-inline dish-controls">
             <li>
               <%= render "add_to_cart", cook: @cook, dish: dish %>
             </li>
           </ul>
+        <% else %>
 
         <% end %>
 
@@ -126,8 +128,6 @@
   <% end %>
 
 </div>
-
-
 
 
 

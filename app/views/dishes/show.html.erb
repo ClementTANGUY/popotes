@@ -1,3 +1,4 @@
+<div class="flash"></div>
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "ustenciles.jpg" %>');">
   <div class="banner-content">
     <h1><%= @dish.name %></h1>
@@ -53,7 +54,7 @@
           <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Mettre à jour", edit_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis btn-lg" %> <%= link_to "Supprimer", cook_dish_path(@cook,@dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'}, class: "btn btn-popote-bis btn-lg" %>
         </p>
 
-      <% else %>
+      <% elsif @dish.exp_date > DateTime.now %>
 
         <p>
           <%= render "add_to_cart", dish: @dish %>
@@ -62,7 +63,10 @@
         <p>
           <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
         </p>
-
+      <% else %>
+        <p>
+          <%= link_to "Retour", cook_path(@cook), class: "btn btn-popote-bis btn-lg" %>
+        </p>
       <% end %>
     </div>
 
