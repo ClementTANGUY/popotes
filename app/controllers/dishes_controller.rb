@@ -46,7 +46,7 @@ class DishesController < ApplicationController
       redirect_to cook_path(@cook), notice: "Votre popote a bien été supprimée"
     else
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
-      redirect_to cook_dishes_path(@cook)
+      redirect_to cook_path(@cook)
     end
   end
 

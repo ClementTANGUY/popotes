@@ -3,9 +3,17 @@
     <div class="dish">
 
       <div class='dish-upvote'>
-        <div class="dish-up"><%= link_to "＋", increment_order_item_path(order_item), method: :post, remote: true %></div>
+        <div class="dish-up">
+          <%= link_to increment_order_item_path(order_item), method: :post, remote: true do %>
+            <i class="fa fa-plus"></i>
+          <% end %>
+        </div>
         <div class='dish-count'><%= order_item.quantity %></div>
-        <div class="dish-down"><%= link_to "−", decrement_order_item_path(order_item), method: :post, remote: true %></div>
+        <div class="dish-down">
+          <%= link_to decrement_order_item_path(order_item), method: :post, remote: true do %>
+            <i class="fa fa-minus"></i>
+          <% end %>
+        </div>
       </div>
 
       <% if dish.photos? %>
@@ -22,6 +30,7 @@
         </p>
       </div>
       <div class="dish-details">
+        <h5>Rendez-vous</h5>
         <p>
           <% dish.cook.places.each do |place| %>
             <% if place.active %>

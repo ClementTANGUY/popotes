@@ -29,23 +29,24 @@
   <%= render 'carts/cart_row', order_item: order_item, dish: order_item.dish, show_total: true %>
 <% end %>
 
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <p>
-        SOUS-TOTAL = <%= number_to_currency(current_order.subtotal, locale: :fr)%>
-      </p>
-      <p>
-        FRAIS = <%= number_to_currency(current_order.charge, locale: :fr) %>
-      </p>
-      <p>
-        MONTANT TOTAL = <%= number_to_currency(current_order.total_amount, locale: :fr)%>
-      </p>
-      <p>
-        <%= link_to "Je commande", "", class: "btn btn-popote btn-lg" %>
-      </p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <p>
+          SOUS-TOTAL = <%= number_to_currency(current_order.subtotal, locale: :fr)%>
+        </p>
+        <p>
+          FRAIS = <%= number_to_currency(current_order.charge, locale: :fr) %>
+        </p>
+        <p>
+          MONTANT TOTAL = <%= number_to_currency(current_order.total_amount, locale: :fr)%>
+        </p>
+        <p>
+          <%= link_to "Je commande", "", class: "btn btn-popote btn-lg" %>
+        </p>
+    </div>
   </div>
 </div>
-
 
 <% end %>
 

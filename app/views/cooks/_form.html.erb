@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.input :last_name, label: 'Nom' %>
     <%= f.input :first_name, label: 'Prénom' %>
     <%= f.input :age, label: 'Âge', collection: 18..99 %>
@@ -21,12 +21,12 @@
 
   <h4>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</h4>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.input :avatar, label: 'Photo', as: :attachinary %>
   </div>
 
   <h4>VOS SPECIALITÉS</h4>
-    <div class="items">
+    <div class="form-group">
       <%= f.simple_fields_for :cook_specialities do |cs| %>
         <%= cs.simple_fields_for :speciality do |s| %>
         <%= render 'speciality', s: s %>
@@ -38,7 +38,7 @@
   <p class="cook-address">
     Créez et gérez jusqu'à 3 adresses
   </p>
-  <div class="items">
+  <div class="form-group">
     <%= f.simple_fields_for :cook_places do |cp| %>
       <%= cp.simple_fields_for :place do |p| %>
       <%= render 'place', p: p %>
@@ -46,14 +46,15 @@
     <% end %>
   </div>
 
-  <p></p>
-
   <div class="action">
     <p>
       <% if @cook.places.size < 3 %>
         <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %>
       <% end %>
     </p>
+
+    <p>&nbsp</p>
+
     <p>
       <% if f.object.new_record? %>
         <%= f.button :button, "Créer".html_safe, class: "btn btn-warning btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>

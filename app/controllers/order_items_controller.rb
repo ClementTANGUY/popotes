@@ -12,8 +12,6 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if (@order_item.quantity <= dish.portion_count)
         @order_item.save
-        @order.save
-        session[:order_id] = @order.id
         format.html { flash.now[:notice] = "Plat ajouté à votre panier !" }
         format.js { flash.now[:notice] = "Plat ajouté à votre panier !" }
       else
@@ -21,6 +19,8 @@ class OrderItemsController < ApplicationController
         format.js { flash.now[:alert] = "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
       end
     end
+    @order.save
+    session[:order_id] = @order.id
   end
 
   def update

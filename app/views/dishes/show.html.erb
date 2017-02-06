@@ -9,22 +9,29 @@
       </span>
     </p>
     <p>
-      <%= @dish.description %>
+      " <%= @dish.description %> "
     </p>
-    <p>Végétarien
-      <span class="label label-default">
-        <%= humanize_boolean(@dish.veggie) %>
-      </span>
-    </p>
-    <p>Plat cuit
-      <span class="label label-default">
-        <%= humanize_boolean(@dish.cooked) %>
-      </span>
-    </p>
-    <p>À réchauffer
-      <span class="label label-default">
-        <%= humanize_boolean(@dish.be_reheated) %>
-      </span>
+    <p>
+      Végétarien
+      <% if @dish.veggie %>
+        <span class="label label-success"><%= humanize_boolean(@dish.veggie) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.veggie) %></span>
+      <% end %>
+
+      &nbsp | Plat cuit
+      <% if @dish.cooked %>
+        <span class="label label-success"><%= humanize_boolean(@dish.cooked) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.cooked) %></span>
+      <% end %>
+
+      &nbsp | À réchauffer
+      <% if @dish.be_reheated %>
+        <span class="label label-success"><%= humanize_boolean(@dish.be_reheated) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.be_reheated) %></span>
+      <% end %>
     </p>
     <p>
       <span class="label label-default">
