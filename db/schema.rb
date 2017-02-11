@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209173655) do
+ActiveRecord::Schema.define(version: 20170211223501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,20 +99,12 @@ ActiveRecord::Schema.define(version: 20170209173655) do
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
   end
 
-  create_table "order_statuses", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "orders", force: :cascade do |t|
-    t.decimal  "subtotal",        precision: 12, scale: 3
-    t.decimal  "charge",          precision: 12, scale: 3
-    t.decimal  "total_amount",    precision: 12, scale: 3
-    t.integer  "order_status_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.index ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree
+    t.decimal  "subtotal",     precision: 12, scale: 3
+    t.decimal  "charge",       precision: 12, scale: 3
+    t.decimal  "total_amount", precision: 12, scale: 3
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   create_table "places", force: :cascade do |t|
@@ -162,5 +154,4 @@ ActiveRecord::Schema.define(version: 20170209173655) do
   add_foreign_key "order_items", "carts"
   add_foreign_key "order_items", "dishes"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "order_statuses"
 end
