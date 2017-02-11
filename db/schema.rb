@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107140843) do
+ActiveRecord::Schema.define(version: 20170209173655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20170107140843) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cook_places", force: :cascade do |t|
@@ -88,6 +93,8 @@ ActiveRecord::Schema.define(version: 20170107140843) do
     t.decimal  "total_price", precision: 12, scale: 3
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "cart_id"
+    t.index ["cart_id"], name: "index_order_items_on_cart_id", using: :btree
     t.index ["dish_id"], name: "index_order_items_on_dish_id", using: :btree
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
   end
@@ -152,6 +159,7 @@ ActiveRecord::Schema.define(version: 20170107140843) do
   add_foreign_key "cook_specialities", "specialities"
   add_foreign_key "cooks", "users"
   add_foreign_key "dishes", "cooks"
+  add_foreign_key "order_items", "carts"
   add_foreign_key "order_items", "dishes"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "order_statuses"

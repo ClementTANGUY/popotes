@@ -19,6 +19,8 @@ Cook_3 = Cook.create!(user: Jean, last_name:"VALJEAN", first_name: "Jean", age: 
 Cook_4 = Cook.create!(user: David, last_name:"FINCHER", first_name: "David", age: "53", bio: "Génie de la mise en scène culinaire")
 Cook_5 = Cook.create!(user: Gaspard, last_name:"PROUST", first_name: "Gaspard", age: "38", bio: "Cynique des fourneaux")
 
+Cart.delete_all
+
 Dish.delete_all
 Dish.create!(cook: Cook_1, name: "Poulet Roti", kind_of_dish: "Plat principal", speciality: "Terroir & Famille", description: "Poulet élevé en plein air, nourri avec une alimentation bio, rôti au four", veggie: "false", cooked: "true", be_reheated: "true", portion_size: "Moyenne (200-300g)", portion_count: "3", price: '8,50', exp_date: "12/11/2016 20:30:00", collect_date: "13/11/2016 12:00:00")
 Dish.create!(cook: Cook_1, name: "Spaghetti bolognaise", kind_of_dish: "Plat principal", speciality: "Terroir & Famille", description: "Bolognaise maison sans viande, pleine de bons légumes", veggie: "true", cooked: "true", be_reheated: "true", portion_size: "Moyenne (200-300g)", portion_count: "1", price: '6,00', exp_date: "12/12/2016 20:30:00", collect_date: "13/12/2016 12:00:00")
@@ -54,13 +56,12 @@ CookSpeciality.create!(cook_id: "3", speciality_id: "3")
 CookSpeciality.create!(cook_id: "4", speciality_id: "4")
 CookSpeciality.create!(cook_id: "5", speciality_id: "5")
 
-Order.delete_all
 
-OrderStatus.delete_all
-OrderStatus.create!(id: 1, name: "In Progress")
-OrderStatus.create!(id: 2, name: "Placed")
-OrderStatus.create!(id: 3, name: "Cancelled")
-OrderStatus.create!(id: 4, name: "Paid")
+# OrderStatus.delete_all
+# OrderStatus.create!(id: 1, name: "In Progress")
+# OrderStatus.create!(id: 2, name: "Placed")
+# OrderStatus.create!(id: 3, name: "Cancelled")
+# OrderStatus.create!(id: 4, name: "Paid")
 
 
 

@@ -1,3 +1,4 @@
 $(".cart-text").html("<%= j render 'shared/cart_text' %>")
-$(".shopping-cart").html("<%= j render 'carts/shopping_cart' %>")
+$(".cart-<%= @order_item.id %>").html("<%= j render 'carts/cart_row', order_item: @order_item, dish: @order_item.dish %>")
+$(".total-cart").html("<%= j render 'carts/total_cart', current_cart: current_cart %>")
 $(".flash").html("<%= j render 'shared/flashes' %>")

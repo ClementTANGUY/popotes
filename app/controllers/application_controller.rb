@@ -7,18 +7,18 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_action
 
-  helper_method :current_order
+  helper_method :current_cart
 
   private
 
-  def current_order
-    if !session[:order_id].nil?
-      Order.find(session[:order_id])
+  def current_cart
+    if !session[:cart_id].nil?
+      Cart.find(session[:cart_id])
     else
-      Order.new
+      Cart.new
     end
     rescue ActiveRecord::RecordNotFound
-      Order.new
+      Cart.new
   end
 
   def store_action

@@ -1,5 +1,6 @@
 class OrderItem < ApplicationRecord
 
+  belongs_to :cart
   belongs_to :dish
   belongs_to :order
 
@@ -8,7 +9,7 @@ class OrderItem < ApplicationRecord
   # validate :order_item_quantity
 
   validate :dish_present
-  validate :order_present
+  validate :cart_present
 
   before_save :finalize
 
@@ -37,8 +38,8 @@ private
     end
   end
 
-  def order_present
-    if order.nil?
+  def cart_present
+    if cart.nil?
       errors.add(:Commande, "invalide")
     end
   end
