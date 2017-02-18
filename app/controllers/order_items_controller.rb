@@ -12,10 +12,10 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if (@order_item.quantity <= dish.portion_count)
         @order_item.save
-        format.html { flash.now[:notice] = "Plat ajouté à votre panier !" }
+        format.html { redirect_back fallback_location: cooks_url, notice: "Plat ajouté à votre panier !" }
         format.js { flash.now[:notice] = "Plat ajouté à votre panier !" }
       else
-        format.html { flash.now[:alert] = "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
+        format.html { redirect_back fallback_location: cooks_url, alert: "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
         format.js { flash.now[:alert] = "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
       end
     end
@@ -33,8 +33,10 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if (@order_item.quantity < dish.portion_count)
         @order_item.update_attribute(:quantity, @order_item.quantity += 1)
+        format.html { redirect_back fallback_location: cooks_url }
         format.js
       else
+        format.html { redirect_back fallback_location: cooks_url, alert: "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
         format.js { flash.now[:alert] = "#{dish.portion_count} #{'portion'.pluralize(dish.portion_count)} #{'disponible'.pluralize(dish.portion_count)} !" }
       end
     end
@@ -45,11 +47,11 @@ class OrderItemsController < ApplicationController
     respond_to do |format|
       if @order_item.quantity > 1
         @order_item.update_attribute(:quantity, @order_item.quantity -= 1)
-        format.html
+        format.html { redirect_back fallback_location: cooks_url }
         format.js
       else
         @order_item.destroy
-        format.html
+        format.html { redirect_back fallback_location: cooks_url, alert: "Popote supprimée de votre panier !" }
         format.js { flash.now[:alert] = "Popote supprimée de votre panier !" }
       end
     end

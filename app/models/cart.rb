@@ -28,14 +28,4 @@ class Cart < ApplicationRecord
     subtotal + charge
   end
 
-private
-
-  def update_subtotal
-    self[:subtotal] = subtotal
-  end
-
-  def update_total_amount
-    self[:total_amount] = total_amount
-  end
-
 end

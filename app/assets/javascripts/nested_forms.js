@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   $('body').on('click', '.destroy_duplicate_nested_form', function(e) {
     $(this).closest('.duplicatable_nested_form').slideUp().remove();
-    $('.action').find('.duplicate_nested_form').show();
+    $('.form-actions').find('.duplicate_nested_form').show();
   });
 
   $('.duplicate_nested_form').click(function(e) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
     lastNestedForm = $('.duplicatable_nested_form').last();
     newNestedForm = $(nestedForm).clone();
     if (($('.duplicatable_nested_form').length == 1 && $(newNestedForm).length == 2) || ($('.duplicatable_nested_form').length == 2 && $(newNestedForm).length == 1)) {
-      $('.action').find('.duplicate_nested_form').hide()
+      $('.form-actions').find('.duplicate_nested_form').hide()
     };
     formsOnPage = $('.duplicatable_nested_form').length;
 

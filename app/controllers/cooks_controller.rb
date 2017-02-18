@@ -46,7 +46,7 @@ class CooksController < ApplicationController
       @cook = Cook.new(cook_params)
       @cook.user = current_user
       if @cook.save
-        redirect_to cook_path(@cook), notice: "Votre profil a bien été créé"
+        redirect_to cook_url(@cook), notice: "Votre profil a bien été créé"
       else
         render :new
       end
@@ -59,7 +59,7 @@ class CooksController < ApplicationController
       @places = @cook.places
       if @cook.user == current_user
         @cook.update(cook_params)
-        redirect_to cook_path(@cook), notice: "Votre profil a bien été modifié"
+        redirect_to cook_url(@cook), notice: "Votre profil a bien été modifié"
       else
         flash[:alert] = "Action impossible, ce n'est pas votre profil !"
         render :edit
@@ -69,14 +69,15 @@ class CooksController < ApplicationController
     def destroy
       if @cook.user == current_user
         @cook.destroy
-        redirect_to cooks_path, notice: "Votre profil a bien été supprimé"
+        redirect_to cooks_url, notice: "Votre profil a bien été supprimé"
       else
         flash[:alert] = "Action impossible, ce n'est pas votre profil !"
-        redirect_to cooks_path
+        redirect_to cooks_url
       end
     end
 
     private
+
     def set_cook
       @cook = Cook.find(params[:id])
     end
