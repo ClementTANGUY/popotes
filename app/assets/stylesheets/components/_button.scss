@@ -27,6 +27,21 @@
   color: white;
 }
 
+.btn-facebook {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: #3b5998;
+  transition: background 0.3s ease;
+}
+.btn-facebook:hover{
+  opacity: 1;
+  background: #3b5998;
+  text-decoration: none;
+  color: white !important;
+}
+
 /* Build your own button classes ! */
 
 .btn-popote {

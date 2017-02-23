@@ -1,6 +1,6 @@
 <div class="container padded">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-4 col-sm-offset-2">
       <h2>Connexion</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -15,6 +15,13 @@
         </div>
       <% end %>
 
+      <p>&nbsp</p>
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %><br />
+      <% end -%>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
       <%= render "devise/shared/links" %>
     </div>
   </div>

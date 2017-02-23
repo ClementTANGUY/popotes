@@ -1,7 +1,7 @@
 <div class="flash"></div>
 <div class="cook">
   <div class="cook-category">
-    <%= @cook.first_name %> <%= @cook.last_name.upcase %>
+    <%= @cook.user.first_name %>
     <p>
       <%= @cook.age %> ans
     </p>
@@ -14,8 +14,12 @@
   <% end %>
   </div>
 
-  <% if @cook.avatar? %>
-    <%= cl_image_tag @cook.avatar.path, class:"cook-user avatar-extra-large" %>
+  <% if @cook.user.picture? && @cook.avatar? %>
+    <%= cl_image_tag @cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook-user avatar-extra-large" %>
+  <% elsif !@cook.user.picture? && @cook.avatar? %>
+    <%= cl_image_tag @cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook-user avatar-extra-large" %>
+  <% elsif @cook.user.picture? && !@cook.avatar? %>
+    <%= image_tag @cook.user.picture, width: 100, height: 125, class:"cook-user avatar-extra-large" %>
   <% else %>
     <%= image_tag "chef.jpg", width: 100, height: 125, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook-user avatar-extra-large" %>
   <% end %>

@@ -1,7 +1,7 @@
 <div class="container padded">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <h2>Resend unlock instructions</h2>
+    <div class="col-sm-4 col-sm-offset-2">
+      <h2>Renvoyer les instructions de déblocage de mon compte</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
         <%= f.error_notification %>
@@ -12,12 +12,15 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Resend unlock instructions", class: "btn btn-popote btn-lg" %>
+          <%= f.button :submit, "Envoyer", class: "btn btn-popote btn-lg" %>
         </div>
       <% end %>
+    </div>
 
+    <p>&nbsp</p>
+
+    <div class="col-sm-4 col-sm-offset-2">
       <%= render "devise/shared/links" %>
-
     </div>
   </div>
 </div>

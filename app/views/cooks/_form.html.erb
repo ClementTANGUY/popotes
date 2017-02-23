@@ -12,13 +12,10 @@
   <% end %>
 
   <div class="form-inputs">
-    <%= f.input :last_name, label: 'Nom' %>
-    <%= f.input :first_name, label: 'Prénom' %>
     <%= f.input :age, label: 'Âge', collection: 18..99 %>
     <%= f.input :bio, label: 'À propos de vous, de votre cuisine' %>
 
     <h4>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</h4>
-
     <%= f.input :avatar, label: 'Photo', as: :attachinary %>
 
   </div>

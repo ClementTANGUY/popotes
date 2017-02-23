@@ -6,7 +6,7 @@
       <% end %>
     </div>
     <div class="cook_card-description">
-      <h2><%= cook.first_name %></h2>
+      <h2><%= cook.user.first_name %></h2>
       <p>
         <% cook.places.each do |place| %>
           <% if place.active %>
@@ -20,11 +20,17 @@
       </p>
       <%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
     </div>
-    <% if cook.avatar? %>
+
+    <% if cook.user.picture? && cook.avatar? %>
       <%= cl_image_tag cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook_card-user avatar-large" %>
+    <% elsif !cook.user.picture? && cook.avatar? %>
+    <%= cl_image_tag cook.avatar.path, quality: 80, fetch_format: :auto, crop: :thumb, gravity: :face, class:"cook_card-user avatar-large" %>
+    <% elsif cook.user.picture? && !cook.avatar? %>
+      <%= image_tag cook.user.picture, class:"cook_card-user avatar-large" %>
     <% else %>
       <%= image_tag "chef.jpg", class:"cook_card-user avatar-large" %>
     <% end %>
+
     <%= link_to "", cook_path(cook), class: "cook_card-link" %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="container padded">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <h2>Resend confirmation instructions</h2>
+    <div class="col-sm-4 col-sm-offset-2">
+      <h2>Renvoyer les instructions de confirmation de votre email</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
         <%= f.error_notification %>
@@ -12,10 +12,14 @@
         </div>
 
         <div class="form-actions">
-          <%= f.button :submit, "Resend confirmation instructions", class: "btn btn-popote btn-lg" %>
+          <%= f.button :submit, "Envoyer", class: "btn btn-popote btn-lg" %>
         </div>
       <% end %>
+    </div>
 
+    <p>&nbsp</p>
+
+    <div class="col-sm-4 col-sm-offset-2">
       <%= render "devise/shared/links" %>
     </div>
   </div>

@@ -1,12 +1,13 @@
 <div class="container padded">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-4 col-sm-offset-2">
       <h2>Inscription</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
+          <%= f.input :first_name, label: "Prénom", required: true %>
           <%= f.input :email, required: true, autofocus: true %>
           <%= f.input :password, label: "Mot de passe", required: true, hint: ("#{@minimum_password_length} caractères minimum" if @minimum_password_length) %>
           <%= f.input :password_confirmation, label: "Confirmation du mot de passe", required: true %>
@@ -16,7 +17,7 @@
           <%= f.button :button, "S'inscrire".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Inscription..."} %>
         </div>
 
-        &nbsp
+        <p>&nbsp</p>
 
         <p>
           <small>En créant un compte, vous acceptez les conditions générales d'utilisation de , notamment en ce qui concerne les règles d'hygiène et de sécurité.<br>
@@ -25,7 +26,11 @@
         </p>
 
       <% end %>
+    </div>
 
+    <p>&nbsp</p>
+
+    <div class="col-sm-4 col-sm-offset-2">
       <%= render "devise/shared/links" %>
     </div>
   </div>

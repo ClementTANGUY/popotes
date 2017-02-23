@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise', '4.0.0.rc2'
+gem 'omniauth-facebook'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"

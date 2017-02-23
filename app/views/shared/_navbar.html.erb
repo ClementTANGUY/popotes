@@ -31,10 +31,14 @@
         <div class="navbar-wagon-item">
           <div class="dropdown">
 
-            <% if current_user.cook.avatar? %>
-              <%= cl_image_tag current_user.cook.avatar.path, width: 60, height: 60, crop: :thumb, gravity: :face, class:"avatar dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% if current_user.provider && current_user.cook.avatar? %>
+              <%= cl_image_tag current_user.cook.avatar.path, width: 60, height: 60, crop: :thumb, gravity: :face, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% elsif !current_user.provider && current_user.cook.avatar? %>
+              <%= cl_image_tag current_user.cook.avatar.path, width: 60, height: 60, crop: :thumb, gravity: :face, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% elsif current_user.provider && !current_user.cook.avatar? %>
+              <%= image_tag current_user.picture, width: 60, height: 60, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% else %>
-              <%= image_tag "chef.jpg", class:"avatar dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+              <%= image_tag "chef.jpg", class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% end %>
 
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
@@ -57,7 +61,11 @@
         <div class="navbar-wagon-item">
           <div class="dropdown">
 
-            <%= image_tag "default-user.jpg", class:"avatar dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% if current_user.provider %>
+              <%= image_tag current_user.picture, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% else %>
+              <%= image_tag "default-user.jpg", class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
+            <% end %>
 
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>

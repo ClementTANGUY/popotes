@@ -16,8 +16,6 @@ class Cook < ApplicationRecord
   accepts_nested_attributes_for :places
 
   validates :user, presence: true, uniqueness: true
-  validates :last_name, presence: true
-  validates :first_name, presence: true
   validates :age, presence: true
   validates :bio, presence: true
 
