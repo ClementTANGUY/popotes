@@ -1,0 +1,72 @@
+<div class="padded text-center">
+  <h3>
+    <%= link_to "Retour à votre panier", cart_path, class: 'btn btn-popote-bis' %> Ou souhaitez-vous valider votre panier ?
+  </h3>
+
+  <% @order_items.each do |order_item| %>
+    <div class="cart">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+          <div class="dish">
+
+            <div class='dish-upvote'>
+              <div class='dish_order-count'><%= order_item.quantity %></div>
+            </div>
+
+            <% if order_item.dish.photos? %>
+              <%= cl_image_tag order_item.dish.photos.first.path, height: 117, width: 175, quality: 80, fetch_format: :auto, crop: :fill, class:"dish-image hidden-xs" %>
+            <% else %>
+              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"dish-image hidden-xs" %>
+            <% end %>
+
+            <div class='dish-body'>
+              <h3><%= order_item.dish.name %></h3>
+              <p>
+                <%= number_to_currency(order_item.dish.price, locale: :fr) %><br>
+              </p>
+              <h5>
+                Total : <%= number_to_currency(order_item.total_price, locale: :fr) %>
+              </h5>
+            </div>
+
+            <div class="dish-details">
+              <h5>Rendez-vous</h5>
+              <p>
+                <% order_item.dish.cook.places.each do |place| %>
+                  <% if place.active %>
+                    <%= place.full_address %><br>
+                    <%= "#{place.zip_code} #{place.city}" %><br>
+                  <% end %>
+                <% end %>
+                <span class="label label-primary"><%= "#{order_item.dish.collect_date.strftime('%d/%m/%Y %H:%M')}" %></span>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class="total-cart">
+    <div class="container text-left">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <p>
+              SOUS-TOTAL = <%= number_to_currency(@cart.subtotal, locale: :fr)%>
+            </p>
+            <p>
+              FRAIS DE SERVICE = <%= number_to_currency(@cart.charge, locale: :fr) %>
+            </p>
+            <p>
+              MONTANT TOTAL = <%= number_to_currency(@cart.total_amount, locale: :fr)%>
+            </p>
+            <p>
+              <%= link_to "Je Commande", order_path, method: :post, class: "btn btn-popote btn-lg" %>
+            </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

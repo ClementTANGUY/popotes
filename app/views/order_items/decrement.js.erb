@@ -1,6 +1,6 @@
 $(".cart-text").html("<%= j render 'shared/cart_text' %>")
 $(".cart-<%= @order_item.id %>").html("<%= j render 'carts/cart_row', order_item: @order_item, dish: @order_item.dish %>")
-$(".total-cart").html("<%= j render 'carts/total_cart', current_cart: current_cart %>")
+$(".total-cart").html("<%= j render 'carts/total_cart', cart: @cart %>")
 $(".shopping-cart").html("<%= j render 'carts/shopping_cart' %>")
 $(".flash").html("<%= j render 'shared/flashes' %>")
 

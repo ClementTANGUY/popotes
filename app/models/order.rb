@@ -2,11 +2,9 @@ class Order < ApplicationRecord
 
   has_many :order_items, dependent: :destroy
 
-  before_save :finalize
+  has_many :dishes, through: :order_items
 
-  def total_quantity
-    order_items.collect { |oi| oi.valid? ? (oi.quantity) : 0 }.sum
-  end
+  before_save :finalize
 
   def subtotal
     order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
@@ -20,10 +18,26 @@ class Order < ApplicationRecord
     subtotal + charge
   end
 
+  def add_order_items_from_cart(cart)
+    cart.order_items.each do |order_item|
+      order_item.cart_id = nil
+      order_items << order_item
+    end
+  end
+
+  def remove_dish_portion
+    order_items.each do |order_item|
+      dish = order_item.dish
+      dish.portion_count -= order_item.quantity
+      dish.save
+    end
+  end
+
 private
 
   def finalize
     self[:subtotal] = subtotal
+    self[:charge] = charge
     self[:total_amount] = total_amount
   end
 

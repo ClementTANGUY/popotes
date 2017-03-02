@@ -15,15 +15,14 @@
 
   <div class="padded text-center">
     <p>
-      Vous n'avez aucune popote dans votre panier<br>
-      <%= link_to "Accueil", root_path, class:"btn btn-primary btn-lg" %>
+      Vous n'avez aucune popote dans votre panier <%= link_to "Accueil", root_path, class:"btn btn-primary btn-lg" %>
     </p>
   </div>
 
 <% else %>
 
   <div class="container padded text-left">
-    <%= link_to "Encore faim ?", cooks_path, class: 'btn btn-popote-bis btn-lg' %>
+    <%= link_to "Ajouter une popote", cooks_path, class: 'btn btn-popote-bis' %> <%= link_to "Vider mon panier", @cart, method: :delete, data: {confirm: 'Sûr de vouloir vider votre panier ?'}, class: "btn btn-popote-bis" %>
   </div>
 
   <% @order_items.each do |order_item| %>
@@ -35,7 +34,7 @@
   <% end %>
 
   <div class="total-cart">
-    <%= render 'carts/total_cart', current_cart: current_cart %>
+    <%= render 'carts/total_cart', cart: @cart %>
   </div>
 
 <% end %>

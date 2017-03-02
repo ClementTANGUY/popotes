@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     resources :dishes, except: [:index]
   end
 
-  resource :cart, only: [:show]
+  resource :cart, only: [:show, :destroy]
+
+  resource :order, only: [:new, :create]
 
   resources :order_items, only: [:create, :update, :destroy] do
     member do

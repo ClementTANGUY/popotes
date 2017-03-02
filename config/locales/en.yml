@@ -21,6 +21,6 @@
 
 en:
   hello: "Hello world"
-  :true: 'Oui'
-  :false: 'Non'
+  :true: 'Yes'
+  :false: 'No'
 

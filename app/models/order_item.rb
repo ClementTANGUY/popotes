@@ -1,8 +1,8 @@
 class OrderItem < ApplicationRecord
 
+  belongs_to :dish, optional: true
+  belongs_to :order, optional: true
   belongs_to :cart
-  belongs_to :dish
-  belongs_to :order
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 

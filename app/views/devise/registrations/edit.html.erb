@@ -14,11 +14,9 @@
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
 
-          <%- if !devise_mapping.omniauthable? %>
-          <%= f.input :password, label:'Nouveau mot de passe', placeholder:"Laissez vide si vous n'en changez pas", autocomplete: "off", required: false %>
+          <%= f.input :password, label:'Nouveau mot de passe', hint: "Laissez vide si vous n'en changez pas", autocomplete: "off", required: false %>
           <%= f.input :password_confirmation, label: "Confirmation du nouveau mot de passe", required: false %>
-          <%= f.input :current_password, label:'Mot de passe actuel', required: true %>
-          <% end %>
+          <%= f.input :current_password, label:'Mot de passe actuel', hint: "Requis pour valider vos changements", required: true %>
         </div>
 
         <p>&nbsp</p>

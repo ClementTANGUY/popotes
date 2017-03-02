@@ -8,9 +8,9 @@
   </div>
   <div class="cook-link">
   <% if @cook.user == current_user %>
-    <p><%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %></p>
+    <p><%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %></p>
   <% else %>
-    <%= link_to "Retour", cooks_path, class: "btn btn-popote-bis" %>
+    <%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %>
   <% end %>
   </div>
 
@@ -34,8 +34,6 @@
     <% if @cook.user == current_user %>
 
       <p><%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-popote" %></p>
-
-    <% else %>
 
     <% end %>
 
@@ -61,11 +59,13 @@
 
           <h3><%= link_to dish.name, cook_dish_path(@cook,dish) %></h3>
 
-          <p>
-            <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
-            <%= render "countdown", dish: dish %><br>
-            <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
-          </p>
+          <% if dish.portion_count != 0 %>
+            <p>
+              <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
+              <%= render "countdown", dish: dish %><br>
+              <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
+            </p>
+          <% end %>
 
         </div>
 
@@ -84,13 +84,14 @@
             </li>
           </ul>
 
-        <% elsif dish.exp_date > DateTime.now %>
+        <% elsif dish.exp_date > DateTime.now && dish.portion_count != 0 %>
 
           <ul class="list-inline dish-controls">
             <li>
               <%= render "add_to_cart", cook: @cook, dish: dish %>
             </li>
           </ul>
+
         <% else %>
 
         <% end %>

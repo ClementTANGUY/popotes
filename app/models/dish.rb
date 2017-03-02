@@ -6,6 +6,8 @@ class Dish < ApplicationRecord
 
   has_many :order_items
 
+  has_many :orders, through: :order_items
+
   before_destroy :ensure_not_referenced_by_any_order_item
 
   validates :name, presence: true
@@ -16,7 +18,7 @@ class Dish < ApplicationRecord
   validates :description, presence: true
   validates :portion_size, presence: true, inclusion: { in: %w(Petite\ (env.\ 150g) Moyenne\ (200-300g) Grande\ (>300g)),
     message: "%{value} n'est autorisé" }
-  validates :portion_count, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :portion_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0.01 }
   validates :exp_date, presence: true
   validates :collect_date, presence: true
