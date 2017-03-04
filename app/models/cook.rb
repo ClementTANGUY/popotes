@@ -21,10 +21,11 @@ class Cook < ApplicationRecord
 
   validate :validate_places
 
-  private
-  def validate_places
-    if places.size > 3
-      errors.add(:Adresses, "limitées à 3")
+private
+
+    def validate_places
+      if places.size > 3
+        errors.add(:Adresses, "limitées à 3")
+      end
     end
-  end
 end

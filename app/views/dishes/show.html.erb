@@ -38,7 +38,7 @@
         <%= @dish.portion_count %>
       </span>
       &nbsp
-      <%= "portion".pluralize(@dish.portion_count) %> <%= "disponible".pluralize(@dish.portion_count) %>
+      <%= pluralize_with_0('portion', @dish.portion_count) %> <%= pluralize_with_0('disponible', @dish.portion_count) %>
     </p>
     <p>Taille
       &nbsp

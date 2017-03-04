@@ -15,7 +15,7 @@
 
  .map_box {
    height: 175px;
-   width: 330px;
+   width: 325px;
    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
    background-size: cover !important;
    color: white;
@@ -32,18 +32,18 @@
    position: absolute;
    top: 10px;
    left: 10px;
-   font-size: 13px;
+   font-size: 14px;
  }
  .map_box-description {
    position: absolute;
-   bottom: 10px;
+   bottom: 25px;
    left: 10px;
  }
  .map_box-description h2 {
-   font-size: 24px;
+   font-size: 22px;
  }
  .map_box-description p {
-   font-size: 13px;
+   font-size: 14px;
    }
  .map_box-link {
    position: absolute;

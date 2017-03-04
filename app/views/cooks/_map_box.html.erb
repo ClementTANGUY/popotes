@@ -5,12 +5,21 @@
         <%= speciality.name %> <span class="label label-warning"><%= speciality.level %></span>
       <% end %>
     </div>
+
     <div class="map_box-description">
       <h2><%= cook.user.first_name %></h2>
       <p>
-        <%= place.full_place %><br>
-        <%=cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
+        <% cook.places.each do |place| %>
+          <% if place.active %>
+            <%= place.full_address %><br>
+            <%= "#{place.zip_code} #{place.city}" %>
+          <% end %>
+          <% if params[:location] %>
+            <span class="label label-warning"><%= number_to_human(place.distance_from(params[:location]), units: {unit: "Km", mili: "m"}) %></span>
+          <% end %>
+        <% end %><br>
       </p>
+      <%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
     </div>
 
     <% if cook.user.picture? && cook.avatar? %>
