@@ -7,16 +7,24 @@ class Order < ApplicationRecord
   before_save :finalize
 
   def subtotal
-    order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
+    order_items.to_a.sum { |oi| oi.total_price }
   end
 
   def charge
     subtotal * 0.15
   end
 
+  # def cook_charge
+  #   subtotal * 0.1
+  # end
+
   def total_amount
     subtotal + charge
   end
+
+  # def net_for_cook
+  #   subtotal - charge_for_cook
+  # end
 
   def add_order_items_from_cart(cart)
     cart.order_items.each do |order_item|

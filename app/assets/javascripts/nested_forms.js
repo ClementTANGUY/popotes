@@ -11,14 +11,14 @@ $(document).ready(function() {
   });
 
   $('.duplicate_nested_form').click(function(e) {
-    var formsOnPage, lastNestedForm, newNestedForm, secondNestedForm;
+    var formsOnPage, lastNestedForm, newNestedForm;
     e.preventDefault();
     lastNestedForm = $('.duplicatable_nested_form').last();
     newNestedForm = $(nestedForm).clone();
-    if (($('.duplicatable_nested_form').length == 1 && $(newNestedForm).length == 2) || ($('.duplicatable_nested_form').length == 2 && $(newNestedForm).length == 1)) {
+    formsOnPage = $('.duplicatable_nested_form').length;
+    if ((formsOnPage == 1 && $(newNestedForm).length == 2) || (formsOnPage == 2 && $(newNestedForm).length == 1)) {
       $('.form-actions').find('.duplicate_nested_form').hide()
     };
-    formsOnPage = $('.duplicatable_nested_form').length;
 
     newNestedForm.children().each(function(index) {
       element = $(this).children().get(1);

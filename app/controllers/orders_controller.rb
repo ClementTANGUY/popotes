@@ -16,6 +16,11 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         @order.remove_dish_portion
+        OrderMailer.placed(@order, current_user).deliver_later
+        @order.order_items.each do |order_item|
+          @cook = order_item.dish.cook
+          OrderMailer.received(@order, @cook, order_item).deliver_later
+        end
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to cooks_url, notice: "Merci pour votre commande ! Soyez ponctuel à l'adresse prévue" }
@@ -37,8 +42,8 @@ class OrdersController < ApplicationController
       end
     end
 
-    def order_params
-      params.require(:order).permit(:subtotal, :charge, :total_amount)
-    end
+    # def order_params
+    #   params.require(:order).permit(:subtotal, :charge, :total_amount)
+    # end
 
 end

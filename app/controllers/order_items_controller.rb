@@ -82,7 +82,7 @@ class OrderItemsController < ApplicationController
       @order_item = @cart.order_items.find(params[:id])
     end
 
-    def order_item_params
-      params.require(:order_item).permit(:quantity, :dish_id)
-    end
+    # def order_item_params
+    #   params.require(:order_item).permit(:quantity, :dish_id)
+    # end
 end

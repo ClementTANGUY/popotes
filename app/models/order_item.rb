@@ -23,6 +23,14 @@ class OrderItem < ApplicationRecord
     unit_price * quantity
   end
 
+  def cook_charge
+    total_price * 0.1
+  end
+
+  def net_for_cook
+    total_price * 0.9
+  end
+
 private
 
   def dish_present

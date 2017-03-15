@@ -1,0 +1,41 @@
+<h3>Bonjour, <%= @cook.user.first_name %></h3>
+
+<p>
+  À vos fourneaux, vous avez reçu une commande de popote !
+</p>
+
+<p>
+  On vous a demandé :
+</p>
+
+<p style="font-weight: bold;">
+  <%= "- #{@order_item.quantity} portion(s) de #{@order_item.dish.name}" %>
+</p>
+<p>
+  Pour remettre cette popote, vous avez rendez-vous à votre adresse active :
+</p>
+<p style="font-weight: bold;">
+  <% @order_item.dish.cook.places.each do |place| %>
+    <% if place.active %>
+      <%= "#{place.full_address}, #{place.zip_code} #{place.city}" %>
+    <% end %>
+  <% end %>
+</p>
+<p style="font-weight: bold;">
+  <%= "Le #{@order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{@order_item.dish.collect_date.strftime('%H:%M')}" %>
+</p>
+
+</p>
+  Attention : soyez à l'heure à votre lieu de rendez-vous.<br>
+  Le concept de Popotes repose essentiellement sur la confiance et la ponctualité...<br>
+  On compte sur vous !
+</p>
+
+<p>
+  Votre popote vous rapporte : <%= number_to_currency(@order_item.net_for_cook, locale: :fr) %><br>
+  Après frais de service : <%= number_to_currency(@order_item.cook_charge, locale: :fr) %>
+</p>
+
+<p>
+  Merci et à très bientôt sur Popotes !
+</p>

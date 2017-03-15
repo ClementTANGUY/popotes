@@ -1,0 +1,45 @@
+<h3>Bonjour, <%= @user.first_name %></h3>
+
+<p>
+  Votre commande a bien été enregistrée !<br>
+</p>
+
+<p>
+  Vous avez demandé :
+</p>
+
+<% @order.order_items.each do |order_item| %>
+  <p style="font-weight: bold;">
+    <%= "- #{order_item.quantity} portion(s) de #{order_item.dish.name}" %>
+  </p>
+  <p>
+    Vous avez rendez-vous avec votre chef à l'adresse suivante :
+  </p>
+  <p style="font-weight: bold;">
+    <% order_item.dish.cook.places.each do |place| %>
+      <% if place.active %>
+        <%= "#{place.full_address}, #{place.zip_code} #{place.city}" %>
+      <% end %>
+    <% end %>
+  </p>
+  <p style="font-weight: bold;">
+    <%= "Le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
+  </p>
+<% end %>
+
+<p>
+  Attention : soyez à l'heure à votre lieu de rendez-vous.<br>
+  Le concept de Popotes repose essentiellement sur la confiance et la ponctualité...<br>
+  On compte sur vous !
+</p>
+
+<p>
+  Montant total de votre commande : <%= number_to_currency(@order.total_amount, locale: :fr) %><br>
+  Dont frais de service : <%= number_to_currency(@order.charge, locale: :fr) %>
+</p>
+
+<p>
+  Bon appétit !<br>
+  Merci et à très bientôt sur Popotes !
+</p>
+

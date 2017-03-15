@@ -1,0 +1,42 @@
+<div class="cart">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="dish">
+
+        <div class='dish-upvote'>
+          <div class='dish_order-count'><%= order_item.quantity %></div>
+        </div>
+
+        <% if dish.photos? %>
+          <%= cl_image_tag dish.photos.first.path, height: 117, width: 175, quality: 80, fetch_format: :auto, crop: :fill, class:"dish-image hidden-xs" %>
+        <% else %>
+          <%= image_tag "tupperwares.jpg", alt:"Popote", class:"dish-image hidden-xs" %>
+        <% end %>
+
+        <div class='dish-body'>
+          <h3><%= dish.name %></h3>
+          <p>
+            <%= number_to_currency(dish.price, locale: :fr) %><br>
+          </p>
+          <h5>
+            Total : <%= number_to_currency(order_item.total_price, locale: :fr) %>
+          </h5>
+        </div>
+
+        <div class="dish-details">
+          <h5>Rendez-vous</h5>
+          <p>
+            <% dish.cook.places.each do |place| %>
+              <% if place.active %>
+                <%= place.full_address %><br>
+                <%= "#{place.zip_code} #{place.city}" %><br>
+              <% end %>
+            <% end %>
+            <span class="label label-primary"><%= dish.collect_date.strftime('%d/%m/%Y %H:%M') %></span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
