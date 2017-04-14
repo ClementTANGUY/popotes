@@ -15,17 +15,16 @@ class Cook < ApplicationRecord
   accepts_nested_attributes_for :cook_places, allow_destroy: true
   accepts_nested_attributes_for :places
 
-  validates :user, presence: true, uniqueness: true
-  validates :age, presence: true
-  validates :bio, presence: true
+  validates :age, :bio, presence: true
 
   validate :validate_places
 
 private
 
-    def validate_places
-      if places.size > 3
-        errors.add(:Adresses, "limitées à 3")
-      end
+  def validate_places
+    if places.size > 3
+      errors.add(:Adresses, "limitées à 3")
     end
+  end
+
 end

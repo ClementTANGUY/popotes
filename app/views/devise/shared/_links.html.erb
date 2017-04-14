@@ -31,7 +31,7 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
   <p>
-    Se connecter directement avec
+    Se connecter avec
   </p>
     <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-facebook btn-lg" do %>
       <%="#{OmniAuth::Utils.camelize(provider)}" %>

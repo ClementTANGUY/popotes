@@ -5,9 +5,7 @@ class Place < ApplicationRecord
   has_many :cook_places
   has_many :cooks, through: :cook_places
 
-  validates :full_address, presence: true
-  validates :zip_code, presence: true
-  validates :city, presence: true
+  validates :full_address, :zip_code, :city, presence: true
   validates :kind_of_place, presence: true, inclusion: { in: %w(Domicile Bureaux/Agence Commerce/Restaurant Parc/Lieu\ public),
     message: "%{value} n'est pas autorisé" }
 

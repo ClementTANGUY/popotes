@@ -19,7 +19,7 @@
           <% end %>
         <% end %><br>
       </p>
-      <%= cook.dishes.size %> <%= pluralize_with_0('popote', cook.dishes.size) %>
+      <%= "#{cook.dishes.size} #{pluralize_with_0('popote', cook.dishes.size)}" %>
     </div>
 
     <% if cook.user.picture? && cook.avatar? %>
