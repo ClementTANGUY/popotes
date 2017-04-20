@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223121001) do
+ActiveRecord::Schema.define(version: 20170420130444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,8 +54,6 @@ ActiveRecord::Schema.define(version: 20170223121001) do
   end
 
   create_table "cooks", force: :cascade do |t|
-    t.string   "last_name"
-    t.string   "first_name"
     t.integer  "age"
     t.text     "bio"
     t.integer  "review_count"
@@ -82,6 +80,9 @@ ActiveRecord::Schema.define(version: 20170223121001) do
     t.decimal  "price",         precision: 12, scale: 3
     t.datetime "exp_date"
     t.datetime "collect_date"
+    t.boolean  "gluten_free"
+    t.boolean  "halal"
+    t.boolean  "kosher"
     t.index ["cook_id"], name: "index_dishes_on_cook_id", using: :btree
   end
 
@@ -108,14 +109,12 @@ ActiveRecord::Schema.define(version: 20170223121001) do
   end
 
   create_table "places", force: :cascade do |t|
-    t.string   "name"
     t.string   "full_address"
     t.string   "zip_code"
     t.string   "city"
     t.string   "kind_of_place"
-    t.boolean  "reception_desk"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "active"

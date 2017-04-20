@@ -18,11 +18,10 @@ class DishesController < ApplicationController
 
   def create
     @dish = @cook.dishes.new(dish_params)
-    if @cook.user == current_user
-      @dish.save
+    @cook.user == current_user
+    if @dish.save
       redirect_to cook_url(@cook), notice: "Votre popote a bien été créée"
     else
-      flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       render :new
     end
   end
@@ -32,8 +31,11 @@ class DishesController < ApplicationController
 
   def update
     if @cook.user == current_user
-      @dish.update(dish_params)
-      redirect_to cook_url(@cook), notice: "Votre popote a bien été mise à jour"
+      if @dish.update(dish_params)
+        redirect_to cook_url(@cook), notice: "Votre popote a bien été mise à jour"
+      else
+        render :edit
+      end
     else
       flash[:alert] = "Action impossible, ce n'est pas votre profil !"
       render :edit
@@ -61,6 +63,6 @@ class DishesController < ApplicationController
   end
 
   def dish_params
-    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :portion_size, :portion_count, :price, :exp_date, :collect_date, photos: [])
+    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :gluten_free, :halal, :kosher, :portion_size, :portion_count, :price, :exp_date, :collect_date, photos: [])
   end
 end

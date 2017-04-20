@@ -1,4 +1,5 @@
 <div class="flash"></div>
+
 <div class="cook container">
   <div class="cook-category">
     <%= @cook.user.first_name %>
@@ -7,11 +8,11 @@
     </p>
   </div>
   <div class="cook-link">
-  <% if @cook.user == current_user %>
-    <p><%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %></p>
-  <% else %>
-    <%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %>
-  <% end %>
+    <% if @cook.user == current_user %>
+      <p><%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %> <%= link_to "Modifier mon profil", edit_cook_path(@cook), class: "btn btn-popote-bis" %></p>
+    <% else %>
+      <%= link_to "Retour aux chefs", cooks_path, class: "btn btn-popote-bis" %>
+    <% end %>
   </div>
 
   <% if @cook.user.picture? && @cook.avatar? %>
@@ -29,19 +30,20 @@
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
-    <h1 class="text-center">Popotes</h1>
+    <h1 class= "text-center"><%= "#{pluralize_with_0('Popote', @dishes.size)}" %></h1>
 
     <% if @cook.user == current_user %>
-
       <p><%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-popote" %></p>
+    <% end %>
 
+    <% if @dishes.size == 0 %>
+      <p class= "text-center">Aucune popote pour le moment...</p>
     <% end %>
 
     <% @dishes.each do |dish| %>
 
       <div class="dish">
         <div class='dish-upvote'>
-          <!-- <div class="dish-arrow"></div> -->
           <div class='dish-count'><%= dish.portion_count %></div>
         </div>
 

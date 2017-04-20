@@ -28,12 +28,20 @@
     </div>
   </div>
 
-  <p>&nbsp</p>
+  <div class="form-inline">
+    <div class="form-inputs">
+       &nbsp <%= f.input :gluten_free, inline_label: 'Sans gluten' %>
+       &nbsp <%= f.input :halal, inline_label: 'Halal' %>
+       &nbsp <%= f.input :kosher, inline_label: 'Casher' %>
+    </div>
+  </div>
+
+   <p>&nbsp</p>
 
   <div class="form-inputs">
     <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 150g)", "Moyenne (200-300g)", "Grande (>300g)"], as: :select %>
     <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
-    <%= f.input :price, label: "Prix en euros (15 % de frais s'ajoutent pour votre acheteur)" %>
+    <%= f.input :price, label: "Prix à partir d'1€ (15 % de frais s'ajoutent pour votre acheteur)" %>
   </div>
 
   <div class='row datetimerange'>

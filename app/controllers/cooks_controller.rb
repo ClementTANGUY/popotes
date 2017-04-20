@@ -58,8 +58,11 @@ class CooksController < ApplicationController
     def update
       @places = @cook.places
       if @cook.user == current_user
-        @cook.update(cook_params)
-        redirect_to cook_url(@cook), notice: "Votre profil a bien été modifié"
+        if @cook.update(cook_params)
+          redirect_to cook_url(@cook), notice: "Votre profil a bien été modifié"
+        else
+          render :edit
+        end
       else
         flash[:alert] = "Action impossible, ce n'est pas votre profil !"
         render :edit
@@ -87,7 +90,7 @@ class CooksController < ApplicationController
         cook_specialities_attributes: [:id, :_destroy,
           speciality_attributes: [:id, :name, :level]],
         cook_places_attributes: [:id, :place_id, :_destroy,
-          place_attributes: [:id, :_destroy, :name, :full_address, :zip_code, :city, :kind_of_place, :active]])
+          place_attributes: [:id, :_destroy, :full_address, :zip_code, :city, :kind_of_place, :active]])
     end
 
 end

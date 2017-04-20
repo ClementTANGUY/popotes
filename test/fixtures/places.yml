@@ -1,0 +1,5 @@
+one:
+  full_address: '5 rue Lavoisier'
+  zip_code: '75008'
+  city: 'Paris'
+  kind_of_place: 'Domicile'

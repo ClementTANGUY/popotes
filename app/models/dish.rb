@@ -18,7 +18,7 @@ class Dish < ApplicationRecord
   validates :portion_size, presence: true, inclusion: { in: %w(Petite\ (env.\ 150g) Moyenne\ (200-300g) Grande\ (>300g)),
     message: "%{value} n'est autorisé" }
   validates :portion_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0.01 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
 
 private
 

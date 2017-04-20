@@ -23,7 +23,7 @@ class Order < ApplicationRecord
   end
 
   # def net_for_cook
-  #   subtotal - charge_for_cook
+  #   subtotal - cook_charge
   # end
 
   def add_order_items_from_cart(cart)

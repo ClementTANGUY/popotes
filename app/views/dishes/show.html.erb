@@ -34,6 +34,28 @@
       <% end %>
     </p>
     <p>
+      Sans gluten
+      <% if @dish.gluten_free %>
+        <span class="label label-success"><%= humanize_boolean(@dish.gluten_free) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.gluten_free) %></span>
+      <% end %>
+
+      &nbsp | Halal
+      <% if @dish.halal %>
+        <span class="label label-success"><%= humanize_boolean(@dish.halal) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.halal) %></span>
+      <% end %>
+
+      &nbsp | Casher
+      <% if @dish.kosher %>
+        <span class="label label-success"><%= humanize_boolean(@dish.kosher) %></span>
+      <% else %>
+        <span class="label label-warning"><%= humanize_boolean(@dish.kosher) %></span>
+      <% end %>
+    </p>
+    <p>
       <span class="label label-default">
         <%= @dish.portion_count %>
       </span>

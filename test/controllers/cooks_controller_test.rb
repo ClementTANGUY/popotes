@@ -2,16 +2,36 @@ require 'test_helper'
 
 class CooksControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @user = users(:clem)
+    login_as (@user)
     @cook = cooks(:one)
     @update = {
-      age:  40,
+      age:  41,
       bio:  'expandable fellow'
     }
   end
 
+  # called after every single test
+    teardown do
+      # when controller is using cache it may be a good idea to reset it afterwards
+      Rails.cache.clear
+    end
+
   test "should get index" do
     get cooks_url
     assert_response :success
+    assert_select '.row .col-sm-6', 3
+    assert_select '#map-container #map', 1
+  end
+
+  test "should show cook" do
+    get cook_url(@cook)
+    assert_response :success
+    assert_select '.cook .cook-category', 1
+    assert_select '.cook .cook-link', 1
+    assert_select '.cook .cook-user', 1
+    assert_select '.row .col-xs-12', 1
+    assert_select 'h1', 3
   end
 
   test "should get new" do
@@ -25,11 +45,22 @@ class CooksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to cook_url(Cook.last)
+    assert_equal 'Votre profil a bien été créé', flash[:notice]
   end
 
   test "should update cook" do
     patch cook_url(@cook), params: { cook: @update }
     assert_redirected_to cook_url(@cook)
+    assert_equal 'Votre profil a bien été modifié', flash[:notice]
+  end
+
+  test "should destroy cook" do
+    assert_difference('Cook.count', -1) do
+      delete cook_url(@cook)
+    end
+
+    assert_redirected_to cooks_path
+    assert_equal 'Votre profil a bien été supprimé', flash[:notice]
   end
 
 end
