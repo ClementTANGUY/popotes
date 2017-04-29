@@ -15,10 +15,8 @@
     <%= f.input :name, label: 'Nom', class: 'form-control' %>
     <%= f.input :kind_of_dish, label: 'Type de popote', collection: ["Entrée", "Plat principal", "Dessert & Patisserie"], as: :select %>
     <%= f.input :speciality, label: 'Spécialité', collection: ["Gastronomique", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
-    <%= f.input :description, label: "Recette", hint: 'Précisez les principaux ingrédients afin de renseigner les personnes allergiques' %>
+    <%= f.input :description, label: "Recette", placeholder: 'Préparation, principaux ingrédients, éventuels allergènes... Soyez le plus précis possible' %>
   </div>
-
-  <p>&nbsp</p>
 
   <div class="form-inline">
     <div class="form-inputs">
@@ -27,6 +25,8 @@
        &nbsp <%= f.input :be_reheated, inline_label: 'À réchauffer' %>
     </div>
   </div>
+
+   <p>&nbsp</p>
 
   <div class="form-inline">
     <div class="form-inputs">
@@ -41,13 +41,15 @@
   <div class="form-inputs">
     <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 150g)", "Moyenne (200-300g)", "Grande (>300g)"], as: :select %>
     <%= f.input :portion_count, label: 'Nombre de portion(s)', collection: 1..50 %>
-    <%= f.input :price, label: "Prix à partir d'1€ (15 % de frais s'ajoutent pour votre acheteur)" %>
+    <%= f.input :price, label: "Prix (à partir d'1€)", placeholder: "15 % de frais s'ajoutent automatiquement pour votre acheteur" %>
   </div>
 
   <div class='row datetimerange'>
       <%= f.input :exp_date, label: "Date limite pour commander votre plat ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
       <%= f.input :collect_date, label: "Quand exactement récupérer votre plat ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
   </div>
+
+  <p>&nbsp</p>
 
   <div class="form-inputs">
     <%= f.input :photos, as: :attachinary, label: "Photos (2 max)" %>
@@ -59,7 +61,7 @@
     <% if f.object.new_record? %>
       <%= f.button :button, "Créer".html_safe, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"}, class: "btn btn-popote btn-lg"%>
     <% else %>
-      <%= f.button :button, "Mettre à jour".html_safe, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"}, class: "btn btn-popote btn-lg"%>
+      <%= f.button :button, "Modifier".html_safe, data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"}, class: "btn btn-popote btn-lg"%>
     <% end %>
 
     <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>

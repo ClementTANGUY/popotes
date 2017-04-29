@@ -7,8 +7,9 @@ class CookPlace < ApplicationRecord
   after_destroy :delete_place
 
   private
-  def delete_place
-    place.delete
-  end
+
+    def delete_place
+      place.delete
+    end
 
 end

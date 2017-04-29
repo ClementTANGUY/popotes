@@ -1,4 +1,5 @@
 <div class="flash"></div>
+
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "ustenciles.jpg" %>');">
   <div class="banner-content">
     <h1><%= @dish.name %></h1>
@@ -11,6 +12,7 @@
     <p>
       " <%= @dish.description %> "
     </p>
+
     <p>
       Végétarien
       <% if @dish.veggie %>
@@ -55,6 +57,7 @@
         <span class="label label-warning"><%= humanize_boolean(@dish.kosher) %></span>
       <% end %>
     </p>
+
     <p>
       <span class="label label-default">
         <%= @dish.portion_count %>
@@ -74,8 +77,6 @@
         <%= number_to_currency(@dish.price, locale: :fr) %>
       </span>
     </p>
-
-
 
     <div class="banner-controls">
       <% if @cook.user == current_user %>

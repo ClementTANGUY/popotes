@@ -16,7 +16,7 @@
     <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to "Tous vos Chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
+    <%= link_to "Les chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
 
   </div>
 
@@ -46,6 +46,11 @@
                 <%= link_to "Mon profil", cook_path(current_user.cook) %>
               </li>
               <li>
+                <% if !current_user.provider %>
+                  <%= link_to "Mon compte", edit_user_registration_path %>
+                <% end %>
+              </li>
+              <li>
                 <%= link_to "Mes commandes", "" %>
               </li>
               <li>
@@ -70,7 +75,7 @@
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>
                 <% if !current_user.provider %>
-                <%= link_to "Mon compte", edit_user_registration_path %>
+                  <%= link_to "Mon compte", edit_user_registration_path %>
                 <% end %>
               </li>
               <li>
@@ -110,19 +115,23 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if user_signed_in? %>
           <% if !current_user.cook.nil? %>
-            <li><%= link_to "Tous vos Chefs", cooks_path %></li>
+            <li><%= link_to "Les chefs", cooks_path %></li>
             <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
             <li><%= link_to "Mes commandes", "" %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %></li>
           <% else %>
-            <li><%= link_to "Tous vos Chefs", cooks_path %></li>
-            <li><%= link_to "Mon compte", edit_user_registration_path %></li>
+            <li><%= link_to "Les chefs", cooks_path %></li>
+            <li>
+              <% if !current_user.provider %>
+                <%= link_to "Mon compte", edit_user_registration_path %>
+              <% end %>
+            </li>
             <li><%= link_to "Mes commandes", "" %></li>
             <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %></li>
           <% end %>
         <% else %>
-          <li><%= link_to "Tous vos Chefs", cooks_path %></li>
+          <li><%= link_to "Les chefs", cooks_path %></li>
           <li><%= link_to "Connexion", new_user_session_path %></li>
           <li><%= link_to "Inscription", new_user_registration_path %></li>
           <li><%= link_to "Devenir Chef", new_user_registration_path %></li>

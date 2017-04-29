@@ -16,6 +16,24 @@ one:
   collect_date: '11/02/2035 12:00:00'
   cook: one
 
+moelleux:
+  name: À 22mn du bonheur!
+  kind_of_dish: Dessert
+  speciality: Terroir & Famille
+  description: Cacao bio équitable, fondant divin
+  veggie: true
+  cooked: true
+  be_reheated: true
+  gluten_free: false
+  halal: false
+  kosher: false
+  portion_size: MyString
+  portion_count: 5
+  price: 4.00
+  exp_date: '01/01/2027 20:00:00'
+  collect_date: '02/01/2027 12:00:00'
+  cook: one
+
 two:
   name: MyString
   kind_of_dish: MyString
@@ -34,20 +52,20 @@ two:
   collect_date: '11/02/2035 12:00:00'
   cook: two
 
-moelleux:
-  name: À 22mn du bonheur!
-  kind_of_dish: Dessert
-  speciality: Terroir & Famille
-  description: Cacao bio équitable, fondant divin
-  veggie: true
-  cooked: true
-  be_reheated: true
-  gluten_free: false
-  halal: false
-  kosher: false
-  portion_size: MyString
-  portion_count: 5
-  price: 4.00
-  exp_date: '01/01/2027 20:00:00'
-  collect_date: '02/01/2027 12:00:00'
-  cook: one
+three:
+ name: MyString
+ kind_of_dish: MyString
+ speciality: MyString
+ description: MyText
+ veggie: true
+ cooked: true
+ be_reheated: false
+ gluten_free: false
+ halal: false
+ kosher: false
+ portion_size: MyString
+ portion_count: 5
+ price: 5.00
+ exp_date: '10/02/2035 20:00:00'
+ collect_date: '11/02/2035 12:00:00'
+ cook: two

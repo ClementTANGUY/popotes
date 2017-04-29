@@ -15,50 +15,72 @@
     <%= f.input :age, label: 'Âge', collection: 18..99 %>
     <%= f.input :bio, label: 'À propos de vous, de votre cuisine' %>
 
-    <h4>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</h4>
-    <%= f.input :avatar, label: 'Photo', as: :attachinary %>
+    <p>&nbsp</p>
+
+    <h4>PORTRAIT</h4>
+    <%= f.input :avatar, label: 'Une photo, ça ne mange pas de pain', as: :attachinary %>
 
   </div>
 
-  <h4>VOS SPECIALITÉS</h4>
+  <p>&nbsp</p>
+
+  <h4>SPECIALITÉS</h4>
+    <p>
+      Max 2 spécialités
+    </p>
     <div class="form-group">
       <%= f.simple_fields_for :cook_specialities do |cs| %>
         <%= cs.simple_fields_for :speciality do |s| %>
         <%= render 'speciality', s: s %>
         <% end %>
       <% end %>
+
+      <div class="form-actions">
+        <p>
+          <% if @cook.specialities.size < 2 %>
+            <%= link_to "Ajouter une specialité", "", class: "duplicate_nested_form_one btn btn-popote-bis" %>
+          <% end %>
+        </p>
+      </div>
     </div>
 
-  <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
-  <p class="cook-address">
-    Créez et gérez jusqu'à 3 adresses
-  </p>
-  <div class="form-group">
-    <%= f.simple_fields_for :cook_places do |cp| %>
-      <%= cp.simple_fields_for :place do |p| %>
-      <%= render 'place', p: p %>
-      <% end %>
-    <% end %>
-  </div>
+  <p>&nbsp</p>
 
-  <div class="form-actions">
+  <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
     <p>
-      <% if @cook.places.size < 3 %>
-        <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form btn btn-popote-bis" %>
-      <% end %>
+      Créez et gérez jusqu'à 3 adresses
     </p>
+    <div class="form-group">
+      <%= f.simple_fields_for :cook_places do |cp| %>
+        <%= cp.simple_fields_for :place do |p| %>
+        <%= render 'place', p: p %>
+        <% end %>
+      <% end %>
+
+      <p>&nbsp</p>
+
+      <div class="form-actions">
+        <p>
+          <% if @cook.places.size < 3 %>
+            <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form_two btn btn-popote-bis" %>
+          <% end %>
+        </p>
+      </div>
+    </div>
 
     <p>&nbsp</p>
 
+  <div class="form-actions">
     <p>
       <% if f.object.new_record? %>
         <%= f.button :button, "Créer".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
       <% else %>
-        <%= f.button :button, "Mettre à jour".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
+        <%= f.button :button, "Modifier".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
       <% end %>
 
       <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
     </p>
+
   </div>
 
 

@@ -5,7 +5,7 @@
 </p>
 
 <p>
-  Vous avez demandé :
+  Vous avez demandé une part de :
 </p>
 
 <% @order.order_items.each do |order_item| %>
@@ -13,23 +13,24 @@
     <%= "- #{order_item.quantity} portion(s) de #{order_item.dish.name}" %>
   </p>
   <p>
-    Vous avez rendez-vous avec votre chef à l'adresse suivante :
+    Pour récupérer cette popote, vous avez rendez-vous à l'adresse suivante :
   </p>
   <p style="font-weight: bold;">
     <% order_item.dish.cook.places.each do |place| %>
       <% if place.active %>
-        <%= "#{place.full_address}, #{place.zip_code} #{place.city}" %>
+        <%= "#{place.full_address}, #{place.zip_code} #{place.city}, le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
+        <p>
+          Indications du chef concernant son adresse : <br>
+          "<%= place.comments %>"
+        </p>
       <% end %>
     <% end %>
-  </p>
-  <p style="font-weight: bold;">
-    <%= "Le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
   </p>
 <% end %>
 
 <p>
-  Attention : soyez à l'heure à votre lieu de rendez-vous.<br>
-  La confiance et la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
+  Attention : soyez à l'heure à vos différents lieux de rendez-vous.<br>
+  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
   On compte sur vous !
 </p>
 

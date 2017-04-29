@@ -1,23 +1,23 @@
 $(document).ready(function() {
 
   var nestedForm;
-  nestedForm = $('.duplicatable_nested_form').last().clone();
+  nestedForm = $('.duplicatable_nested_form_two').last().clone();
 
-  $('.duplicatable_nested_form').find('.destroy_duplicate_nested_form').remove();
+  $('.duplicatable_nested_form_two').find('.destroy_duplicate_nested_form_two').remove();
 
-  $('body').on('click', '.destroy_duplicate_nested_form', function(e) {
-    $(this).closest('.duplicatable_nested_form').slideUp().remove();
-    $('.form-actions').find('.duplicate_nested_form').show();
+  $('body').on('click', '.destroy_duplicate_nested_form_two', function(e) {
+    $(this).closest('.duplicatable_nested_form_two').slideUp().remove();
+    $('.form-actions').find('.duplicate_nested_form_two').show();
   });
 
-  $('.duplicate_nested_form').click(function(e) {
+  $('.duplicate_nested_form_two').click(function(e) {
     var formsOnPage, lastNestedForm, newNestedForm;
     e.preventDefault();
-    lastNestedForm = $('.duplicatable_nested_form').last();
+    lastNestedForm = $('.duplicatable_nested_form_two').last();
     newNestedForm = $(nestedForm).clone();
-    formsOnPage = $('.duplicatable_nested_form').length;
+    formsOnPage = $('.duplicatable_nested_form_two').length;
     if ((formsOnPage == 1 && $(newNestedForm).length == 2) || (formsOnPage == 2 && $(newNestedForm).length == 1)) {
-      $('.form-actions').find('.duplicate_nested_form').hide()
+      $('.form-actions').find('.duplicate_nested_form_two').hide()
     };
 
     newNestedForm.children().each(function(index) {

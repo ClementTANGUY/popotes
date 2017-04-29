@@ -5,7 +5,6 @@ class Dish < ApplicationRecord
   belongs_to :cook
 
   has_many :order_items
-
   has_many :orders, through: :order_items
 
   before_destroy :ensure_not_referenced_by_any_order_item
@@ -17,8 +16,8 @@ class Dish < ApplicationRecord
     message: "%{value} n'est pas autorisé" }
   validates :portion_size, presence: true, inclusion: { in: %w(Petite\ (env.\ 150g) Moyenne\ (200-300g) Grande\ (>300g)),
     message: "%{value} n'est autorisé" }
-  validates :portion_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
+  validates :portion_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, message: "doit être supérieur ou égal à 0" }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 1, message: "doit être supérieur ou égal à 1" }
 
 private
 

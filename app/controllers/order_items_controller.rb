@@ -8,35 +8,21 @@ class OrderItemsController < ApplicationController
 
   def create
     dish = Dish.find(params[:dish_id])
-    @order_item = @cart.order_items.find_by(dish_id: dish.id)
+    @order_item = @cart.add_dish(dish)
 
     respond_to do |format|
-      if (@order_item && @order_item.quantity < dish.portion_count)
-        @order_item.quantity += 1
-        @order_item.save
+      if @order_item.save
         format.html { redirect_back fallback_location: cooks_url, notice: "Plat ajouté à votre panier !" }
         format.js { flash.now[:notice] = "Plat ajouté à votre panier !" }
-
-      elsif (@order_item && @order_item.quantity == dish.portion_count) || (!@order_item && dish.portion_count == 0)
+      else
         format.html { redirect_back fallback_location: cooks_url, alert: "#{dish.portion_count} #{helpers.pluralize_with_0('portion', dish.portion_count)} #{helpers.pluralize_with_0('disponible', dish.portion_count)} !" }
         format.js { flash.now[:alert] = "#{dish.portion_count} #{helpers.pluralize_with_0('portion', dish.portion_count)} #{helpers.pluralize_with_0('disponible', dish.portion_count)} !" }
-
-      elsif (!@order_item && dish.portion_count != 0)
-        @order_item = @cart.order_items.build(dish_id: dish.id, quantity: "1")
-        @order_item.save
-        format.html { redirect_back fallback_location: cooks_url, notice: "Plat ajouté à votre panier !" }
-        format.js { flash.now[:notice] = "Plat ajouté à votre panier !" }
       end
     end
 
     @cart.save
     session[:cart_id] = @cart.id
   end
-
-  # def update
-  #   @order_item.update(order_item_params)
-  #   @order_items = @cart.order_items
-  # end
 
   def increment
     dish = @order_item.dish
@@ -69,7 +55,12 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item.destroy
+    respond_to do |format|
+      if @order_item.destroy
+        format.html { redirect_back fallback_location: cooks_url, alert: "Popote supprimée de votre panier !" }
+        format.js { flash.now[:alert] = "Popote supprimée de votre panier !" }
+      end
+    end
     @order_items = @cart.order_items
   end
 
@@ -82,7 +73,4 @@ class OrderItemsController < ApplicationController
       @order_item = @cart.order_items.find(params[:id])
     end
 
-    # def order_item_params
-    #   params.require(:order_item).permit(:quantity, :dish_id)
-    # end
 end

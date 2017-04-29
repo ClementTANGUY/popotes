@@ -25,6 +25,9 @@ class DishesControllerTest < ActionDispatch::IntegrationTest
   test "should show dish" do
     get cook_dish_url(@cook, @dish)
     assert_response :success
+    assert_select '.banner .banner-content', 1
+    assert_select '.banner-content .label-default', 4
+    assert_select '.banner-content .banner-controls', 1
   end
 
   test "should get new" do
@@ -39,6 +42,11 @@ class DishesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to cook_url(@cook)
     assert_equal 'Votre popote a bien été créée', flash[:notice]
+  end
+
+  test "should get edit" do
+    get edit_cook_dish_url(@cook, @dish)
+    assert_response :success
   end
 
   test "should update dish" do

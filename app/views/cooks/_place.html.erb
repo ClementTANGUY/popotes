@@ -1,12 +1,13 @@
 <fieldset class="item">
-  <div class="duplicatable_nested_form">
+  <div class="duplicatable_nested_form_two">
     <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Commerce/Restaurant", "Parc/Lieu public"], as: :select %>
     <%=p.input :full_address, label: 'N° Voie' %>
     <%=p.input :zip_code , label: 'Code Postal' %>
     <%=p.input :city, label: 'Ville' %>
     <%=p.input :active, inline_label: "Définir comme votre adresse active" %>
+    <%=p.input :comments, label: 'Indications (transmises seulement en cas de commande)', placeholder: "Code, cour, escalier, s'adresser à la loge, récupérer au café d'en face, demander untel à l'accueil, parc entrée côté ouest..." %>
 
-    <%= link_to 'Supprimer', '', remote: true, class: "destroy_duplicate_nested_form btn btn-popote-bis" %>
+    <%= link_to 'Supprimer', '', remote: true, class: "destroy_duplicate_nested_form_two btn btn-popote-bis" %>
 
     <%= p.input :id, as: :hidden %>
   </div>
@@ -16,67 +17,67 @@
 <% content_for(:after_js) do %>
 
   <script type="text/javascript">
-  $(document).ready(function() {
-    var cook_address = $('#cook_full_address').get(0);
+    $(document).ready(function() {
+      var cook_address = $('#cook_full_address').get(0);
 
-    if (cook_address) {
-      var autocomplete = new google.maps.places.Autocomplete(cook_address, { types: ['geocode'] });
-      google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-      google.maps.event.addDomListener(cook_address, 'keydown', function(e) {
-        if (e.keyCode == 13) {
-          e.preventDefault(); // Do not submit the form on Enter.
-        }
-      });
-    }
-  });
+      if (cook_address) {
+        var autocomplete = new google.maps.places.Autocomplete(cook_address, { types: ['geocode'] });
+        google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        google.maps.event.addDomListener(cook_address, 'keydown', function(e) {
+          if (e.keyCode == 13) {
+            e.preventDefault(); // Do not submit the form on Enter.
+          }
+        });
+      }
+    });
 
-  function onPlaceChanged() {
-    var place = this.getPlace();
-    var components = getAddressComponents(place);
+    function onPlaceChanged() {
+      var place = this.getPlace();
+      var components = getAddressComponents(place);
 
-    $('#cook_full_address').trigger('blur').val(components.address);
-    $('#cook_zip_code').val(components.zip_code);
-    $('#cook_city').val(components.city);
-    if (components.country_code) {
-      $('#cook_country').val(components.country_code);
-    }
-  }
-
-  function getAddressComponents(place) {
-    // If you want lat/lng, you can look at:
-    // - place.geometry.location.lat()
-    // - place.geometry.location.lng()
-
-    var street_number = null;
-    var route = null;
-    var zip_code = null;
-    var city = null;
-    var country_code = null;
-    for (var i in place.address_components) {
-      var component = place.address_components[i];
-      for (var j in component.types) {
-        var type = component.types[j];
-        if (type == 'street_number') {
-          street_number = component.long_name;
-        } else if (type == 'route') {
-          route = component.long_name;
-        } else if (type == 'postal_code') {
-          zip_code = component.long_name;
-        } else if (type == 'locality') {
-          city = component.long_name;
-        } else if (type == 'country') {
-          country_code = component.short_name;
-        }
+      $('#cook_full_address').trigger('blur').val(components.address);
+      $('#cook_zip_code').val(components.zip_code);
+      $('#cook_city').val(components.city);
+      if (components.country_code) {
+        $('#cook_country').val(components.country_code);
       }
     }
 
-    return {
-      address: street_number == null ? route : (street_number + ' ' + route),
-      zip_code: zip_code,
-      city: city,
-      country_code: country_code
-    };
-  }
+    function getAddressComponents(place) {
+      // If you want lat/lng, you can look at:
+      // - place.geometry.location.lat()
+      // - place.geometry.location.lng()
+
+      var street_number = null;
+      var route = null;
+      var zip_code = null;
+      var city = null;
+      var country_code = null;
+      for (var i in place.address_components) {
+        var component = place.address_components[i];
+        for (var j in component.types) {
+          var type = component.types[j];
+          if (type == 'street_number') {
+            street_number = component.long_name;
+          } else if (type == 'route') {
+            route = component.long_name;
+          } else if (type == 'postal_code') {
+            zip_code = component.long_name;
+          } else if (type == 'locality') {
+            city = component.long_name;
+          } else if (type == 'country') {
+            country_code = component.short_name;
+          }
+        }
+      }
+
+      return {
+        address: street_number == null ? route : (street_number + ' ' + route),
+        zip_code: zip_code,
+        city: city,
+        country_code: country_code
+      };
+    }
   </script>
 
 <% end %>

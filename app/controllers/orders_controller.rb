@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
         end
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to cooks_url, notice: "Merci pour votre commande ! Soyez ponctuel à l'adresse prévue" }
+        format.html { redirect_to cooks_url, notice: "Merci pour votre commande et soyez ponctuel" }
       else
         format.html { render :new }
       end
@@ -41,9 +41,5 @@ class OrdersController < ApplicationController
         redirect_to cooks_url, alert: 'Votre panier est vide'
       end
     end
-
-    # def order_params
-    #   params.require(:order).permit(:subtotal, :charge, :total_amount)
-    # end
 
 end

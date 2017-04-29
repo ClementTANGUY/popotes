@@ -87,10 +87,10 @@ class CooksController < ApplicationController
 
     def cook_params
       params.require(:cook).permit( :age, :bio, :avatar,
-        cook_specialities_attributes: [:id, :_destroy,
-          speciality_attributes: [:id, :name, :level]],
+        cook_specialities_attributes: [:id, :speciality_id, :_destroy,
+          speciality_attributes: [:id, :_destroy, :name, :level]],
         cook_places_attributes: [:id, :place_id, :_destroy,
-          place_attributes: [:id, :_destroy, :full_address, :zip_code, :city, :kind_of_place, :active]])
+          place_attributes: [:id, :_destroy, :full_address, :zip_code, :city, :kind_of_place, :comments, :active]])
     end
 
 end

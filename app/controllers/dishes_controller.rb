@@ -63,6 +63,12 @@ class DishesController < ApplicationController
   end
 
   def dish_params
-    params.require(:dish).permit(:name, :kind_of_dish, :speciality, :description, :veggie, :cooked, :be_reheated, :gluten_free, :halal, :kosher, :portion_size, :portion_count, :price, :exp_date, :collect_date, photos: [])
+    params.require(:dish).permit(:name, :kind_of_dish, :speciality,
+                                :description, :veggie, :cooked,
+                                :be_reheated, :gluten_free, :halal,
+                                :kosher, :portion_size, :portion_count,
+                                :price, :exp_date, :collect_date,
+                                photos: [])
   end
+
 end

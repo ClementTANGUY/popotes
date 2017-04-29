@@ -1,11 +1,11 @@
 <h3>Bonjour, <%= @cook.user.first_name %></h3>
 
 <p>
-  À vos fourneaux, vous avez reçu une commande de popote !
+  À vos fourneaux, vous avez reçu une commande !
 </p>
 
 <p>
-  On vous a demandé :
+  On vous demande une part de :
 </p>
 
 <p style="font-weight: bold;">
@@ -15,19 +15,16 @@
   Pour remettre cette popote, vous avez rendez-vous à votre adresse active :
 </p>
 <p style="font-weight: bold;">
-  <% @order_item.dish.cook.places.each do |place| %>
+  <% @cook.places.each do |place| %>
     <% if place.active %>
-      <%= "#{place.full_address}, #{place.zip_code} #{place.city}" %>
+      <%= "#{place.full_address}, #{place.zip_code} #{place.city}, le #{@order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{@order_item.dish.collect_date.strftime('%H:%M')}" %>
     <% end %>
   <% end %>
-</p>
-<p style="font-weight: bold;">
-  <%= "Le #{@order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{@order_item.dish.collect_date.strftime('%H:%M')}" %>
 </p>
 
 </p>
   Attention : soyez à l'heure à votre lieu de rendez-vous.<br>
-  La confiance et la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
+  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
   On compte sur vous !
 </p>
 

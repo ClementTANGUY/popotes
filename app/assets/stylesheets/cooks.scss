@@ -1,46 +1,21 @@
 // Place all the styles related to the Cooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- .cook {
-   height: 200px;
-   background-size: cover !important;
-   background-color: #f7f7fa;
-   margin-top: 10px;
-   position: relative;
+
+.cook-description {
+  margin-top: 10px;
+  color: #999999;
  }
- .cook-user {
-   position: absolute;
-   right: 8px;
-   top: 20px;
+
+.cook-description h2 {
+  color: black;
  }
- .cook-category {
-   position: absolute;
-   top: 10px;
-   left: 10px;
-   font-size: 25px;
-   font-weight: bold;
-   color: #999999;
+
+.cook-user {
+  background-size: cover !important;
+  background-color: #f7f7fa;
  }
- .cook-category p {
-  font-size: 18px;
-  }
- .cook-description {
-   position: absolute;
-   bottom: 75px;
-   left: 10px;
- }
- .cook-description h2 {
-   font-size: 22px;
- }
- .cook-description p {
-   font-size: 13px;
-}
-.cook-address {
-  color: #FF642E;
-  font-weight: lighter;
-}
-.cook-link{
-  position: absolute;
-  bottom: 5px;
-  left: 10px;
+
+ .cook-identity {
+   color: #5898f1;
 }

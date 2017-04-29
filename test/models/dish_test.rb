@@ -22,17 +22,17 @@ class DishTest < ActiveSupport::TestCase
                     kind_of_dish:  'My dish kind',
                     speciality:    'My dish speciality',
                     description:   'My dish description',
-                    veggie:         true,
-                    cooked:         true,
-                    be_reheated:    false,
-                    gluten_free:    false,
-                    halal:          false,
-                    kosher:         false,
+                    veggie:         'true',
+                    cooked:         'true',
+                    be_reheated:    'false',
+                    gluten_free:    'false',
+                    halal:          'false',
+                    kosher:         'false',
                     portion_size:   'My dish size',
                     portion_count:  1,
                     exp_date:       '10/02/2035 20:00:00',
                     collect_date:   '11/02/2035 12:00:00')
-    dish.price = -1
+    dish.price = -1.00
     assert dish.invalid?
     assert_equal ["doit être supérieur ou égal à 1"],
       dish.errors[:price]
@@ -42,7 +42,7 @@ class DishTest < ActiveSupport::TestCase
     assert_equal ["doit être supérieur ou égal à 1"],
       dish.errors[:price]
 
-    dish.price = 1
+    dish.price = 1.00
     assert dish.valid?
   end
 

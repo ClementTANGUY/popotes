@@ -27,11 +27,6 @@ class CooksControllerTest < ActionDispatch::IntegrationTest
   test "should show cook" do
     get cook_url(@cook)
     assert_response :success
-    assert_select '.cook .cook-category', 1
-    assert_select '.cook .cook-link', 1
-    assert_select '.cook .cook-user', 1
-    assert_select '.row .col-xs-12', 1
-    assert_select 'h1', 3
   end
 
   test "should get new" do
@@ -46,6 +41,11 @@ class CooksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to cook_url(Cook.last)
     assert_equal 'Votre profil a bien été créé', flash[:notice]
+  end
+
+  test "should get edit" do
+    get edit_cook_url(@cook)
+    assert_response :success
   end
 
   test "should update cook" do

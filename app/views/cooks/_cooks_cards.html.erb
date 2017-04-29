@@ -2,7 +2,7 @@
   <div class="cook_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://source.unsplash.com/330x175/?food,cook');">
     <div class="cook_card-category">
       <% cook.specialities.each do |speciality| %>
-        <%= speciality.name %> <span class="label label-warning"><%= speciality.level %></span>
+        <%= speciality.name %> <span class="label label-warning"><%= speciality.level %></span><br>
       <% end %>
     </div>
 
@@ -19,7 +19,9 @@
           <% end %>
         <% end %><br>
       </p>
-      <%= "#{cook.dishes.size} #{pluralize_with_0('popote', cook.dishes.size)}" %>
+      <p>
+        <%= "#{cook.dishes.size} #{pluralize_with_0('popote', cook.dishes.size)}" %>
+      </p>
     </div>
 
     <% if cook.user.picture? && cook.avatar? %>
