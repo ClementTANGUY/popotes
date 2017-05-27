@@ -32,8 +32,8 @@ $(document).ready(function() {
       }
     });
 
-    $(newNestedForm).find('input:text').val("")
-    $(newNestedForm).find('select option:selected').removeAttr('selected')
+    $(newNestedForm).find('input:text').val("");
+    $(newNestedForm).find('select option:selected').removeAttr('selected');
     $(newNestedForm).find('input:checkbox').removeAttr('checked');
 
     $(newNestedForm).insertAfter(lastNestedForm);

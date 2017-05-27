@@ -4,8 +4,13 @@
     <div class="icon">
       <%= image_tag "locate.svg" %>
     </div>
-    <div class="feature text-center">
-
+    <div class="feature">
+      <h4>
+        LOREM IPSUM
+      </h4>
+      <p>
+        Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum Africam pro consule regeret Carthaginiensibus victus inopia iam lassatis, ex horreis Romano populo destinatis frumentum dedit, pauloque postea cum provenisset segetum copia, integre sine ulla restituit mora.
+      </p>
     </div>
   </div>
 
@@ -13,8 +18,13 @@
     <div class="icon">
       <%= image_tag "notify.svg" %>
     </div>
-    <div class="feature text-center">
-
+    <div class="feature">
+      <h4>
+        LOREM IPSUM
+      </h4>
+      <p>
+        Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum Africam pro consule regeret Carthaginiensibus victus inopia iam lassatis, ex horreis Romano populo destinatis frumentum dedit, pauloque postea cum provenisset segetum copia, integre sine ulla restituit mora.
+      </p>
     </div>
   </div>
 
@@ -22,8 +32,13 @@
     <div class="icon">
       <%= image_tag "payonline.svg" %>
     </div>
-    <div class="feature text-center">
-
+    <div class="feature">
+      <h4>
+        LOREM IPSUM
+      </h4>
+      <p>
+        Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum Africam pro consule regeret Carthaginiensibus victus inopia iam lassatis, ex horreis Romano populo destinatis frumentum dedit, pauloque postea cum provenisset segetum copia, integre sine ulla restituit mora.
+      </p>
     </div>
   </div>
 
@@ -31,8 +46,13 @@
     <div class="icon">
       <%= image_tag "collect.svg" %>
     </div>
-    <div class="feature text-center">
-
+    <div class="feature">
+      <h4>
+        LOREM IPSUM
+      </h4>
+      <p>
+        Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum Africam pro consule regeret Carthaginiensibus victus inopia iam lassatis, ex horreis Romano populo destinatis frumentum dedit, pauloque postea cum provenisset segetum copia, integre sine ulla restituit mora.
+      </p>
     </div>
   </div>
 
@@ -40,8 +60,13 @@
     <div class="icon">
       <%= image_tag "rating.svg" %>
     </div>
-    <div class="feature text-center">
-
+    <div class="feature">
+      <h4>
+        LOREM IPSUM
+      </h4>
+      <p>
+        Eodem tempore etiam Hymetii praeclarae indolis viri negotium est actitatum, cuius hunc novimus esse textum. cum Africam pro consule regeret Carthaginiensibus victus inopia iam lassatis, ex horreis Romano populo destinatis frumentum dedit, pauloque postea cum provenisset segetum copia, integre sine ulla restituit mora.
+      </p>
     </div>
   </div>
 
@@ -50,11 +75,16 @@
 <% content_for(:after_js) do %>
   <script type="text/javascript">
     function showFeature () {
-    $(this).closest('.feature-box').find('.feature p').show();
+      $(this).closest('.feature-box').find('.feature p').show();
     }
+    // function hideFeature () {
+    //   $(this).closest('.feature-box').find('.feature p').hide();
+    // }
     $(document).ready(function() {
-      $('.icon').on('mouseover', 'img', showFeature);
-      $('.feature').on('mouseover', 'h4', showFeature);
+      $('.icon').on('mouseenter', 'img', showFeature);
+      $('.feature').on('mouseenter', 'h4', showFeature);
+      // $('.icon').on('mouseleave', 'img', hideFeature);
+      // $('.feature').on('mouseleave', 'h4', hideFeature);
     });
   </script>
 <% end %>

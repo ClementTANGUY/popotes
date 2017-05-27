@@ -127,7 +127,7 @@
               <% end %>
             </li>
             <li><%= link_to "Mes commandes", "" %></li>
-            <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+            <li><%= link_to "Devenir Chef", new_cook_path %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %></li>
           <% end %>
         <% else %>

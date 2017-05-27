@@ -4,6 +4,6 @@ class RenameNameToFirstNameinUsers < ActiveRecord::Migration[5.0]
   end
 
   def down
-    rename_column :users, first_name, :name
+    rename_column :users, :first_name, :name
   end
 end

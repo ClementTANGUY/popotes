@@ -4,10 +4,10 @@ class Cart < ApplicationRecord
 
   def add_dish(dish)
     current_item = order_items.find_by(dish_id: dish.id)
-    if (current_item) && (current_item.quantity < dish.portion_count)
+    if current_item && (current_item.quantity < dish.portion_count)
       current_item.quantity += 1
       current_item.save
-    elsif (!current_item || dish.portion_count != 0)
+    elsif !current_item || dish.portion_count != 0
       current_item = order_items.build(dish_id: dish.id, quantity: 1)
       current_item.save
     elsif (current_item && current_item.quantity == dish.portion_count) || (!current_item && dish.portion_count == 0)

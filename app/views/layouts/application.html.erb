@@ -18,12 +18,11 @@
 
     <%= render "shared/footer" %>
 
+    <%= javascript_include_tag "application" %>
+
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyCUNbO6X73HGm-pZxzoL3rFogIbhkkYxio&libraries=places" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
-
-
-    <%= javascript_include_tag "application" %>
 
     <%= cloudinary_js_config %>
 

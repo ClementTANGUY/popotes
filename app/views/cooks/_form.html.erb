@@ -15,18 +15,18 @@
     <%= f.input :age, label: 'Âge', collection: 18..99 %>
     <%= f.input :bio, label: 'À propos de vous, de votre cuisine' %>
 
-    <p>&nbsp</p>
+    <br>
 
-    <h4>PORTRAIT</h4>
-    <%= f.input :avatar, label: 'Une photo, ça ne mange pas de pain', as: :attachinary %>
+    <h4>UN PORTRAIT DE VOUS, ÇA NE MANGE PAS DE PAIN</h4>
+    <%= f.input :avatar, label: false ,as: :attachinary %>
 
   </div>
 
-  <p>&nbsp</p>
+  <br>
 
   <h4>SPECIALITÉS</h4>
     <p>
-      Max 2 spécialités
+      Maximum 2 spécialités
     </p>
     <div class="form-group">
       <%= f.simple_fields_for :cook_specialities do |cs| %>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-  <p>&nbsp</p>
+  <br>
 
   <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
     <p>
@@ -57,7 +57,7 @@
         <% end %>
       <% end %>
 
-      <p>&nbsp</p>
+      <br>
 
       <div class="form-actions">
         <p>
@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <p>&nbsp</p>
+    <br>
 
   <div class="form-actions">
     <p>

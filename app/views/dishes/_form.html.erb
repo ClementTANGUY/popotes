@@ -45,8 +45,8 @@
   </div>
 
   <div class='row datetimerange'>
-      <%= f.input :exp_date, label: "Date limite pour commander votre plat ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
-      <%= f.input :collect_date, label: "Quand exactement récupérer votre plat ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
+      <%= f.input :exp_date, label: "Date/heure limites pour commander ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
+      <%= f.input :collect_date, label: "Date/heure précises pour récupérer votre popote ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
   </div>
 
   <p>&nbsp</p>
@@ -65,7 +65,7 @@
     <% end %>
 
     <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
-    </div>
+  </div>
 
 <% end %>
 

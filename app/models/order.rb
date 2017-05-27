@@ -4,7 +4,13 @@ class Order < ApplicationRecord
 
   has_many :dishes, through: :order_items
 
+  validates :first_name, :email, presence: true, unless: :user_logged_in?
+
   before_save :finalize
+
+  def user_logged_in?
+    current_user = true
+  end
 
   def subtotal
     order_items.to_a.sum { |oi| oi.total_price }

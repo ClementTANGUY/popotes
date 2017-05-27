@@ -2,10 +2,13 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <p>
-          SOUS-TOTAL = <%= number_to_currency(cart.subtotal, locale: :fr)%>
+          TOTAL <span class="label label-warning"><%= number_to_currency(cart.subtotal, locale: :fr) %></span>
+           &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(cart.charge, locale: :fr) %></span>
+           &nbsp | &nbsp MONTANT À PAYER <span class="label label-warning"><%= number_to_currency(cart.total_amount, locale: :fr)%></span>
         </p>
+        <hr />
         <p>
-          <%= link_to "Valider", new_order_path, method: :get, class: "btn btn-popote btn-lg" %>
+          <%= link_to "Valider", new_order_path, class: "btn btn-popote btn-lg" %>
         </p>
     </div>
   </div>
