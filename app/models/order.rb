@@ -4,12 +4,18 @@ class Order < ApplicationRecord
 
   has_many :dishes, through: :order_items
 
-  validates :first_name, :email, presence: true, unless: :user_logged_in?
+  with_options if: :should_not_signin? do |user|
+    user.validates :first_name, :email, presence: true
+    user.validates :first_name, length: { in: 2..20 }
+    user.validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  end
+
+  attr_accessor :not_signed_in
 
   before_save :finalize
 
-  def user_logged_in?
-    current_user = true
+  def should_not_signin?
+    not_signed_in
   end
 
   def subtotal

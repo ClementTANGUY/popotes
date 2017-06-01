@@ -1,0 +1,19 @@
+<%= simple_form_for @order_si do |o| %>
+  <% if !@order_si.nil? && @order_si.errors.any? %>
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <ul>
+      <% @order_si.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-actions">
+    <%= o.button :submit, "Je commande", class: "btn btn-popote btn-lg" %><br>
+    <br>
+    <%= link_to "Modifier votre panier", cart_path, class:'btn btn-popote-bis' %>
+  </div>
+
+<% end %>

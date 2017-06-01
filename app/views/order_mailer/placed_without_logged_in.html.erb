@@ -10,7 +10,7 @@
 
 <% @order.order_items.each do |order_item| %>
   <p style="font-weight: bold;">
-    <%= "- #{order_item.quantity} part(s) de #{order_item.dish.name}" %>
+    <%= "- #{order_item.quantity} #{pluralize_with_0('portion', order_item.quantity)} de #{order_item.dish.name}" %>
   </p>
   <p>
     Pour récupérer cette popote, vous avez rendez-vous à l'adresse suivante :
@@ -18,9 +18,12 @@
   <p style="font-weight: bold;">
     <% order_item.dish.cook.places.each do |place| %>
       <% if place.active %>
-        <%= "#{place.full_address}, #{place.zip_code} #{place.city}, le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
+        <%= "#{place.full_address}, #{place.zip_code} #{place.city}," %><br>
+      <%= "Le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
         <p>
-          Indications du chef concernant son adresse : <br>
+          Indications du chef concernant son adresse :
+        </p>
+        <p style= "font-style: italic;">
           "<%= place.comments %>"
         </p>
       <% end %>

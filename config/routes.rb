@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resource :cart, only: [:show, :destroy]
 
-  resource :order, only: [:new, :create]
+  resources :orders, except: [:edit, :update, :destroy]
 
   resources :order_items, only: [:create, :update, :destroy] do
     member do

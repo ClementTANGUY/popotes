@@ -19,10 +19,10 @@ $.rails.showConfirmationDialog = function(link){
   swal({
     title: message,
     type: 'warning',
-    confirmButtonText: 'OK',
-    confirmButtonColor: '#FF642E',
-    cancelButtonText: 'Non !',
-    cancelButtonColor: '#5898f1',
+    confirmButtonText: 'OK, bye !',
+    confirmButtonColor: '#5898f1',
+    cancelButtonText: 'Annuler',
+    cancelButtonColor: '#FF642E',
     showCancelButton: true
   }).then(function(e){
     $.rails.confirmed(link);

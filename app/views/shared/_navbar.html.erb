@@ -54,7 +54,7 @@
                 <%= link_to "Mes commandes", "" %>
               </li>
               <li>
-                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %>
+                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
               </li>
             </ul>
           </div>
@@ -82,7 +82,7 @@
                 <%= link_to "Mes commandes", "" %>
               </li>
               <li>
-                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %>
+                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
               </li>
             </ul>
           </div>
@@ -118,7 +118,7 @@
             <li><%= link_to "Les chefs", cooks_path %></li>
             <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
             <li><%= link_to "Mes commandes", "" %></li>
-            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %></li>
+            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% else %>
             <li><%= link_to "Les chefs", cooks_path %></li>
             <li>
@@ -128,7 +128,7 @@
             </li>
             <li><%= link_to "Mes commandes", "" %></li>
             <li><%= link_to "Devenir Chef", new_cook_path %></li>
-            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Les popotes de votre panier seront perdues...'} %></li>
+            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% end %>
         <% else %>
           <li><%= link_to "Les chefs", cooks_path %></li>
