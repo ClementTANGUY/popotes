@@ -1,15 +1,15 @@
 <fieldset class="item">
   <div class="duplicatable_nested_form_two">
+    <hr />
     <%=p.input :kind_of_place, label: 'Type de lieu', collection: ["Domicile", "Bureaux/Agence", "Commerce/Restaurant", "Parc/Lieu public"], as: :select %>
     <%=p.input :full_address, label: 'N° / Voie', input_html: { class: 'cook_address' }, placeholder: ""  %>
     <%=p.input :zip_code , label: 'Code Postal', input_html: { class: 'cook_zip_code' }  %>
     <%=p.input :city, label: 'Ville', input_html: { class: 'cook_city' }  %>
     <%=p.input :active, inline_label: "Définir comme votre adresse active" %>
-    <%=p.input :comments, label: 'Indications (transmises en cas de commande)', placeholder: "Code porte, S'adresser à la loge', 'Récupérer au café d'en face', 'Demander untel à l'accueil', 'Parc entrée rue du Parc'..." %>
+    <%=p.input :comments, label: 'Indications (transmises en cas de commande)', placeholder: "Code porte, 'S'adresser à la loge', 'Récupérer au café d'en face', 'Demander untel à l'accueil', 'Parc entrée Ouest'..." %>
 
     <%= link_to 'Supprimer', '', remote: true, class: "destroy_duplicate_nested_form_two btn btn-popote-bis" %>
 
     <%= p.input :id, as: :hidden %>
-    <br>
   </div>
 </fieldset>

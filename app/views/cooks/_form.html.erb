@@ -25,9 +25,9 @@
   <br>
 
   <h4>SPECIALITÉS</h4>
-    <p>
+    <em>
       Maximum 2 spécialités
-    </p>
+    </em>
     <div class="form-group">
       <%= f.simple_fields_for :cook_specialities do |cs| %>
         <%= cs.simple_fields_for :speciality do |s| %>
@@ -47,9 +47,10 @@
   <br>
 
   <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
-    <p>
+    <em>
       Créez et gérez jusqu'à 3 adresses
-    </p>
+    </em>
+    <br/>
     <div class="form-group">
       <%= f.simple_fields_for :cook_places do |cp| %>
         <%= cp.simple_fields_for :place do |p| %>

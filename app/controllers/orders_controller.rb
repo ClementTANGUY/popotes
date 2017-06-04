@@ -9,12 +9,6 @@ class OrdersController < ApplicationController
 
   before_action :ensure_cart_isnt_empty, only: [:new]
 
-  def index
-  end
-
-  def show
-  end
-
   def new
     if current_user
       # instance with a logged user
@@ -28,9 +22,11 @@ class OrdersController < ApplicationController
   def create
 
   if current_user
-    # user is logged in and order thanks his account
+    # user is logged in and order thanks to his account
     @order_si = Order.new
     @order_si.add_order_items_from_cart(@cart)
+    @order_si.first_name = current_user.first_name
+    @order_si.email = current_user.email
     respond_to do |format|
       if @order_si.save
         @order_si.remove_dish_portion
@@ -48,7 +44,7 @@ class OrdersController < ApplicationController
     end
 
   else
-    # user is not logged in and order thanks by first_name and email attributes, vaidations on them are so activated
+    # user is not logged in and order thanks to his first_name and email attributes, vaidations are so activated
     @order_nsi = Order.new(order_params)
     @order_nsi.not_signed_in = true
     @order_nsi.add_order_items_from_cart(@cart)

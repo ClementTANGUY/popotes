@@ -24,9 +24,6 @@
 
       <div class='dish-body'>
         <h3><%= dish.name %></h3>
-        <p>
-          <%= number_to_currency(dish.price, locale: :fr) %><br>
-        </p>
         <h5>
           Sous-total : <%= number_to_currency(order_item.total_price, locale: :fr) %>
         </h5>

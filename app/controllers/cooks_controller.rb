@@ -30,6 +30,21 @@ class CooksController < ApplicationController
 
       @specialities = @cook.specialities
       @places = @cook.places
+
+      #Orders received and users concerned
+      @orders_r = Order.all.each do |order|
+        order.dishes.find_by(cook_id: @cook.id)
+        @user = User.find_by(email: order.email)
+      end
+
+      #Orders placed and cooks concerned
+      @orders_p = Order.all.where(email: @cook.user.email)
+      @orders_p.each do |order|
+        order.dishes.each do |dish|
+          @cook_p = dish.cook
+        end
+      end
+
     end
 
     def new

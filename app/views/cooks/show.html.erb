@@ -10,12 +10,12 @@
     <p></p>
   </a>
   <% if @cook.user == current_user %>
-    <a class="tab" role="presentation" href="#orders" aria-controls="orders" role="tab" data-toggle="tab">
-      <h3>Commandes</h3>
+    <a class="tab" role="presentation" href="#orders_r" aria-controls="orders_r" role="tab" data-toggle="tab">
+      <h3>Commandes reçues</h3>
       <p></p>
     </a>
-    <a class="tab" role="presentation" href="#account" aria-controls="account" role="tab" data-toggle="tab">
-      <h3>Mon Compte</h3>
+    <a class="tab" role="presentation" href="#orders_p" aria-controls="orders_p" role="tab" data-toggle="tab">
+      <h3>Commandes passées</h3>
       <p></p>
     </a>
   <% end %>
@@ -180,7 +180,67 @@
     </div>
   </div>
 
-  <div role="tabpanel" class="tab-pane" id="account">
+  <div role="tabpanel" class="tab-pane" id="orders_r">
+    <div id= "orders_r" class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+        <p>&nbsp</p>
+
+        <% @orders_r.each do |order| %>
+          <p>
+            <%= "Le #{order.created_at.strftime('%d/%m/%Y')}, commande de "%>
+            <% if !@user.cook.nil? %>
+              <%= link_to cook_path(@user.cook) do %>
+                <%= order.first_name %>
+              <% end %>
+            <% else %>
+              <%= order.first_name %>
+            <% end %>
+          </p>
+          <% order.order_items.each do |oi_r| %>
+            <%= render 'oi_r', order_item: oi_r, dish: oi_r.dish, show_total: true %>
+
+            <p class="container text-left">
+              IN THE POCKET <span class="label label-warning"><%= number_to_currency(oi_r.net_for_cook, locale: :fr) %></span>
+               &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(oi_r.cook_charge, locale: :fr) %></span>
+               <hr />
+            </p>
+          <% end %>
+        <% end %>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="orders_p">
+    <div id= "orders_p" class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+        <p>&nbsp</p>
+
+        <% @orders_p.each do |order| %>
+          <p>
+            <%= "Le #{order.created_at.strftime('%d/%m/%Y')}, commande à "%>
+            <%= link_to cook_path(@cook_p) do %>
+              <%= @cook_p.user.first_name %>
+            <% end %>
+          </p>
+          <% order.order_items.each do |oi_p| %>
+            <%= render 'oi_p', order_item: oi_p, dish: oi_p.dish, show_total: true %>
+          <% end %>
+          <p class="container text-left">
+            TOTAL <span class="label label-warning"><%= number_to_currency(order.subtotal, locale: :fr) %></span>
+             &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(order.charge, locale: :fr) %></span>
+             &nbsp | &nbsp MONTANT PAYÉ <span class="label label-warning"><%= number_to_currency(order.total_amount, locale: :fr)%></span>
+             <hr />
+          </p>
+
+        <% end %>
+
+
+      </div>
+    </div>
   </div>
 
 </div>

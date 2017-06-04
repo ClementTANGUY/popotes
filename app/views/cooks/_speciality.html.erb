@@ -1,10 +1,10 @@
 <fieldset class="item">
   <div class="duplicatable_nested_form_one">
+    <hr />
     <%=s.input :name, label: 'Spécialité', collection: ["Gastronomique", "Terroir & Famille", "Cuisines du monde", "Bio & Diététique"], as: :select %>
     <%=s.input :level, label: 'Niveau', collection: ["Top Chef", "Avancé", "Amateur", "Débutant"], as: :select %>
     <%= link_to 'Supprimer', '', remote: true, class: "destroy_duplicate_nested_form_one btn btn-popote-bis" %>
 
     <%= s.input :id, as: :hidden %>
-    <br>
   </div>
 </fieldset>

@@ -21,18 +21,18 @@ class Cook < ApplicationRecord
   validate :validate_specialities
   validate :validate_places
 
-private
+  private
 
-  def validate_specialities
-    if specialities.size > 2
-      errors.add(:Spécialités, "limitées à 2")
+    def validate_specialities
+      if specialities.size > 2
+        errors.add(:Spécialités, "limitées à 2")
+      end
     end
-  end
 
-  def validate_places
-    if places.size > 3
-      errors.add(:Adresses, "limitées à 3")
+    def validate_places
+      if places.size > 3
+        errors.add(:Adresses, "limitées à 3")
+      end
     end
-  end
 
 end

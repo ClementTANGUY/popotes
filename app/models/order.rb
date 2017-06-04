@@ -4,6 +4,8 @@ class Order < ApplicationRecord
 
   has_many :dishes, through: :order_items
 
+  before_save :finalize
+
   with_options if: :should_not_signin? do |user|
     user.validates :first_name, :email, presence: true
     user.validates :first_name, length: { in: 2..20 }
@@ -11,8 +13,6 @@ class Order < ApplicationRecord
   end
 
   attr_accessor :not_signed_in
-
-  before_save :finalize
 
   def should_not_signin?
     not_signed_in
@@ -26,17 +26,9 @@ class Order < ApplicationRecord
     subtotal * 0.15
   end
 
-  # def cook_charge
-  #   subtotal * 0.1
-  # end
-
   def total_amount
     subtotal + charge
   end
-
-  # def net_for_cook
-  #   subtotal - cook_charge
-  # end
 
   def add_order_items_from_cart(cart)
     cart.order_items.each do |order_item|

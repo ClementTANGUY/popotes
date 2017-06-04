@@ -21,7 +21,7 @@
         <%= "#{place.full_address}, #{place.zip_code} #{place.city}," %><br>
       <%= "Le #{order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{order_item.dish.collect_date.strftime('%H:%M')}" %>
         <p>
-          Indications du chef concernant son adresse :
+          <%= "Indications de #{order_item.dish.cook.user.first_name} concernant son adresse : "%>
         </p>
         <p style= "font-style: italic;">
           "<%= place.comments %>"
