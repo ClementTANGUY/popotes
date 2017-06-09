@@ -53,6 +53,12 @@
 
   <div class="form-inputs">
     <%= f.input :photos, as: :attachinary, label: "Photos (2 max)" %>
+    <p>
+      <small>
+        Je certifie avoir pris connaissance des règles d'<%= link_to "Hygiène et sécurité", hygiene_path %>
+      </small>
+    </p>
+    <%= f.input :terms_of_service, inline_label: "J'accepte", as: :boolean %>
   </div>
 
   <p>&nbsp</p>

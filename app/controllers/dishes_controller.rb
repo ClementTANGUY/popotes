@@ -67,7 +67,7 @@ class DishesController < ApplicationController
                                 :description, :veggie, :cooked,
                                 :be_reheated, :gluten_free, :halal,
                                 :kosher, :portion_size, :portion_count,
-                                :price, :exp_date, :collect_date,
+                                :price, :exp_date, :collect_date, :terms_of_service,
                                 photos: [])
   end
 

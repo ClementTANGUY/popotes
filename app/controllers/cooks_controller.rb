@@ -59,11 +59,13 @@ class CooksController < ApplicationController
 
     def create
       @cook = Cook.new(cook_params)
-      @cook.user = current_user
-      if @cook.save
-        redirect_to cook_url(@cook), notice: "Votre profil a bien été créé"
-      else
-        render :new
+      @cook.user_id = current_user.id
+      respond_to do |format|
+        if @cook.save
+          format.html { redirect_to cook_url(@cook), notice: "Votre profil a bien été créé" }
+        else
+          format.html { render :new }
+        end
       end
     end
 
@@ -101,7 +103,7 @@ class CooksController < ApplicationController
     end
 
     def cook_params
-      params.require(:cook).permit( :age, :bio, :avatar,
+      params.require(:cook).permit( :user_id, :age, :bio, :avatar, :terms_of_service,
         cook_specialities_attributes: [:id, :speciality_id, :_destroy,
           speciality_attributes: [:id, :_destroy, :name, :level]],
         cook_places_attributes: [:id, :place_id, :_destroy,

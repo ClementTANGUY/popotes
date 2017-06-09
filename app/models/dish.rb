@@ -10,6 +10,7 @@ class Dish < ApplicationRecord
   before_destroy :ensure_not_referenced_by_any_order_item
 
   validates :name, :description, :exp_date, :collect_date, presence: true
+  validates :terms_of_service, acceptance: true
   validates :kind_of_dish, presence: true, inclusion: { in: %w(Entrée Plat\ principal Dessert\ &\ Patisserie),
     message: "%{value} n'est pas autorisé" }
   validates :speciality, presence: true, inclusion: { in: %w(Gastronomique Terroir\ &\ Famille Cuisines\ du\ monde Bio\ &\ Diététique),

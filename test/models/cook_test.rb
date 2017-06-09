@@ -6,6 +6,7 @@ class CookTest < ActiveSupport::TestCase
   test "cook attributes must not be empty" do
     cook = Cook.new
     assert cook.invalid?
+    assert cook.errors[:user].any?
     assert cook.errors[:age].any?
     assert cook.errors[:bio].any?
   end

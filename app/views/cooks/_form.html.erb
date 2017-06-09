@@ -25,9 +25,9 @@
   <br>
 
   <h4>SPECIALITÉS</h4>
-    <em>
+    <small>
       Maximum 2 spécialités
-    </em>
+    </small>
     <div class="form-group">
       <%= f.simple_fields_for :cook_specialities do |cs| %>
         <%= cs.simple_fields_for :speciality do |s| %>
@@ -47,41 +47,49 @@
   <br>
 
   <h4><%= "#{pluralize_with_0('ADRESSE', @cook.places.size).upcase} DE RETRAIT" %></h4>
-    <em>
-      Créez et gérez jusqu'à 3 adresses
-    </em>
-    <br/>
-    <div class="form-group">
-      <%= f.simple_fields_for :cook_places do |cp| %>
-        <%= cp.simple_fields_for :place do |p| %>
-        <%= render 'place', p: p %>
-        <% end %>
+  <small>
+    Créez et gérez jusqu'à 3 adresses
+  </small>
+  <br/>
+  <div class="form-group">
+    <%= f.simple_fields_for :cook_places do |cp| %>
+      <%= cp.simple_fields_for :place do |p| %>
+      <%= render 'place', p: p %>
       <% end %>
-
-      <br>
-
-      <div class="form-actions">
-        <p>
-          <% if @cook.places.size < 3 %>
-            <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form_two btn btn-popote-bis" %>
-          <% end %>
-        </p>
-      </div>
-    </div>
+    <% end %>
 
     <br>
 
+    <div class="form-actions">
+      <p>
+        <% if @cook.places.size < 3 %>
+          <%= link_to "Ajouter une adresse", "", class: "duplicate_nested_form_two btn btn-popote-bis" %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+
+  <br>
+
   <div class="form-actions">
-    <p>
       <% if f.object.new_record? %>
+
+        <p>
+          <small>
+            Je certifie avoir pris connaissance des <%= link_to "Conditions générales d'utilisation" %> et des règles d'<%= link_to "Hygiène et sécurité", hygiene_path %>
+          </small>
+        </p>
+        <%= f.input :terms_of_service, inline_label: "J'accepte", as: :boolean %>
+
         <%= f.button :button, "Créer".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
+
       <% else %>
+
         <%= f.button :button, "Modifier".html_safe, class: "btn btn-popote btn-lg", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i>"} %>
+
       <% end %>
 
       <%= link_to "Annuler", :back, class: "btn btn-default btn-lg" %>
-    </p>
-
   </div>
 
 
