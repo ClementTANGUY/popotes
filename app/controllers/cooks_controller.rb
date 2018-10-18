@@ -98,16 +98,16 @@ class CooksController < ApplicationController
 
     private
 
-    def set_cook
-      @cook = Cook.find(params[:id])
-    end
+      def set_cook
+        @cook = Cook.find(params[:id])
+      end
 
-    def cook_params
-      params.require(:cook).permit( :user_id, :age, :bio, :avatar, :terms_of_service,
-        cook_specialities_attributes: [:id, :speciality_id, :_destroy,
-          speciality_attributes: [:id, :_destroy, :name, :level]],
-        cook_places_attributes: [:id, :place_id, :_destroy,
-          place_attributes: [:id, :_destroy, :full_address, :zip_code, :city, :kind_of_place, :comments, :active]])
-    end
+      def cook_params
+        params.require(:cook).permit( :user_id, :age, :bio, :avatar, :terms_of_service,
+          cook_specialities_attributes: [:id, :speciality_id, :_destroy,
+            speciality_attributes: [:id, :_destroy, :name, :level]],
+          cook_places_attributes: [:id, :place_id, :_destroy,
+            place_attributes: [:id, :_destroy, :full_address, :zip_code, :city, :kind_of_place, :comments, :active]])
+      end
 
 end

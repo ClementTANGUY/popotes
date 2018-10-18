@@ -1,21 +1,3 @@
-one:
-  name: MyString
-  kind_of_dish: MyString
-  speciality: MyString
-  description: MyText
-  veggie: true
-  cooked: true
-  be_reheated: false
-  gluten_free: false
-  halal: false
-  kosher: false
-  portion_size: MyString
-  portion_count: 5
-  price: 5.00
-  exp_date: '10/02/2035 20:00:00'
-  collect_date: '11/02/2035 12:00:00'
-  cook: one
-
 moelleux:
   name: À 22mn du bonheur!
   kind_of_dish: Dessert
@@ -27,17 +9,17 @@ moelleux:
   gluten_free: false
   halal: false
   kosher: false
-  portion_size: MyString
+  portion_size: Moyenne (200-300g)
   portion_count: 5
   price: 4.00
   exp_date: '01/01/2027 20:00:00'
   collect_date: '02/01/2027 12:00:00'
   cook: one
 
-two:
+one:
   name: MyString
-  kind_of_dish: MyString
-  speciality: MyString
+  kind_of_dish: Plat principal
+  speciality: Terroir & Famille
   description: MyText
   veggie: true
   cooked: true
@@ -45,7 +27,25 @@ two:
   gluten_free: false
   halal: false
   kosher: false
-  portion_size: MyString
+  portion_size: Moyenne (200-300g)
+  portion_count: 5
+  price: 5.00
+  exp_date: '10/02/2035 20:00:00'
+  collect_date: '11/02/2035 12:00:00'
+  cook: one
+
+two:
+  name: MyString
+  kind_of_dish: Dessert & Patisserie
+  speciality: Terroir & Famille
+  description: MyText
+  veggie: true
+  cooked: true
+  be_reheated: false
+  gluten_free: false
+  halal: false
+  kosher: false
+  portion_size: Moyenne (200-300g)
   portion_count: 5
   price: 5.00
   exp_date: '10/02/2035 20:00:00'
@@ -54,8 +54,8 @@ two:
 
 three:
  name: MyString
- kind_of_dish: MyString
- speciality: MyString
+ kind_of_dish: Plat principal
+ speciality: Terroir & Famille
  description: MyText
  veggie: true
  cooked: true
@@ -63,7 +63,7 @@ three:
  gluten_free: false
  halal: false
  kosher: false
- portion_size: MyString
+ portion_size: Moyenne (200-300g)
  portion_count: 5
  price: 5.00
  exp_date: '10/02/2035 20:00:00'

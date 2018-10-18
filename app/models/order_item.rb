@@ -19,6 +19,21 @@ class OrderItem < ApplicationRecord
     end
   end
 
+  def up(dish)
+    if quantity < dish.portion_count
+      update_attribute(:quantity, self.quantity += 1)
+    else
+    end
+  end
+
+  def down
+    if quantity > 1
+      update_attribute(:quantity, self.quantity -= 1)
+    else
+      self.destroy
+    end
+  end
+
   def total_price
     unit_price * quantity
   end
@@ -31,23 +46,23 @@ class OrderItem < ApplicationRecord
     total_price * 0.9
   end
 
-private
+  private
 
-  def dish_present
-    if dish.nil?
-      errors.add(:Plat, "invalide")
+    def dish_present
+      if dish.nil?
+        errors.add(:Plat, "invalide")
+      end
     end
-  end
 
-  def cart_present
-    if cart.nil?
-      errors.add(:Panier, "invalide")
+    def cart_present
+      if cart.nil?
+        errors.add(:Panier, "invalide")
+      end
     end
-  end
 
-  def finalize
-    self[:unit_price] = unit_price
-    self[:total_price] = quantity * self[:unit_price]
-  end
+    def finalize
+      self[:unit_price] = unit_price
+      self[:total_price] = quantity * self[:unit_price]
+    end
 
 end

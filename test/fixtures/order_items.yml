@@ -5,9 +5,3 @@ one:
 two:
   dish: two
   cart: two
-  quantity: 1
-
-three:
-  dish: two
-  cart: three
-  quantity: 1

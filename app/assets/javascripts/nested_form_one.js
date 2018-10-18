@@ -5,7 +5,7 @@ $(document).ready(function() {
 
   $('.duplicatable_nested_form_one').find('.destroy_duplicate_nested_form_one').remove();
 
-  $('body').on('click', '.destroy_duplicate_nested_form_one', function(e) {
+  $('body').on('click', '.destroy_duplicate_nested_form_one', function() {
     $(this).closest('.duplicatable_nested_form_one').slideUp().remove();
     $('.form-actions').find('.duplicate_nested_form_one').show();
   });

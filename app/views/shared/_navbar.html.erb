@@ -51,9 +51,6 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "Mes commandes", "" %>
-              </li>
-              <li>
                 <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
               </li>
             </ul>
@@ -117,7 +114,6 @@
           <% if !current_user.cook.nil? %>
             <li><%= link_to "Les chefs", cooks_path %></li>
             <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
-            <li><%= link_to "Mes commandes", "" %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% else %>
             <li><%= link_to "Les chefs", cooks_path %></li>
