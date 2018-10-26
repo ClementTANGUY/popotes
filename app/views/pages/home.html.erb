@@ -1,42 +1,56 @@
 <div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "lunchbreak.jpg" %>');">
   <div class="container">
+    <div class="container text-left">
+      <h1>POPOTES </h1>
+      <h2>
+        Pour votre pause déjeuner partagez la cuisine maison d'un voisin… <br>
+        DE BUREAU !
+      </h2>
 
+      <p>&nbsp;</p>
 
-    <div class="padded"></div>
-    <div class="padded"></div>
+      <p class="text-center">
+        Commandez un plat à un collègue de travail ou un autre particulier<br>
+        Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
+      </p>
 
-    <div class="container padded">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <fieldset>
-          <div class="find_search">
-            <div class="panel panel-transparent">
-              <div class="panel-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <fieldset>
+            <div class="find_search">
+              <div class="panel panel-transparent">
+                <div class="panel-heading">
 
-              </div>
-              <div class="panel-body">
-                <%= form_tag cooks_path, method: :get, class:"row" do %>
-                  <div class="col-sm-10">
-                    <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
-                  </div>
-                  <div class="col-sm-2">
-                    <%= submit_tag "Trouvez !", class: "btn btn-popote" %>
-                  </div>
-                <% end %>
+                </div>
+                <div class="panel-body">
+                  <%= form_tag cooks_path, method: :get, class:"row" do %>
+                    <div class="col-sm-10">
+                      <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
+                    </div>
+                    <div class="col-sm-2">
+                      <%= submit_tag "Trouvez !", class: "btn btn-popote" %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
+            </fieldset>
           </div>
-          </fieldset>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <div class="container text-center">
   <p class="home-banner">
-
+    Enseignes incalculables, concepts insensés, prix forts - minis portions, malbouffe, paude dèj express, gâchis...<br>
+     <em>
+      "Nous avons pensé à ceux qui cuisinent, qui portent de quoi manger au boulot, et à tout     ceux qui ne peuvent pas."<br>
+     </em>
+    Vous emmenez votre gamelle au travail ?<br>
+    Faites la popote pour des collègues ou d'autres particuliers à proximité et gagnez de l’oseille
   </p>
 </div>
 
