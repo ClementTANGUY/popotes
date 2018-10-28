@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
-  after_filter :store_action
+  after_action :store_action
 
   helper_method :current_cart
 
