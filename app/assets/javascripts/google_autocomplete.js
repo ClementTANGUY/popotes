@@ -1,63 +1,107 @@
 <!-- Custom JS code to bind to Autocomplete API -->
-$(document).ready(function() {
 
-  if ($('.duplicatable_nested_form_two').length) {
-    $.each($('.duplicatable_nested_form_two'), function(index) {
-      var cook_address = $('.cook_address').get(index);
-      var cook_zip_code = $('.cook_zip_code').get(index);
-      var cook_city = $('.cook_city').get(index);
+  function onPlaceChanged() {
+    var place = this.getPlace();
+    var components = getAddressComponents(place);
 
-      var autocomplete = new google.maps.places.Autocomplete(cook_address, { types: ['geocode'], componentRestrictions: {country: 'fr'} });
+    var cookAddressOne = document.getElementById('cook_cook_places_attributes_0_place_attributes_full_address');
+    var cookAddressTwo = document.getElementById('cook_cook_places_attributes_1_place_attributes_full_address');
+    var cookAddressThree = document.getElementById('cook_cook_places_attributes_2_place_attributes_full_address');
 
-      google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        var place = this.getPlace();
-        var components = getAddressComponents(place);
-        $(cook_address).trigger('blur').val(components.full_address);
-        $(cook_zip_code).val(components.zip_code);
-        $(cook_city).val(components.city);
-      });
+    cookAddressOne.blur();
+    cookAddressTwo.blur();
+    cookAddressThree.blur();
 
-      google.maps.event.addDomListener(cook_address, 'keydown', function(e) {
-        if (e.keyCode == 13) {
+    cookAddressOne.value = components.full_address;
+    cookAddressTwo.value = components.full_address;
+    cookAddressThree.value = components.full_address;
+
+    document.getElementById('cook_cook_places_attributes_0_place_attributes_zip_code').value = components.zip_code;
+    document.getElementById('cook_cook_places_attributes_0_place_attributes_city').value = components.city;
+
+    document.getElementById('cook_cook_places_attributes_1_place_attributes_zip_code').value = components.zip_code;
+    document.getElementById('cook_cook_places_attributes_1_place_attributes_city').value = components.city;
+
+    document.getElementById('cook_cook_places_attributes_2_place_attributes_zip_code').value = components.zip_code;
+    document.getElementById('cook_cook_places_attributes_2_place_attributes_city').value = components.city;
+
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var cookAddressOne = document.getElementById('cook_cook_places_attributes_0_place_attributes_full_address');
+    var cookAddressTwo = document.getElementById('cook_cook_places_attributes_1_place_attributes_full_address');
+    var cookAddressThree = document.getElementById('cook_cook_places_attributes_2_place_attributes_full_address');
+
+    if (cookAddressOne) {
+      var autocomplete = new google.maps.places.Autocomplete(cookAddressOne, { types: ['geocode'], componentRestrictions: {country: 'fr'} });
+      google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+      google.maps.event.addDomListener(cookAddressOne, 'keydown', function(e) {
+        if (e.key === "Enter") {
           e.preventDefault(); // Do not submit the form on Enter.
         }
       });
-    });
-  }
+    }
 
-});
+    if (cookAddressTwo) {
+      var autocomplete = new google.maps.places.Autocomplete(cookAddressTwo, { types: ['geocode'], componentRestrictions: {country: 'fr'} });
+      google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+      google.maps.event.addDomListener(cookAddressTwo, 'keydown', function(e) {
+        if (e.key === "Enter") {
+          e.preventDefault(); // Do not submit the form on Enter.
+        }
+      });
+    }
 
-function getAddressComponents(place) {
-  // If you want lat/lng, you can look at:
-  // - place.geometry.location.lat()
-  // - place.geometry.location.lng()
-  var street_number = null;
-  var route = null;
-  var zip_code = null;
-  var city = null;
-  var country_code = null;
-  for (var i in place.address_components) {
-    var component = place.address_components[i];
-    for (var j in component.types) {
-      var type = component.types[j];
-      if (type == 'street_number') {
-        street_number = component.long_name;
-      } else if (type == 'route') {
-        route = component.long_name;
-      } else if (type == 'postal_code') {
-        zip_code = component.long_name;
-      } else if (type == 'locality') {
-        city = component.long_name;
+    if (cookAddressThree) {
+      var autocomplete = new google.maps.places.Autocomplete(cookAddressThree, { types: ['geocode'], componentRestrictions: {country: 'fr'} });
+      google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+      google.maps.event.addDomListener(cookAddressThree, 'keydown', function(e) {
+        if (e.key === "Enter") {
+          e.preventDefault(); // Do not submit the form on Enter.
+        }
+      });
+    }
+
+  });
+
+  function getAddressComponents(place) {
+    // If you want lat/lng, you can look at:
+    // - place.geometry.location.lat()
+    // - place.geometry.location.lng()
+
+    if (window.console && typeof console.log === "function") {
+      console.log(place);
+    }
+
+    var street_number = null;
+    var route = null;
+    var zip_code = null;
+    var city = null;
+    var country_code = null;
+    for (var i in place.address_components) {
+      var component = place.address_components[i];
+      for (var j in component.types) {
+        var type = component.types[j];
+        if (type === 'street_number') {
+          street_number = component.long_name;
+        } else if (type === 'route') {
+          route = component.long_name;
+        } else if (type === 'postal_code') {
+          zip_code = component.long_name;
+        } else if (type === 'locality') {
+          city = component.long_name;
+        } else if (type === 'postal_town' && city === null) {
+          city = component.long_name;
+        } else if (type === 'country') {
+          country_code = component.short_name;
+        }
       }
     }
+
+    return {
+      full_address: street_number === null ? route : (street_number + ' ' + route),
+      zip_code: zip_code,
+      city: city
+    };
   }
-
-  return {
-    full_address: street_number == null ? route : (street_number + ' ' + route),
-    zip_code: zip_code,
-    city: city,
-  };
-}
-
-
 

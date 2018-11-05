@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-  var nestedForm;
-  nestedForm = $('.duplicatable_nested_form_one').last().clone();
+  var nestedForm = $('.duplicatable_nested_form_one').last().clone();
 
   $('.duplicatable_nested_form_one').find('.destroy_duplicate_nested_form_one').remove();
 

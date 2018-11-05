@@ -32,7 +32,7 @@ Dish.create!(cook: Cook_2, name: "Moelleux au chocolat", kind_of_dish: "Dessert 
 
 Place.delete_all
 Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
-Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
+Place.create!(full_address: "28 chemin des Moulières", zip_code: "06110", city: "Le Cannet", kind_of_place: "Domicile", active: "true")
 Place.create!(full_address: "5 Rue Vivienne", zip_code: "75002", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")
 Place.create!(full_address: "243 rue Saint-Honoré", zip_code: "75001", city: "Paris", kind_of_place: "Commerce/Restaurant", active: "true")
 Place.create!(full_address: "43 rue Gabrie Lamé", zip_code: "75012", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")

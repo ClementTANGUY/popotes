@@ -1,6 +1,8 @@
 class Place < ApplicationRecord
 
-  scope :active, -> { where(active: true) }
+  def self.active
+    where(active: true)
+  end
 
   has_many :cook_places
   has_many :cooks, through: :cook_places
