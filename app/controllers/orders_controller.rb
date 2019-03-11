@@ -24,11 +24,14 @@ class OrdersController < ApplicationController
   if current_user
     # a logged user orders thanks to his account
     @order_si = Order.new
+
     #order_items go from the current_cart to the order
     @order_si.add_order_items_from_cart(@cart)
+
     # give to order' s first_name and email attributes current_user values
     @order_si.first_name = current_user.first_name
     @order_si.email = current_user.email
+
     respond_to do |format|
       if @order_si.save
         # remove order_items' portions from dishes'
@@ -40,6 +43,7 @@ class OrdersController < ApplicationController
           @cook = order_item.dish.cook
           OrderMailer.received(@order_si, @cook, order_item).deliver_later
         end
+
         # destroy cart
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
@@ -73,6 +77,7 @@ class OrdersController < ApplicationController
           @cook = order_item.dish.cook
           OrderMailer.received(@order_nsi, @cook, order_item).deliver_later
         end
+
         # destroy cart
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
@@ -98,6 +103,7 @@ class OrdersController < ApplicationController
       end
     end
 
+    # ensure that an unlogged user isn't a cook ordering his own dishes
     def check_cart
       user = User.find_by(email: @order_nsi.email)
 

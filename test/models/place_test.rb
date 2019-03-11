@@ -1,4 +1,4 @@
-require 'test_helper'
+=beginrequire 'test_helper'
 
 class PlaceTest < ActiveSupport::TestCase
   fixtures :places
@@ -12,4 +12,4 @@ class PlaceTest < ActiveSupport::TestCase
     assert place.errors[:kind_of_place].any?
   end
 
-end
+end=end
