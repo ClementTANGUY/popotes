@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-sm-6 hidden-xs visible-sm-*">
+  <div class="col-sm-6">
     <div id="map-container">
       <div id="map"></div>
     </div>
@@ -53,15 +53,8 @@
     var handler = Gmaps.build('Google', { markers: { maxRandomDistance: 5 } });
     handler.buildMap({
         provider: {
-              disableDefaultUI: true,
               // pass in other Google Maps API options here
-              panControl: false,
-              zoomControl: true,
-              mapTypeControl: false,
-              scaleControl: false,
-              streetViewControl: false,
-              overviewMapControl: false,
-              scrollwheel: false,
+
               // The latitude and longitude to center the map (always required)
               center: new google.maps.LatLng(48.8529680, 2.3499030),
               // How you would like to style the map.
@@ -75,9 +68,9 @@
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       if (markers.length == 0) {
-        handler.getMap().setZoom(5);
+        handler.getMap().setZoom(2);
       } else if (markers.length == 1) {
-        handler.getMap().setZoom(16);
+        handler.getMap().setZoom(14);
       }
     });
   </script>

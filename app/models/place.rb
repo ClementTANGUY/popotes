@@ -1,9 +1,5 @@
 class Place < ApplicationRecord
 
-  def self.active
-    where(active: true)
-  end
-
   has_many :cook_places
   has_many :cooks, through: :cook_places
 
@@ -12,7 +8,8 @@ class Place < ApplicationRecord
     message: "%{value} n'est pas autorisé" }
 
   geocoded_by :full_place
-  after_validation :geocode, if: ->(obj){ obj.full_place.present? and obj.full_place_changed? }
+
+  after_validation :geocode
 
   def full_place
     "#{full_address}, #{zip_code} #{city}"
@@ -20,6 +17,10 @@ class Place < ApplicationRecord
 
   def full_place_changed?
     full_address_changed? || zip_code_changed? || city_changed?
+  end
+
+  def self.active
+    where(active: true)
   end
 
 end

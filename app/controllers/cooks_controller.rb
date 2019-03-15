@@ -7,13 +7,17 @@ class CooksController < ApplicationController
     def index
       if params[:location]
         @cooks = []
-        @places = Place.active.near(params[:location], 0.5)
+        @places = Place.where.not(latitude: nil, longitude: nil)
+                    .near(params[:location], 0.5)
+                    .active
+
         @places.each do |place|
           @cooks << place.cooks
         end
         @cooks.flatten!
       else
-        @places = Place.active.all
+        @places = Place.where.not(latitude: nil, longitude: nil)
+                    .active
         @cooks = Cook.order(created_at: :asc)
       end
 
