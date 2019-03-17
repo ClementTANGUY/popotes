@@ -5,8 +5,9 @@ class CooksController < ApplicationController
     before_action :set_cook, only: [:show, :edit, :update, :destroy]
 
     def index
+      @cooks = []
+      @dishes = Dish.available
       if params[:location]
-        @cooks = []
         @places = Place.where.not(latitude: nil, longitude: nil)
                     .near(params[:location], 0.5)
                     .active
@@ -18,7 +19,11 @@ class CooksController < ApplicationController
       else
         @places = Place.where.not(latitude: nil, longitude: nil)
                     .active
-        @cooks = Cook.order(created_at: :asc)
+
+        @dishes.each do |dish|
+          @cooks << dish.cook
+        end
+        @cooks.flatten!
       end
 
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
@@ -30,7 +35,7 @@ class CooksController < ApplicationController
     end
 
     def show
-      @dishes = @cook.dishes.order(updated_at: :desc)
+      @dishes = @cook.dishes.order(updated_at: :asc)
 
       @specialities = @cook.specialities
       @places = @cook.places

@@ -6,7 +6,13 @@
     <p></p>
   </a>
   <a class="tab" role="presentation" href="#cook-dishes" aria-controls="cook-dishes" role="tab" data-toggle="tab">
-    <h3><%= @dishes.size %> <%= "#{pluralize_with_0('popote', @cook.dishes.size)}" %></h3>
+    <h3>
+      <% if @dishes.empty? %>
+        Aucune popote pour le moment...
+      <% else %>
+      <%= @dishes.available.size %> <%= "#{pluralize_with_0('popote', @cook.dishes.available.size)}" %>
+      <% end %>
+    </h3>
     <p></p>
   </a>
   <% if @cook.user == current_user %>
@@ -106,70 +112,65 @@
           <%= link_to "Nouvelle popote", new_cook_dish_path(@cook,@dish), class: "btn btn-popote-bis btn-lg" %></p>
         <% end %>
 
-        <% if @dishes.size == 0 %>
-          <p class= "text-center">Aucune popote pour le moment...</p>
-        <% end %>
-
         <% @dishes.each do |dish| %>
 
-          <div class="dish">
-            <div class='dish-upvote'>
-              <div class='dish-count'><%= dish.portion_count %></div>
-            </div>
+            <div class="dish">
+              <div class='dish-upvote'>
+                <div class='dish-count'><%= dish.portion_count %></div>
+              </div>
 
-            <% if dish.photos? %>
+              <% if dish.photos? %>
 
-              <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"dish-image hidden-xs" %>
+                <%= cl_image_tag dish.photos.first.path, height: 133, width: 200, quality: 80, fetch_format: :auto, crop: :fill, class:"dish-image hidden-xs" %>
 
-            <% else %>
+              <% else %>
 
-              <%= image_tag "tupperwares.jpg", alt:"Popote", class:"dish-image hidden-xs" %>
+                <%= image_tag "tupperwares.jpg", alt:"Popote", class:"dish-image hidden-xs" %>
 
-            <% end %>
+              <% end %>
 
-            <div class='dish-body'>
+              <div class='dish-body'>
 
-              <h3><%= link_to dish.name, cook_dish_path(@cook,dish) %></h3>
+                <h3><%= link_to dish.name, cook_dish_path(@cook,dish) %></h3>
 
-              <% if dish.portion_count != 0 %>
-                <p>
-                  <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
-                  <%= render "countdown", dish: dish %><br>
-                  <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
-                </p>
+                <% if dish.portion_count != 0 %>
+                  <p>
+                    <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
+                    <%= render "countdown", dish: dish %><br>
+                    <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
+                  </p>
+                <% end %>
+
+              </div>
+
+              <% if @cook.user == current_user %>
+
+                <ul class="list-inline dish-controls hidden-sm hidden-xs">
+                  <li>
+                    <%= link_to edit_cook_dish_path(@cook,dish) do %>
+                    <i class="fas fa-pencil-alt"></i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
+                    <i class="fa fa-trash"></i>
+                    <% end %>
+                  </li>
+                </ul>
+
+              <% elsif dish.exp_date > DateTime.now && dish.portion_count != 0 %>
+
+                <ul class="list-inline dish-controls">
+                  <li>
+                    <%= render "add_to_cart", cook: @cook, dish: dish %>
+                  </li>
+                </ul>
+
+              <% else %>
+
               <% end %>
 
             </div>
-
-            <% if @cook.user == current_user %>
-
-              <ul class="list-inline dish-controls hidden-sm hidden-xs">
-                <li>
-                  <%= link_to edit_cook_dish_path(@cook,dish) do %>
-                  <i class="fas fa-pencil-alt"></i>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to cook_dish_path(@cook,dish), method: :delete, data: {confirm: 'Êtes-vous sûr de vouloir supprimer votre popote ?'} do %>
-                  <i class="fa fa-trash"></i>
-                  <% end %>
-                </li>
-              </ul>
-
-            <% elsif dish.exp_date > DateTime.now && dish.portion_count != 0 %>
-
-              <ul class="list-inline dish-controls">
-                <li>
-                  <%= render "add_to_cart", cook: @cook, dish: dish %>
-                </li>
-              </ul>
-
-            <% else %>
-
-            <% end %>
-
-          </div>
-
         <% end %>
 
         <p>

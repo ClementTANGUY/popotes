@@ -9,10 +9,10 @@ class Place < ApplicationRecord
 
   geocoded_by :full_place
 
-  after_validation :geocode
+  after_validation :geocode, if: :full_place_changed?
 
   def full_place
-    "#{full_address}, #{zip_code} #{city}"
+    "#{full_address}, #{zip_code}, #{city}"
   end
 
   def full_place_changed?

@@ -20,6 +20,10 @@ class Dish < ApplicationRecord
   validates :portion_count, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, message: "doit être supérieur ou égal à 0" }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1, message: "doit être supérieur ou égal à 1" }
 
+  def self.available
+    where("exp_date > ? AND portion_count > ?", DateTime.now, 0)
+  end
+
 private
 
   # ensure that there are no order_items referencing this dish
