@@ -4,27 +4,31 @@ class CooksController < ApplicationController
 
     before_action :set_cook, only: [:show, :edit, :update, :destroy]
 
+    before_action :set_dish_available, only: [:index]
+
     def index
       @cooks = []
-      @dishes = Dish.available
-      if params[:location]
-        @places = Place.where.not(latitude: nil, longitude: nil)
-                    .near(params[:location], 0.5)
-                    .active
-
-        @places.each do |place|
+      @places = []
+      places = []
+        if params[:location]
+          nearby_places = Place.near(params[:location], 0.5)
+          @dishes.each do |dish|
+          places << dish.cook.places.active
+          end
+          places.flatten!
+          @places = nearby_places & places
+          @places.each do |place|
           @cooks << place.cooks
-        end
-        @cooks.flatten!
-      else
-        @places = Place.where.not(latitude: nil, longitude: nil)
-                    .active
-
-        @dishes.each do |dish|
+          @cooks.flatten!
+          end
+        else
+          @dishes.each do |dish|
           @cooks << dish.cook
+          @places << dish.cook.places.active
+          end
+          @places.flatten!
+          @cooks.flatten!
         end
-        @cooks.flatten!
-      end
 
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
         marker.lat place.latitude
@@ -109,6 +113,10 @@ class CooksController < ApplicationController
 
       def set_cook
         @cook = Cook.find(params[:id])
+      end
+
+      def set_dish_available
+        @dishes = Dish.available
       end
 
       def cook_params
