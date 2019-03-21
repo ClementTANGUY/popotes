@@ -4,7 +4,7 @@
       <div class="dish">
 
         <div class='dish-upvote'>
-          <div class='dish_order-count'><%= order_item.quantity %></div>
+          <div class='dish_order-count'><%= o_po_i.quantity %></div>
         </div>
 
         <% if dish.photos? %>
@@ -16,7 +16,7 @@
         <div class='dish-body'>
           <h3><%= dish.name %></h3>
           <h5>
-            Sous-total : <%= number_to_currency(order_item.total_price, locale: :fr) %>
+            Sous-total : <%= number_to_currency(o_po_i.total_price, locale: :fr) %>
           </h5>
         </div>
 

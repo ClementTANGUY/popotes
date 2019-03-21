@@ -13,7 +13,7 @@ class CooksController < ApplicationController
         if params[:location]
           nearby_places = Place.near(params[:location], 0.5)
           @dishes.each do |dish|
-          places << dish.cook.places.active
+          places << dish.cook.places.geolocated.active
           end
           places.flatten!
           @places = nearby_places & places
@@ -24,7 +24,7 @@ class CooksController < ApplicationController
         else
           @dishes.each do |dish|
           @cooks << dish.cook
-          @places << dish.cook.places.active
+          @places << dish.cook.places.geolocated.active
           end
           @places.flatten!
           @cooks.flatten!
@@ -45,18 +45,13 @@ class CooksController < ApplicationController
       @places = @cook.places
 
       #Orders received and users concerned
-      # @orders_r = Order.all.each do |order|
-      #   order.dishes.find_by(cook_id: @cook.id)
-      #   @user = User.find_by(email: order.email)
-      # end
-
-      #Orders placed and cooks concerned
-      # @orders_p = Order.all.where(email: @cook.user.email)
-      # @orders_p.each do |order|
-      #   order.dishes.each do |dish|
-      #     @cook_p = dish.cook
-      #   end
-      # end
+      @orders_r = Order.joins(:dishes).where(dishes: { cook_id: @cook.id } )
+      @orders_r.each do |o_r|
+        @o_r = o_r
+        @user = User.find_by(email: o_r.email)
+      end
+      # Orders placed and cooks concerned
+      @orders_p = Order.where(email: @cook.user.email)
 
     end
 

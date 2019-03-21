@@ -10,18 +10,30 @@
       <% if @dishes.empty? %>
         Aucune popote pour le moment...
       <% else %>
-      <%= @dishes.available.size %> <%= "#{pluralize_with_0('popote', @cook.dishes.available.size)}" %>
+        <%= "#{ pluralize_with_0('popote', @cook.dishes.available.size) } : #{ @dishes.available.size }" %>
       <% end %>
     </h3>
     <p></p>
   </a>
   <% if @cook.user == current_user %>
     <a class="tab" role="presentation" href="#orders_r" aria-controls="orders_r" role="tab" data-toggle="tab">
-      <h3>Commandes reçues</h3>
+      <h3>
+        <% if @orders_r.empty? %>
+          Aucune commande reçue...
+        <% else %>
+          <%= "#{ pluralize_with_0('commande', @orders_r.size) } #{ pluralize_with_0('reçue', @orders_r.size) } : #{ @orders_r.size }" %>
+        <% end %>
+      </h3>
       <p></p>
     </a>
     <a class="tab" role="presentation" href="#orders_p" aria-controls="orders_p" role="tab" data-toggle="tab">
-      <h3>Commandes passées</h3>
+      <h3>
+        <% if @orders_p.empty? %>
+          Aucune commande passée...
+        <% else %>
+          <%= "#{ pluralize_with_0('commande', @orders_p.size) } #{ pluralize_with_0('passée', @orders_p.size) } : #{@orders_p.size}" %>
+        <% end %>
+      </h3>
       <p></p>
     </a>
   <% end %>
@@ -133,13 +145,15 @@
 
                 <h3><%= link_to dish.name, cook_dish_path(@cook,dish) %></h3>
 
-                <% if dish.portion_count != 0 %>
-                  <p>
-                    <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
-                    <%= render "countdown", dish: dish %><br>
-                    <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
-                  </p>
-                <% end %>
+                <p>
+                  <span class="label label-default"> <%= dish.kind_of_dish %></span> <%= dish.speciality %><br>
+                  <% if dish.portion_count != 0 %>
+                  <%= render "countdown", dish: dish %><br>
+                  <% else %>
+                    <span class="label label-primary"> Épuisé</span><br>
+                  <% end %>
+                  <h5><%= number_to_currency(dish.price, locale: :fr) %></h5>
+                </p>
 
               </div>
 
@@ -158,7 +172,7 @@
                   </li>
                 </ul>
 
-              <% elsif dish.exp_date > DateTime.now && dish.portion_count != 0 %>
+              <% elsif dish.exp_date > DateTime.now && dish.portion_count > 0 %>
 
                 <ul class="list-inline dish-controls">
                   <li>
@@ -181,7 +195,64 @@
     </div>
   </div>
 
+  <div role="tabpanel" class="tab-pane" id="orders_r">
+    <div id= "orders_r" class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
+        <p>&nbsp</p>
+
+        <p>
+          <%= "Le #{@o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %>
+        </p>
+        <% @o_r.order_items.each do |o_ro_i| %>
+          <p>
+            Commande de
+            <% if !@user.cook.nil? %>
+              <%= link_to cook_path(@user.cook) do %>
+                <%= @user.first_name %>
+              <% end %>
+            <% else %>
+              <%= @o_r.first_name %>
+            <% end %>
+          </p>
+          <%= render 'o_ro_i', o_ro_i: o_ro_i, dish: o_ro_i.dish, show_total: true %>
+        <% end %>
+
+       </div>
+    </div>
+  </div>
+
+  <div role="tabpanel" class="tab-pane" id="orders_p">
+    <div id= "orders_p" class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+        <p>&nbsp</p>
+
+        <% @orders_p.each do |o_p| %>
+          <p>
+            <%= "Le #{o_p.created_at.strftime('%d/%m/%Y à %H:%M')} : " %>
+          </p>
+          <% o_p.order_items.each do |o_po_i| %>
+            <p>
+              Commande à
+              <%= link_to cook_path(o_po_i.dish.cook) do %>
+                <%= o_po_i.dish.cook.user.first_name %>
+              <% end %>
+            </p>
+
+            <%= render 'o_po_i', o_po_i: o_po_i, dish: o_po_i.dish, show_total: true %>
+
+            <p class="container text-left">
+              TOTAL <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
+               &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(o_p.charge, locale: :fr) %></span>
+               &nbsp | &nbsp MONTANT À PAYER <span class="label label-warning"><%= number_to_currency(o_p.total_amount, locale: :fr)%></span>
+               <hr />
+            </p>
+          <% end %>
+        <% end %>
+       </div>
+    </div>
+  </div>
 
 </div>
 

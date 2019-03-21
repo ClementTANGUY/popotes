@@ -4,7 +4,7 @@
       <div class="dish">
 
         <div class='dish-upvote'>
-          <div class='dish_order-count'><%= order_item.quantity %></div>
+          <div class='dish_order-count'><%= o_ro_i.quantity %></div>
         </div>
 
         <% if dish.photos? %>
@@ -16,7 +16,7 @@
         <div class='dish-body'>
           <h3><%= dish.name %></h3>
           <h5>
-            Sous-total : <%= number_to_currency(order_item.total_price, locale: :fr) %>
+            Sous-total : <%= number_to_currency(o_ro_i.total_price, locale: :fr) %>
           </h5>
         </div>
 
@@ -36,4 +36,9 @@
       </div>
     </div>
   </div>
+  <p class="container text-left">
+    IN THE POCKET <span class="label label-warning"><%= number_to_currency(o_ro_i.net_for_cook, locale: :fr) %></span>
+    &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(o_ro_i.cook_charge, locale: :fr) %></span>
+    <hr />
+  </p>
 </div>

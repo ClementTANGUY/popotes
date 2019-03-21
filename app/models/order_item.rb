@@ -21,16 +21,15 @@ class OrderItem < ApplicationRecord
 
   def up(dish)
     if quantity < dish.portion_count
-      update_attribute(:quantity, self.quantity += 1)
-    else
-    end
+    self[:quantity] += 1
+  end
   end
 
   def down
     if quantity > 1
-      update_attribute(:quantity, self.quantity -= 1)
+    self[:quantity] -= 1
     else
-      self.destroy
+    self.destroy
     end
   end
 
