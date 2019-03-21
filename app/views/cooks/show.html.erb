@@ -10,7 +10,8 @@
       <% if @dishes.empty? %>
         Aucune popote pour le moment...
       <% else %>
-        <%= "#{ pluralize_with_0('popote', @cook.dishes.available.size) } : #{ @dishes.available.size }" %>
+        <%= "#{ pluralize_with_0('Popote', @cook.dishes.available.size) } " %><br>
+        <%= "#{ @dishes.available.size } " %>
       <% end %>
     </h3>
     <p></p>
@@ -21,7 +22,8 @@
         <% if @orders_r.empty? %>
           Aucune commande reçue...
         <% else %>
-          <%= "#{ pluralize_with_0('commande', @orders_r.size) } #{ pluralize_with_0('reçue', @orders_r.size) } : #{ @orders_r.size }" %>
+          <%= "#{ pluralize_with_0('Commande', @orders_r.size) } #{ pluralize_with_0('reçue', @orders_r.size) } " %><br>
+          <%= "#{ @orders_r.size } " %>
         <% end %>
       </h3>
       <p></p>
@@ -31,7 +33,8 @@
         <% if @orders_p.empty? %>
           Aucune commande passée...
         <% else %>
-          <%= "#{ pluralize_with_0('commande', @orders_p.size) } #{ pluralize_with_0('passée', @orders_p.size) } : #{@orders_p.size}" %>
+          <%= "#{ pluralize_with_0('Commande', @orders_p.size) } #{ pluralize_with_0('passée', @orders_p.size) } " %><br>
+          <%= "#{@orders_p.size} " %>
         <% end %>
       </h3>
       <p></p>
@@ -200,14 +203,13 @@
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
 
         <p>&nbsp</p>
-
-        <p>
-          <%= "Le #{@o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %>
-        </p>
-        <% @o_r.order_items.each do |o_ro_i| %>
+        <% if !@o_r.nil? %>
+          <p>
+            <%= "Le #{@o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %><br>
+          </p>
           <p>
             Commande de
-            <% if !@user.cook.nil? %>
+            <% if !@user.nil? && !@user.cook.nil? %>
               <%= link_to cook_path(@user.cook) do %>
                 <%= @user.first_name %>
               <% end %>
@@ -215,7 +217,16 @@
               <%= @o_r.first_name %>
             <% end %>
           </p>
-          <%= render 'o_ro_i', o_ro_i: o_ro_i, dish: o_ro_i.dish, show_total: true %>
+          <% @o_r.order_items.each do |o_ro_i| %>
+            <%= render 'o_ro_i', o_ro_i: o_ro_i, dish: o_ro_i.dish, show_total: true %>
+          <% end %>
+          <p class="container text-left">
+            TOTAL <span class="label label-warning"><%= number_to_currency(@o_r.subtotal, locale: :fr) %></span>
+            &nbsp | &nbsp FRAIS <span class="label label-warning"><%= number_to_currency(@o_r.charge, locale: :fr) %></span><br>
+            <br>
+            IN THE POCKET <span class="label label-warning"><%= number_to_currency(@o_r.in_the_pocket, locale: :fr)%></span>
+            <hr />
+          </p>
         <% end %>
 
        </div>
@@ -244,8 +255,9 @@
 
             <p class="container text-left">
               TOTAL <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
-               &nbsp | &nbsp FRAIS DE SERVICE <span class="label label-warning"><%= number_to_currency(o_p.charge, locale: :fr) %></span>
-               &nbsp | &nbsp MONTANT À PAYER <span class="label label-warning"><%= number_to_currency(o_p.total_amount, locale: :fr)%></span>
+              &nbsp | &nbsp FRAIS <span class="label label-warning"><%= number_to_currency(o_p.charge, locale: :fr) %></span><br>
+              <br>
+              À PAYER <span class="label label-warning"><%= number_to_currency(o_p.total_amount, locale: :fr)%></span>
                <hr />
             </p>
           <% end %>

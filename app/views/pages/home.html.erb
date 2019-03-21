@@ -1,41 +1,34 @@
 <div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url "lunchbreak.jpg" %>');">
   <div class="container">
-    <div class="container text-left">
-      <h1>POPOTES </h1>
-      <h2>
-        Pour votre pause déjeuner partagez la cuisine maison d'un voisin… <br>
-        DE BUREAU !
-      </h2>
+    <h1>POPOTES </h1>
+    <h2>
+      Pour votre pause déjeuner partagez la cuisine maison d'un voisin… <br>
+      DE BUREAU !
+    </h2>
 
-      <p>&nbsp;</p>
+    <p>&nbsp;</p>
 
-      <p class="text-center">
-        Commandez un plat à un collègue de travail ou un autre particulier<br>
-        Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
-      </p>
+    <p >
+      Commandez un plat à un collègue de travail ou un autre particulier<br>
+      Géolocalisez où récupérer votre commande : en chemin, à proximité ou directement sur votre lieu de travail
+    </p>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2">
-            <fieldset>
-            <div class="find_search">
-              <div class="panel panel-transparent">
-                <div class="panel-heading">
-
-                </div>
-                <div class="panel-body">
-                  <%= form_tag cooks_path, method: :get, class:"row" do %>
-                    <div class="col-sm-10">
-                      <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
-                    </div>
-                    <div class="col-sm-2">
-                      <%= submit_tag "Trouvez !", class: "btn btn-popote" %>
-                    </div>
-                  <% end %>
-                </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="find_search">
+            <div class="panel panel-transparent">
+              <div class="panel-body">
+                <%= form_tag cooks_path, method: :get, class:"row" do %>
+                  <div class="col-sm-10">
+                    <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
+                  </div>
+                  <div class="col-sm-2">
+                    <%= submit_tag "Trouvez !", class: "btn btn-popote" %>
+                  </div>
+                <% end %>
               </div>
             </div>
-            </fieldset>
           </div>
         </div>
       </div>
@@ -43,7 +36,7 @@
   </div>
 </div>
 
-<div class="container text-center">
+<div class="container">
   <p class="home-banner">
     Concepts insensés, enseignes innombrables, prix forts - minis portions, malbouffe, paude dej' express, gâchis...<br>
     <em>
