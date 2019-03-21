@@ -30,6 +30,10 @@ class Order < ApplicationRecord
     subtotal + charge
   end
 
+  def in_the_pocket
+    subtotal - charge
+  end
+
   def add_order_items_from_cart(cart)
     cart.order_items.each do |order_item|
       order_item.cart_id = nil

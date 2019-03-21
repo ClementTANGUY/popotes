@@ -7,11 +7,13 @@
 .wrapper h1 {
   font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  text-align: left;
 }
 .wrapper p {
   font-size: 20px;
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
+  text-align: center;
 }
 
 .find_search{
@@ -34,4 +36,5 @@
   font-size: 21px;
   font-weight: 400;
   line-height: 35px;
+  text-align: center;
 }
