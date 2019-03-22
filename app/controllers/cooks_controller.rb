@@ -26,8 +26,8 @@ class CooksController < ApplicationController
           @cooks << dish.cook
           @cooks = @cooks.uniq
           @places << dish.cook.places.with_coordinates.active
+          @places = @places.uniq.flatten!
           end
-          @places.flatten!
           @cooks.flatten!
         end
 
