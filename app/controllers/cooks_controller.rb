@@ -18,17 +18,18 @@ class CooksController < ApplicationController
           places.flatten!
           @places = nearby_places & places
           @places.each do |place|
-          @cooks << place.cooks
-          @cooks = @cooks.uniq.flatten!
+            @cooks << place.cooks
           end
+          @cooks = @cooks.uniq
         else
           @dishes.each do |dish|
-          @cooks << dish.cook
-          @cooks = @cooks.uniq
-          @places << dish.cook.places.with_coordinates.active
-          @places = @places.uniq.flatten!
+            @cooks << dish.cook
           end
-          @cooks.flatten!
+          @cooks = @cooks.uniq
+          @cooks.each do |cook|
+            @places << cook.places.with_coordinates.active
+          end
+          @places.flatten!
         end
 
       @hash = Gmaps4rails.build_markers(@places) do |place, marker|
