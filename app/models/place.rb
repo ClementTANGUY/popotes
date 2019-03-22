@@ -23,7 +23,7 @@ class Place < ApplicationRecord
     where(active: true)
   end
 
-  def self.geolocated
+  def self.with_coordinates
     where.not(latitude: nil, longitude: nil)
   end
 

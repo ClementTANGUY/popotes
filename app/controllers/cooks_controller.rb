@@ -13,18 +13,19 @@ class CooksController < ApplicationController
         if params[:location]
           nearby_places = Place.near(params[:location], 0.5)
           @dishes.each do |dish|
-          places << dish.cook.places.geolocated.active
+          places << dish.cook.places.with_coordinates.active
           end
           places.flatten!
           @places = nearby_places & places
           @places.each do |place|
           @cooks << place.cooks
-          @cooks.flatten!
+          @cooks = @cooks.uniq.flatten!
           end
         else
           @dishes.each do |dish|
           @cooks << dish.cook
-          @places << dish.cook.places.geolocated.active
+          @cooks = @cooks.uniq
+          @places << dish.cook.places.with_coordinates.active
           end
           @places.flatten!
           @cooks.flatten!
