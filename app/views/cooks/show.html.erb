@@ -252,15 +252,10 @@
             </p>
 
             <%= render 'o_po_i', o_po_i: o_po_i, dish: o_po_i.dish, show_total: true %>
-
-            <p class="container text-left">
-              TOTAL <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
-              &nbsp | &nbsp FRAIS <span class="label label-warning"><%= number_to_currency(o_p.charge, locale: :fr) %></span><br>
-              <br>
-              À PAYER <span class="label label-warning"><%= number_to_currency(o_p.total_amount, locale: :fr)%></span>
-               <hr />
-            </p>
           <% end %>
+          <p class="container text-left">
+            CRÉDIT ENTAMÉ DE <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
+          </p>
         <% end %>
        </div>
     </div>

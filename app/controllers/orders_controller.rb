@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
 
   if current_user
     # a logged user orders thanks to his account
-    @order_si = Order.new
+    @order_si = Order.new(order_params)
 
     #order_items go from the current_cart to the order
     @order_si.add_order_items_from_cart(@cart)

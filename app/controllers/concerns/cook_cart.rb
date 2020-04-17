@@ -20,13 +20,11 @@ module CookCart
           reject_items.each do |reject_item|
             reject_item.destroy
           end
-          @order_items = current_cart.order_items
-
+          flash[:alert] = "Vous ne puvez commander vos propres popotes..."
+          redirect_to cart_url and return
         else
           @order_items = current_cart.order_items
-
         end
-
       else
         @order_items = current_cart.order_items
       end

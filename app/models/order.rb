@@ -23,7 +23,7 @@ class Order < ApplicationRecord
   end
 
   def charge
-    subtotal * 0.15
+    subtotal * 0.10
   end
 
   def total_amount
