@@ -1,18 +1,21 @@
 source 'https://rubygems.org'
+#old
 ruby '2.5.1'
+#new
+ruby File.read('.ruby-version').strip
 
-gem 'rails', '5.1.6'
+gem 'rails', '~> 6.1.7'
 gem 'puma'
 gem 'pg'
 gem 'figaro'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'redis'
-gem 'devise'
+gem 'devise', '~> 4.8.1'
 gem 'omniauth-facebook'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails"
+gem "coffee-rails", '~> 5.0.0'
 
 gem "geocoder"
 gem "gmaps4rails"
@@ -21,13 +24,13 @@ source "https://rails-assets.org" do
   gem "rails-assets-underscore"
 end
 
-gem 'rails-i18n', '~> 5.0'
+gem 'rails-i18n', '~> 7.0.5'
 gem 'sassc-rails'
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.5.0'
 gem 'uglifier'
-gem 'bootstrap-sass'
-gem 'font-awesome-sass'
-gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'bootstrap-sass', '~> 3.4.1' 
+gem 'font-awesome-sass', '~> 6.2.0'
+gem 'simple_form', '~> 5.1.0', github: 'plataformatec/simple_form'
 gem 'autoprefixer-rails'
 
 gem 'momentjs-rails'
@@ -45,9 +48,9 @@ group :development, :test do
 
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'spring'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', '~> 2.1.1'
+  gem 'listen', '~> 3.7.1'
+  gem 'spring-watcher-listen', '~> 2.0.1'
 end
 
 group :production do
