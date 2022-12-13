@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
+  remote: https://github.com/plataformatec/simple_form.git
   revision: 1b3e91036a948eb532d14bfde01b4d5bd79b3523
   specs:
     simple_form (5.1.0)
@@ -7,7 +7,7 @@ GIT
       activemodel (>= 5.2)
 
 GIT
-  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  remote: https://github.com/zpaulovics/datetimepicker-rails.git
   revision: 7a4640cb932e55866500a86c4f78808a4fca46e6
   branch: master
   submodules: true
@@ -194,7 +194,7 @@ GEM
     multi_xml (0.6.0)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (2.0.9)
@@ -230,7 +230,7 @@ GEM
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.1)
     rack (2.2.4)
     rack-protection (2.2.2)
       rack
