@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/plataformatec/simple_form.git
+  remote: git://github.com/plataformatec/simple_form.git
   revision: 1b3e91036a948eb532d14bfde01b4d5bd79b3523
   specs:
     simple_form (5.1.0)
@@ -7,7 +7,7 @@ GIT
       activemodel (>= 5.2)
 
 GIT
-  remote: https://github.com/zpaulovics/datetimepicker-rails.git
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
   revision: 7a4640cb932e55866500a86c4f78808a4fca46e6
   branch: master
   submodules: true
