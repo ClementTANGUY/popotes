@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
+  remote: https://github.com/plataformatec/simple_form.git
   revision: 1b3e91036a948eb532d14bfde01b4d5bd79b3523
   specs:
     simple_form (5.1.0)
@@ -7,7 +7,7 @@ GIT
       activemodel (>= 5.2)
 
 GIT
-  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  remote: https://github.com/zpaulovics/datetimepicker-rails.git
   revision: 7a4640cb932e55866500a86c4f78808a4fca46e6
   branch: master
   submodules: true
@@ -144,7 +144,7 @@ GEM
     font-awesome-sass (6.2.0)
       sassc (~> 2.0)
     geocoder (1.8.0)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     gmaps4rails (2.1.2)
     hashie (5.0.0)
@@ -170,7 +170,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.19.0)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -183,7 +183,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.3)
+    minitest (5.17.0)
     minitest-reporters (1.5.0)
       ansi
       builder
@@ -194,7 +194,7 @@ GEM
     multi_xml (0.6.0)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
+    nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (2.0.9)
@@ -230,8 +230,8 @@ GEM
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
-    racc (1.6.0)
-    rack (2.2.4)
+    racc (1.6.1)
+    rack (2.2.6.2)
     rack-protection (2.2.2)
       rack
     rack-test (2.0.2)
@@ -255,8 +255,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.3)
-      loofah (~> 2.3)
+    rails-html-sanitizer (1.4.4)
+      loofah (~> 2.19, >= 2.19.1)
     rails-i18n (7.0.5)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
@@ -329,7 +329,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.0)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   ruby
