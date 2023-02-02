@@ -20,7 +20,7 @@ class CooksController < ApplicationController
           @places.each do |place|
             @cooks << place.cooks
           end
-          @cooks = @cooks.uniq
+          @cooks = @cooks.flatten!
         else
           @dishes.each do |dish|
             @cooks << dish.cook
