@@ -4,7 +4,7 @@ ruby '2.5.1'
 #new
 ruby File.read('.ruby-version').strip
 
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 6.1.7.2'
 gem 'puma'
 gem 'pg'
 gem 'figaro'
@@ -30,7 +30,7 @@ gem 'jquery-rails', '~> 4.5.0'
 gem 'uglifier'
 gem 'bootstrap-sass', '~> 3.4.1' 
 gem 'font-awesome-sass', '~> 6.2.0'
-gem 'simple_form', '~> 5.1.0', github: 'plataformatec/simple_form'
+gem 'simple_form', '~> 5.2.0', github: 'plataformatec/simple_form'
 gem 'autoprefixer-rails'
 
 gem 'momentjs-rails'
