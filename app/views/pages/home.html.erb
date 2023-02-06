@@ -1,18 +1,23 @@
 <div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url "ustenciles.jpg" %>');">
   <div class="container">
     <h1>POPOTES </h1>
-    <h2>
-      Commande du fait maison autour de toi<br>
-      Récupère ton plat au coin de la rue 
-    </h2>
+
+    <div class="wrapper-hooks">
+      <div class="hook-client">
+        <h2>
+          Commande du vrai fait maison<br>
+          autour de toi 
+        </h2>
+      </div>
+      <div class="hook-cook">
+        <h2>
+          Tu cuisines ?<br>
+          Fais profiter un particulier à proximité
+        </h2>
+      </div>
+    </div>
 
     <p>&nbsp;</p>
-    <p>&nbsp;</p>
-
-    <p >
-      Fais profiter de ta cuisine et gagne de l'oseille<br>
-      Nous te livrons les emballages (éco-responsables)
-    </p>
 
     <div class="container">
       <div class="row">
@@ -25,7 +30,7 @@
                     <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
                   </div>
                   <div class="col-sm-2">
-                    <%= submit_tag "Trouvez !", class: "btn btn-popote" %>
+                    <%= submit_tag "Trouve !", class: "btn btn-popote" %>
                   </div>
                 <% end %>
               </div>
@@ -39,16 +44,18 @@
 
 <div class="container">
   <p class="home-banner">
+    T'es un cordon bleu ? Tu cuisines toujours pour un régiment ?<br>
+    Partage et gagne un peu d'oseille<br>
+    Zéro commission, on connecte tout le monde en se chargeant juste des récipients écologiques
+  </p>
+
+   <p>&nbsp;</p>
+
+  <p class="home-banner">
     Enseignes innombrables, concepts insensés, prix forts & minis portions, malbouffe, paude dej' express, gâchis...<br>
     <em>
-      "Nous avons pensé à tout ceux qui cuisinent... et aux autres"<br>
+      "Nous avons pensé à ceux qui cuisinent... et aux autres"<br>
     </em>
-  </p>
-    <p>&nbsp;</p>
-  <p class="home-banner">
-    Tu cuisines ?<br>
-    T'en fais toujours pour un régiment ?<br>
-    Partage ta cuisine avec un voisin, un collègue ou un particulier à proximité de chez toi
   </p>
 </div>
 

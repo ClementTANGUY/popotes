@@ -4,6 +4,12 @@
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
 }
+.wrapper-hooks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .wrapper h1 {
   font-size: 50px;
   font-weight: bold;
@@ -25,7 +31,7 @@
   .panel-transparent{
   background: none;
   }
-   .panel-transparent .panel-heading{
+  .panel-transparent .panel-heading{
   background: rgba(46, 51, 56, 0.3)!important;
   }
   .panel-transparent .panel-body{
