@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-sm-6 text-center">
           <h4>Pour le moment, aucun chef ne propose encore de popotes par ici...<br>
-            Tente votre chance ailleurs :
+            Tente ta chance ailleurs :
           </h4>
 
           <%= form_tag cooks_path, method: :get, class:"row" do %>
@@ -25,7 +25,7 @@
           <% end %>
 
           <% if !user_signed_in? || current_user.cook.nil? %>
-            <h4>Ou sois le premier à proposer vos talents</h4>
+            <h4>Ou sois le premier à proposer tes talents</h4>
             <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
           <% end %>
         </div>
@@ -46,10 +46,11 @@
 
 <% content_for(:after_js) do %>
 
-  <script type="text/javascript" async defer>
-    var handler = Gmaps.build('Google', { markers: { maxRandomDistance: 5 } });
+  <script type="text/javascript">
+    var handler = Gmaps.build('Google', { markers: { maxRandomDistance: null } });
     handler.buildMap({
         provider: {
+              disableDefaultUI: true,
               // pass in other Google Maps API options here
 
               // The latitude and longitude to center the map (always required)
@@ -66,8 +67,8 @@
       handler.fitMapToBounds();
       if (markers.length == 0) {
         handler.getMap().setZoom(5);
-      } else if (markers.length >= 1) {
-        handler.getMap().setZoom(5);
+      } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
       }
     });
   </script>
@@ -103,7 +104,3 @@
  </script>
 
 <% end %>
-
-
-
-

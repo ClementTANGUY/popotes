@@ -46,6 +46,9 @@
                 <%= link_to "Mon profil", cook_path(current_user.cook) %>
               </li>
               <li>
+                <%= link_to "Récipients", "/"%>
+              </li>
+              <li>
                 <% if !current_user.provider %>
                   <%= link_to "Mon compte", edit_user_registration_path %>
                 <% end %>
@@ -93,10 +96,8 @@
     <% else %>
 
       <!-- Sign in link-->
+      <%= link_to "Récipients", "/", class:"navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
-
-      <!-- Sign up link-->
-      <%= link_to "Inscription", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Button (call-to-action) -->
       <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
@@ -114,6 +115,8 @@
           <% if !current_user.cook.nil? %>
             <li><%= link_to "Les chefs", cooks_path %></li>
             <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
+            <li><%= link_to "Récipients", "/" %></li>
+            <li><%= link_to "Mon compte", edit_user_registration_path %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% else %>
             <li><%= link_to "Les chefs", cooks_path %></li>
@@ -129,8 +132,8 @@
         <% else %>
           <li><%= link_to "Les chefs", cooks_path %></li>
           <li><%= link_to "Connexion", new_user_session_path %></li>
-          <li><%= link_to "Inscription", new_user_registration_path %></li>
           <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+          <li><%= link_to "À propos", about_path %></li>
         <% end %>
       </ul>
     </div>
