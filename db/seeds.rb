@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
-Landolfi = User.create!(first_name: "Landolfi", email: "clemdelatang@gmail.com", password: "testtest")
+Clément = User.create!(first_name: "Clément", email: "clemdelatang@gmail.com", password: "testtest")
 Céline = User.create!(first_name: "Céline", email: "tanguyclement@sfr.fr", password: "testtest")
-Jean = User.create!(first_name: "Jean", email: "jean.valjean@me.fr", password: "testtest")
+Paul = User.create!(first_name: "Jean-Paul", email: "jean.valjean@me.fr", password: "testtest")
 David = User.create!(first_name: "David", email: "david.fincher@me.fr", password: "testtest")
 Gaspard = User.create!(first_name: "Gaspard", email: "gaspard.proust@me.fr", password: "testtest")
 
 Cook.delete_all
-Cook_1 = Cook.create!(user: Landolfi, age: "40", bio: "Bon réchauffeur, devenu cordon bleu improvisateur")
+Cook_1 = Cook.create!(user: Clément, age: "40", bio: "Bon réchauffeur, devenu cordon bleu improvisateur")
 Cook_2 = Cook.create!(user: Céline, age: "40", bio: "Autodidacte, j'ai appris à cuisine au fil de mes envies et pour faire plaisir. Chaque jour, je cuisine et emmène une part au travail. J'aimerais vous faire partager ma passion")
-Cook_3 = Cook.create!(user: Jean, age: "75", bio: "Encyclopédie de la cuisine romantique")
+Cook_3 = Cook.create!(user: Paul, age: "75", bio: "Encyclopédie de la cuisine romantique")
 Cook_4 = Cook.create!(user: David, age: "53", bio: "Génie de la mise en scène culinaire")
 Cook_5 = Cook.create!(user: Gaspard, age: "38", bio: "Cynique des fourneaux")
 
@@ -31,11 +31,11 @@ Dish.create!(cook: Cook_3, name: "Filet de boeuf en croûte", kind_of_dish: "Pla
 Dish.create!(cook: Cook_5, name: "Moelleux au chocolat", kind_of_dish: "Dessert & Patisserie", speciality: "Gastronomique", description: "Moelleux au coeur fondant, cacao bio équitable de Madagascar", veggie: "true", gluten_free: "false", halal: "false", kosher: "false", cooked: "true", be_reheated: "true", portion_size: "Petite (env. 150g)", portion_count: "6", price: '4.50', exp_date: "05/05/2023 20:00:00", collect_date: "07/05/2023 13:00:00")
 
 Place.delete_all
-Place.create!(full_address: "5 Rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
+Place.create!(full_address: "3 avenue Lacour", zip_code: "06110", city: "Le Cannet", kind_of_place: "Domicile", active: "true")
 Place.create!(full_address: "28 chemin des Moulières", zip_code: "06110", city: "Le Cannet", kind_of_place: "Domicile", active: "true")
-Place.create!(full_address: "5 Rue Vivienne", zip_code: "75002", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")
+Place.create!(full_address: "8 avenue du général Leclerc", zip_code: "83990", city: "Saint-Tropez", kind_of_place: "Bureaux/Agence", active: "true")
 Place.create!(full_address: "243 rue Saint-Honoré", zip_code: "75001", city: "Paris", kind_of_place: "Commerce/Restaurant", active: "true")
-Place.create!(full_address: "43 rue Gabrie Lamé", zip_code: "75012", city: "Paris", kind_of_place: "Bureaux/Agence", active: "true")
+Place.create!(full_address: "5 rue Lavoisier", zip_code: "75008", city: "Paris", kind_of_place: "Domicile", active: "true")
 
 Speciality.delete_all
 Speciality.create!(name: "Terroir & Famille", level: "Top Chef")

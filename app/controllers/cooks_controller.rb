@@ -11,7 +11,7 @@ class CooksController < ApplicationController
       @places = []
       places = []
         if params[:location]
-          nearby_places = Place.near(params[:location], 2)
+          nearby_places = Place.near(params[:location], 1)
           @dishes.each do |dish|
           places << dish.cook.places.active.with_coordinates
           end

@@ -26,7 +26,7 @@
 
           <% if !user_signed_in? || current_user.cook.nil? %>
             <h4>Ou sois le premier à proposer tes talents</h4>
-            <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+            <%= link_to "Devenir Chef", new_user_registration_path, class:"btn btn-popote" %>
           <% end %>
         </div>
       </div>
@@ -46,7 +46,7 @@
 
 <% content_for(:after_js) do %>
 
-  <script type="text/javascript">
+  <script type="text/javascript" async>
     var handler = Gmaps.build('Google', { markers: { maxRandomDistance: null } });
     handler.buildMap({
         provider: {
@@ -74,7 +74,7 @@
   </script>
 
   <!-- Custom JS code to bind to Autocomplete API -->
- <script type="text/javascript">
+ <script type="text/javascript" async>
    function initializeAutocomplete(id) {
      var element = document.getElementById(id);
      var options = { types: ['geocode'],
