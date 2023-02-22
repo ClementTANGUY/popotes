@@ -17,11 +17,11 @@ class Cart < ApplicationRecord
   end
 
   def subtotal
-    order_items.to_a.sum { |oi| oi.total_price }
+    order_items.sum { |oi| oi.total_price }
   end
-
+# No charge for customers
   def charge
-    subtotal * 0.10
+    subtotal * 0
   end
 
   def total_amount

@@ -79,7 +79,7 @@
                 <% end %>
               </li>
               <li>
-                <%= link_to "Mes commandes", "" %>
+                <%= link_to "Mes commandes", order_path(current_user) %>
               </li>
               <li>
                 <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>

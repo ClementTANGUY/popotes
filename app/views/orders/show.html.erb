@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <% @orders_p.each do |o_p| %>
+        <% if !o_p.nil? %>
+          <hr />
+          <p>
+            <%= "Le #{o_p.created_at.strftime('%d/%m/%Y à %H:%M')} : " %>
+          </p>
+          <% o_p.order_items.each do |o_po_i| %>
+          <p>
+            Commande à
+            <%= link_to cook_path(o_po_i.dish.cook) do %>
+              <%= o_po_i.dish.cook.user.first_name %>
+            <% end %>
+          </p>
+            <%= render 'o_po_i', o_po_i: o_po_i, dish: o_po_i.dish, show_total: true %>
+          <% end %>
+          <p class="container text-left">
+            Total payé <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
+          </p>
+        <% end %>
+        <hr />
+      <% end %>
+    </div>
+  </div>
+</div>
+

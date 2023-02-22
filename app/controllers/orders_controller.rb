@@ -9,6 +9,10 @@ class OrdersController < ApplicationController
 
   before_action :ensure_cart_isnt_empty, only: [:new]
 
+  def show
+    @orders_p = Order.where(email: current_user.email)
+  end
+
   def new
     if current_user
       # new instance with a logged user
@@ -21,73 +25,73 @@ class OrdersController < ApplicationController
 
   def create
 
-  if current_user
-    # a logged user orders thanks to his account
-    @order_si = Order.new(order_params)
+    if current_user
+      # a logged user orders thanks to his account
+      @order_si = Order.new
 
-    #order_items go from the current_cart to the order
-    @order_si.add_order_items_from_cart(@cart)
+      #order_items go from the current_cart to the order
+      @order_si.add_order_items_from_cart(@cart)
 
-    # give to order' s first_name and email attributes current_user values
-    @order_si.first_name = current_user.first_name
-    @order_si.email = current_user.email
+      # give to order's first_name and email attributes current_user values
+      @order_si.first_name = current_user.first_name
+      @order_si.email = current_user.email
 
-    respond_to do |format|
-      if @order_si.save
-        # remove order_items' portions from dishes'
-        @order_si.remove_dish_portion
+      respond_to do |format|
+        if @order_si.save
+          # remove order_items' portions from dishes
+          @order_si.remove_dish_portion
 
-        # confirmation emails
-        OrderMailer.placed(@order_si, current_user).deliver_later
-        @order_si.order_items.each do |order_item|
-          @cook = order_item.dish.cook
-          OrderMailer.received(@order_si, @cook, order_item).deliver_later
+          # confirmation emails
+          OrderMailer.placed(@order_si, current_user).deliver_later
+          @order_si.order_items.each do |order_item|
+            @cook = order_item.dish.cook
+            OrderMailer.received(@order_si, @cook, order_item).deliver_later
+          end
+
+          # destroy cart
+          Cart.destroy(session[:cart_id])
+          session[:cart_id] = nil
+          format.html { redirect_to cooks_url, notice: "Merci pour votre commande !" }
+        else
+          format.html { render :new }
         end
-
-        # destroy cart
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to cooks_url, notice: "Merci pour votre commande !" }
-      else
-        format.html { render :new }
       end
-    end
 
-  else
-    # an unlogged user orders thanks to his first_name and email attributes
-    @order_nsi = Order.new(order_params)
+    else
+      # an unlogged user orders thanks to his first_name and email attributes
+      @order_nsi = Order.new(order_params)
 
-    # vaidations in Order model are so activated
-    @order_nsi.not_signed_in = true
+      # vaidations in Order model are so activated
+      @order_nsi.not_signed_in = true
 
-    # ensure that this unlogged user isn't one cook ordering his own dishes
-    check_cart or return
+      # ensure that this unlogged user isn't one cook ordering his own dishes
+      check_cart or return
 
-    #order_items go from the current_cart to the order
-    @order_nsi.add_order_items_from_cart(@cart)
+      #order_items go from the current_cart to the order
+      @order_nsi.add_order_items_from_cart(@cart)
 
-    respond_to do |format|
-      if @order_nsi.save
-        # remove order_items' portions from dishes'
-        @order_nsi.remove_dish_portion
+      respond_to do |format|
+        if @order_nsi.save
+          # remove order_items' portions from dishes'
+          @order_nsi.remove_dish_portion
 
-        # confirmation emails
-        OrderMailer.placed_without_logged_in(@order_nsi).deliver_later
-        @order_nsi.order_items.each do |order_item|
-          @cook = order_item.dish.cook
-          OrderMailer.received(@order_nsi, @cook, order_item).deliver_later
+          # confirmation emails
+          OrderMailer.placed_without_logged_in(@order_nsi).deliver_later
+          @order_nsi.order_items.each do |order_item|
+            @cook = order_item.dish.cook
+            OrderMailer.received(@order_nsi, @cook, order_item).deliver_later
+          end
+
+          # destroy cart
+          Cart.destroy(session[:cart_id])
+          session[:cart_id] = nil
+          format.html { redirect_to cooks_url, notice: "Merci pour votre commande !" }
+        else
+          format.html { render :new }
         end
-
-        # destroy cart
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to cooks_url, notice: "Merci pour votre commande !" }
-      else
-        format.html { render :new }
       end
-    end
 
-  end
+    end
 
   end
 

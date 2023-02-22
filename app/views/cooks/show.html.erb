@@ -201,34 +201,36 @@
   <div role="tabpanel" class="tab-pane" id="orders_r">
     <div id= "orders_r" class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-
-        <p>&nbsp</p>
-        <% if !@o_r.nil? %>
-          <p>
-            <%= "Le #{@o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %><br>
-          </p>
-          <p>
-            Commande de
-            <% if !@user.nil? && !@user.cook.nil? %>
-              <%= link_to cook_path(@user.cook) do %>
-                <%= @user.first_name %>
-              <% end %>
-            <% else %>
-              <%= @o_r.first_name %>
-            <% end %>
-          </p>
-          <% @o_r.order_items.each do |o_ro_i| %>
-            <%= render 'o_ro_i', o_ro_i: o_ro_i, dish: o_ro_i.dish, show_total: true %>
-          <% end %>
-          <p class="container text-left">
-            TOTAL <span class="label label-warning"><%= number_to_currency(@o_r.subtotal, locale: :fr) %></span>
-            &nbsp | &nbsp FRAIS <span class="label label-warning"><%= number_to_currency(@o_r.charge, locale: :fr) %></span><br>
-            <br>
-            IN THE POCKET <span class="label label-warning"><%= number_to_currency(@o_r.in_the_pocket, locale: :fr)%></span>
+        <p class="container text-left">
+          Cagnotte <span class="label label-success"><%= number_to_currency(@credit, locale: :fr)%></span>
+        </p>
+        <% @orders_r.each do |o_r| %>
+          <% if !o_r.nil? %>
             <hr />
-          </p>
+            <p>
+              <%= "Le #{o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %><br>
+            </p>
+            <p>
+              Commande de
+              <%# if !@user.nil? && !@user.cook.nil? %>
+                <%#= link_to cook_path(@user.cook) do %>
+                  <%#= @user.first_name %>
+                <%# end %>
+              <%# else %>
+                <%= o_r.first_name %>
+              <%# end %>
+            </p>
+            <% o_r.order_items.each do |o_ro_i| %>
+              <%= render 'o_ro_i', o_ro_i: o_ro_i, dish: o_ro_i.dish, show_total: true %>
+            <% end %>
+            <p class="container text-left">
+              Total <span class="label label-warning"><%= number_to_currency(o_r.subtotal, locale: :fr) %></span>
+              | Frais <span class="label label-warning"><%= number_to_currency(o_r.charge, locale: :fr) %></span>
+              | In the pocket <span class="label label-warning"><%= number_to_currency(o_r.in_the_pocket, locale: :fr)%></span>
+            </p>
+          <% end %>
+          <hr />
         <% end %>
-
        </div>
     </div>
   </div>
@@ -236,26 +238,27 @@
   <div role="tabpanel" class="tab-pane" id="orders_p">
     <div id= "orders_p" class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-
-        <p>&nbsp</p>
-
         <% @orders_p.each do |o_p| %>
-          <p>
-            <%= "Le #{o_p.created_at.strftime('%d/%m/%Y à %H:%M')} : " %>
-          </p>
-          <% o_p.order_items.each do |o_po_i| %>
+          <% if !o_p.nil? %>
+            <hr />
             <p>
-              Commande à
-              <%= link_to cook_path(o_po_i.dish.cook) do %>
-                <%= o_po_i.dish.cook.user.first_name %>
-              <% end %>
+              <%= "Le #{o_p.created_at.strftime('%d/%m/%Y à %H:%M')} : " %>
             </p>
+            <% o_p.order_items.each do |o_po_i| %>
+              <p>
+                Commande à
+                <%= link_to cook_path(o_po_i.dish.cook) do %>
+                  <%= o_po_i.dish.cook.user.first_name %>
+                <% end %>
+              </p>
 
-            <%= render 'o_po_i', o_po_i: o_po_i, dish: o_po_i.dish, show_total: true %>
+              <%= render 'o_po_i', o_po_i: o_po_i, dish: o_po_i.dish, show_total: true %>
+            <% end %>
+            <p class="container text-left">
+              Total payé <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
+            </p>
           <% end %>
-          <p class="container text-left">
-            CRÉDIT ENTAMÉ DE <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
-          </p>
+          <hr />
         <% end %>
        </div>
     </div>

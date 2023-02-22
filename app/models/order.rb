@@ -19,7 +19,7 @@ class Order < ApplicationRecord
   end
 
   def subtotal
-    order_items.to_a.sum { |oi| oi.total_price }
+    order_items.sum { |oi| oi.total_price }
   end
 
   def charge
