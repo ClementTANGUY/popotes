@@ -22,16 +22,17 @@ class Order < ApplicationRecord
     order_items.sum { |oi| oi.total_price }
   end
 
-  def charge
+  def charge_for_cook
     subtotal * 0.10
   end
 
+  # No charge for customers
   def total_amount
-    subtotal + charge
+    subtotal
   end
 
   def in_the_pocket
-    subtotal - charge
+    subtotal - charge_for_cook
   end
 
   def add_order_items_from_cart(cart)

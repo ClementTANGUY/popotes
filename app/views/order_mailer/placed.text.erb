@@ -1,17 +1,17 @@
 
-Bonjour, <%= @user.first_name %> !
+Bonjour <%= @user.first_name %>,
 ===============================================
 
-Votre commande a bien été enregistrée !
+Ta commande a bien été enregistrée !
 
-Vous avez demandé :
+Tu souhaites du rab :
 
 
 <% @order.order_items.each do |order_item| %>
 
-  <%= "- #{order_item.quantity} portion(s) de #{order_item.dish.name}" %>
+  <%= "- #{order_item.quantity} portion(s) de #{order_item.dish.name} à #{order_item.dish.cook.user.first_name}" %>
 
-  Vous avez rendez-vous avec votre chef à l'adresse suivante :
+  Pour récupérer ce plat, tu as rendez-vous à l'adresse suivante :
 
   <% order_item.dish.cook.places.each do |place| %>
     <% if place.active %>
@@ -23,14 +23,11 @@ Vous avez demandé :
 
 <% end %>
 
-Attention : soyez à l'heure à votre lieu de rendez-vous.
-Le concept de Popotes repose essentiellement sur la confiance et la ponctualité...
-On compte sur vous !
+Attention : sois à l'heure.
+La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Rab It unique...
+On compte sur toi !
 
-Montant total de votre commande : <%= number_to_currency(@order.total_amount, locale: :fr) %>
-Dont frais de service : <%= number_to_currency(@order.charge, locale: :fr) %>
+Montant total de ta commande : <%= number_to_currency(@order.total_amount, locale: :fr) %>
 
 Bon appétit !
-Merci et à très bientôt sur Popotes !
-
-
+Merci et à très bientôt sur Rab It !

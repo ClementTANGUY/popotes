@@ -1,6 +1,6 @@
 class OrderMailer < ApplicationMailer
 
-  default from: 'Popotes <clemdelatang@gmail.com>'
+  default from: 'Rab It <clemdelatang@gmail.com>'
   helper ApplicationHelper
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -13,14 +13,14 @@ class OrderMailer < ApplicationMailer
     @user = user
 
     email_with_name = %("#{user.first_name}" <#{user.email}>)
-    mail(to: email_with_name, subject: 'Confirmation de votre commande de popote')
+    mail(to: email_with_name, subject: 'Confirmation de ta commande')
   end
 
   def placed_without_logged_in(order)
     @order = order
 
     email_with_name = %("#{order.first_name}" <#{order.email}>)
-    mail(to: email_with_name, subject: 'Confirmation de votre commande de popote')
+    mail(to: email_with_name, subject: 'Confirmation de ta commande')
   end
 
   def received(order, cook, order_item)
@@ -29,6 +29,7 @@ class OrderMailer < ApplicationMailer
     @order_item = order_item
 
     email_with_name = %("#{cook.user.first_name}" <#{cook.user.email}>)
-    mail(to: email_with_name, subject: 'Et une popote, une !')
+    order_with_name = %("#{order.first_name} veut du rab")
+    mail(to: email_with_name, subject: order_with_name)
   end
 end

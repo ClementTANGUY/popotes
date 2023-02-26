@@ -206,7 +206,7 @@
         </p>
         <% @orders_r.each do |o_r| %>
           <% if !o_r.nil? %>
-            <hr />
+            <hr>
             <p>
               <%= "Le #{o_r.created_at.strftime('%d/%m/%Y à %H:%M')} :" %><br>
             </p>
@@ -229,7 +229,6 @@
               | In the pocket <span class="label label-warning"><%= number_to_currency(o_r.in_the_pocket, locale: :fr)%></span>
             </p>
           <% end %>
-          <hr />
         <% end %>
        </div>
     </div>
@@ -258,7 +257,6 @@
               Total payé <span class="label label-warning"><%= number_to_currency(o_p.subtotal, locale: :fr) %></span>
             </p>
           <% end %>
-          <hr />
         <% end %>
        </div>
     </div>

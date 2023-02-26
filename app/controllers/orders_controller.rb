@@ -10,15 +10,15 @@ class OrdersController < ApplicationController
   before_action :ensure_cart_isnt_empty, only: [:new]
 
   def show
-    @orders_p = Order.where(email: current_user.email)
+    @orders_p = Order.where(email: current_user.email).order(created_at: :desc)
   end
 
   def new
     if current_user
-      # new instance with a logged user
+      # new instance with a signed in user
       @order_si = Order.new
     else
-      # new instance with an unlogged user
+      # new instance with an not signed in user
       @order_nsi = Order.new
     end
   end
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
       #order_items go from the current_cart to the order
       @order_si.add_order_items_from_cart(@cart)
 
-      # give to order's first_name and email attributes current_user values
+      # give to order the first_name and email attributes of the current_user values
       @order_si.first_name = current_user.first_name
       @order_si.email = current_user.email
 
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
       end
 
     else
-      # an unlogged user orders thanks to his first_name and email attributes
+      # an not signed in user can order thanks to his first_name and email attributes
       @order_nsi = Order.new(order_params)
 
       # vaidations in Order model are so activated
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    # ensure that an unlogged user isn't a cook ordering his own dishes
+    # ensure that a not signed in user isn't a cook ordering his own dishes
     def check_cart
       user = User.find_by(email: @order_nsi.email)
 

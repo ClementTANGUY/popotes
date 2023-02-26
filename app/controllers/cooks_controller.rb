@@ -47,14 +47,16 @@ class CooksController < ApplicationController
       @places = @cook.places
 
       # Orders received and users concerned
-      @orders_r = Order.joins(:dishes).where(dishes: { cook_id: @cook.id } )
+      @orders_r = Order.joins(:dishes).where(dishes: { cook_id: @cook.id } ).order(created_at: :desc)
       #@orders_r.each do |o_r|
         #@user = User.find_by(email: o_r.email)
       #end
+
+      # Total cagnotte
       @credit = @orders_r.sum { |order| order.in_the_pocket }
 
       # Orders placed and cooks concerned
-      @orders_p = Order.where(email: @cook.user.email)
+      @orders_p = Order.where(email: @cook.user.email).order(created_at: :desc)
 
     end
 

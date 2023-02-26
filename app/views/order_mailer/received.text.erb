@@ -1,14 +1,14 @@
 
-Bonjour, <%= @cook.user.first_name %> !
+Bonjour <%= @cook.user.first_name %>,
 ===============================================
 
-À vos fourneaux, vous avez reçu une commande de popote !
+T'as reçu une commande !
 
-On vous a demandé :
+<%= "#{@order.first_name} souhaite du rab : "%>
 
 <%= "- #{@order_item.quantity} portion(s) de #{@order_item.dish.name}" %>
 
-Pour remettre cette popote, vous avez rendez-vous à votre adresse active :
+Pour remettre ce plat, tu as rendez-vous à ton adresse active :
 
 <% @order_item.dish.cook.places.each do |place| %>
   <% if place.active %>
@@ -19,12 +19,11 @@ Pour remettre cette popote, vous avez rendez-vous à votre adresse active :
 <%= "Le #{@order_item.dish.collect_date.strftime('%d/%m/%Y')} à #{@order_item.dish.collect_date.strftime('%H:%M')}" %>
 
 
-Attention : soyez à l'heure à votre lieu de rendez-vous.
-Le concept de Popotes repose essentiellement sur la confiance et la ponctualité...
-On compte sur vous !
+Attention : sois à l'heure à ton lieu de rendez-vous.<br>
+La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Rab It unique...
+On compte sur toi !
 
-Votre popote vous rapporte : <%= number_to_currency(@order_item.net_for_cook, locale: :fr) %>
-Après frais de service : <%= number_to_currency(@order_item.cook_charge, locale: :fr) %>
+Ce plat te rapporte dans la poche : <%= number_to_currency(@order_item.net_for_cook, locale: :fr) %>
+Après nos frais de service : <%= number_to_currency(@order_item.cook_charge, locale: :fr) %>
 
-Merci et à très bientôt sur Popotes !
-
+Merci et à très bientôt sur Rab It !

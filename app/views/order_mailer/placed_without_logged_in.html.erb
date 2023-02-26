@@ -1,19 +1,19 @@
-<h3>Bonjour, <%= @order.first_name %></h3>
+<h3>Bonjour <%= @order.first_name %>,</h3>
 
 <p>
-  Votre commande a bien été enregistrée !<br>
+  Ta commande a bien été enregistrée !<br>
 </p>
 
 <p>
-  Vous avez demandé :
+  Tu souhaites du rab :
 </p>
 
 <% @order.order_items.each do |order_item| %>
   <p style="font-weight: bold;">
-    <%= "- #{order_item.quantity} #{pluralize_with_0('portion', order_item.quantity)} de #{order_item.dish.name}" %>
+    <%= "- #{order_item.quantity} #{pluralize_with_0('portion', order_item.quantity)} de #{order_item.dish.name} à #{order_item.dish.cook.user.first_name}" %>
   </p>
   <p>
-    Pour récupérer cette popote, vous avez rendez-vous à l'adresse suivante :
+    Pour récupérer ce plat, tu as rendez-vous à l'adresse suivante :
   </p>
   <p style="font-weight: bold;">
     <% order_item.dish.cook.places.each do |place| %>
@@ -32,17 +32,16 @@
 <% end %>
 
 <p>
-  Attention : soyez à l'heure à vos différents lieux de rendez-vous.<br>
-  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
-  On compte sur vous !
+  Attention : sois à l'heure.<br>
+  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Rab It unique...<br>
+  On compte sur toi !
 </p>
 
-<p>
-  Montant total de votre commande : <%= number_to_currency(@order.total_amount, locale: :fr) %><br>
-  Dont frais de service : <%= number_to_currency(@order.charge, locale: :fr) %>
+<p style= "font-weight: bold;">
+  Montant total de ta commande : <%= number_to_currency(@order.total_amount, locale: :fr) %><br>
 </p>
 
 <p>
   Bon appétit !<br>
-  Merci et à très bientôt sur Popotes !
+  Merci et à très bientôt sur Rab It !
 </p>

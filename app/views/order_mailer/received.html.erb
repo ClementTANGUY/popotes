@@ -1,18 +1,18 @@
-<h3>Bonjour, <%= @cook.user.first_name %></h3>
+<h3>Bonjour <%= @cook.user.first_name %>,</h3>
 
 <p>
-  À vos fourneaux, vous avez reçu une commande !
+  Tu as reçu une commande !
 </p>
 
 <p>
-  On vous demande :
+  <%= "#{@order.first_name} souhaite du rab : "%>
 </p>
 
 <p style="font-weight: bold;">
   <%= "- #{@order_item.quantity} #{pluralize_with_0('portion', @order_item.quantity)} de #{@order_item.dish.name}" %>
 </p>
 <p>
-  Pour remettre cette popote, vous avez rendez-vous à votre adresse active :
+  Pour remettre ce plat, tu as rendez-vous à ton adresse active :
 </p>
 <p style="font-weight: bold;">
   <% @cook.places.each do |place| %>
@@ -24,16 +24,17 @@
 </p>
 
 </p>
-  Attention : soyez à l'heure à votre lieu de rendez-vous.<br>
-  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Popotes unique...<br>
-  On compte sur vous !
+  Attention : sois à l'heure à ton lieu de rendez-vous.<br>
+  La confiance ainsi que la ponctualité réciproque des chefs et des utilisateurs rendent l’expérience Rab It unique...<br>
+  On compte sur toi !
+</p>
+
+<p style= "font-weight: bold;">
+  Ce plat te rapporte dans la poche : <%= number_to_currency(@order_item.net_for_cook, locale: :fr) %><br>
+  Après nos frais de service : <%= number_to_currency(@order_item.cook_charge, locale: :fr) %>
 </p>
 
 <p>
-  Votre popote vous rapporte : <%= number_to_currency(@order_item.net_for_cook, locale: :fr) %><br>
-  Après frais de service : <%= number_to_currency(@order_item.cook_charge, locale: :fr) %>
+  Merci et à très bientôt sur Rab It !
 </p>
 
-<p>
-  Merci et à très bientôt sur Popotes !
-</p>

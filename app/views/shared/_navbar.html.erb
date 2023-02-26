@@ -1,36 +1,27 @@
 <div class="navbar-wagon">
-
   <!-- Left Navigation -->
   <div class="navbar-wagon-left">
-
     <!-- Logo -->
     <a href="/" class="navbar-wagon-brand">
       <%= image_tag "Logo.png" %>
     </a>
-
+    <!-- Cart basket -->
     <div class="cart-text navbar-wagon-item">
       <%= render 'shared/cart_text' %>
     </div>
-
     <!-- Text link -->
     <%= link_to "À propos", about_path, class:"navbar-wagon-item navbar-wagon-link hidden-xs" %>
-
-    <!-- Button (call-to-action) -->
     <%= link_to "Les chefs", cooks_path, class:"navbar-wagon-item navbar-wagon-link btn hidden-xs" %>
-
   </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <% if user_signed_in? %>
-
-      <% if !current_user.cook.nil? %>
-
-        <!-- Profile picture and dropdown -->
-        <div class="navbar-wagon-item">
-          <div class="dropdown">
-
+    <%= link_to "Récipients", "/", class:"navbar-wagon-item navbar-wagon-link"%>
+    <!-- Profile picture and dropdown -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+        <% if user_signed_in? %>
+          <% if !current_user.cook.nil? %>
             <% if current_user.provider && current_user.cook.avatar? %>
               <%= cl_image_tag current_user.cook.avatar.path, width: 60, height: 60, crop: :thumb, gravity: :face, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% elsif !current_user.provider && current_user.cook.avatar? %>
@@ -40,70 +31,42 @@
             <% else %>
               <%= image_tag "chef.jpg", class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% end %>
-
-            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-              <li>
-                <%= link_to "Mon profil", cook_path(current_user.cook) %>
-              </li>
-              <li>
-                <%= link_to "Récipients", "/"%>
-              </li>
-              <li>
-                <% if !current_user.provider %>
-                  <%= link_to "Mon compte", edit_user_registration_path %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      <% else %>
-
-        <!-- Profile picture and dropdown -->
-        <div class="navbar-wagon-item">
-          <div class="dropdown">
-
+          <% else %>
             <% if current_user.provider %>
               <%= image_tag current_user.picture, class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% else %>
               <%= image_tag "default-user.jpg", class:"avatar-large dropdown-toggle", id:"navbar-wagon-menu", :"data-toggle" => "dropdown" %>
             <% end %>
-
-            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <!-- Button (call-to-action) -->
+            <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+          <% end %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <% if !current_user.cook.nil? %>
               <li>
-                <% if !current_user.provider %>
-                  <%= link_to "Mon compte", edit_user_registration_path %>
-                <% end %>
+                <%= link_to "Mon profil", cook_path(current_user.cook) %>
               </li>
+            <% else %>
               <li>
                 <%= link_to "Mes commandes", order_path(current_user) %>
               </li>
-              <li>
-                <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Button (call-to-action) -->
-        <%= link_to "Devenir Chef", new_cook_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
-
-      <% end %>
-
-    <% else %>
-
-      <!-- Sign in link-->
-      <%= link_to "Récipients", "/", class:"navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
-
-      <!-- Button (call-to-action) -->
-      <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
-
-    <% end %>
-
+            <% end %>
+            <li>
+              <% if !current_user.provider %>
+                <%= link_to "Mon compte", edit_user_registration_path %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %>
+            </li>
+          </ul>
+        <% else %>
+          <!-- Sign in link-->
+          <%= link_to "Connexion", new_user_session_path, class:"navbar-wagon-item navbar-wagon-link" %>
+          <!-- Button (call-to-action) -->
+          <%= link_to "Devenir Chef", new_user_registration_path, class:"navbar-wagon-item navbar-wagon-button btn" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <!-- Dropdown appearing on mobile only -->
@@ -111,32 +74,30 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><%= link_to "Les chefs", cooks_path %></li>
         <% if user_signed_in? %>
           <% if !current_user.cook.nil? %>
-            <li><%= link_to "Les chefs", cooks_path %></li>
             <li><%= link_to "Mon profil", cook_path(current_user.cook) %></li>
-            <li><%= link_to "Récipients", "/" %></li>
-            <li><%= link_to "Mon compte", edit_user_registration_path %></li>
-            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% else %>
-            <li><%= link_to "Les chefs", cooks_path %></li>
-            <li>
-              <% if !current_user.provider %>
-                <%= link_to "Mon compte", edit_user_registration_path %>
-              <% end %>
-            </li>
-            <li><%= link_to "Mes commandes", "" %></li>
+            <li><%= link_to "Mes commandes", order_path(current_user) %></li>
             <li><%= link_to "Devenir Chef", new_cook_path %></li>
-            <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
           <% end %>
+          <li><%= link_to "Récipients", "/" %></li>
+          <li><%= link_to "À propos", about_path %></li>
+          <li>
+            <% if !current_user.provider %>
+              <%= link_to "Mon compte", edit_user_registration_path %>
+            <% end %>
+          </li>
+          <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete, data: {confirm: 'Confirmer votre déconnexion ?'} %></li>
         <% else %>
           <li><%= link_to "Les chefs", cooks_path %></li>
           <li><%= link_to "Connexion", new_user_session_path %></li>
           <li><%= link_to "Devenir Chef", new_user_registration_path %></li>
+          <li><%= link_to "Récipients", "/" %></li>
           <li><%= link_to "À propos", about_path %></li>
         <% end %>
       </ul>
     </div>
   </div>
-
 </div>
