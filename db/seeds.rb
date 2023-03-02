@@ -8,12 +8,12 @@
 
 User.delete_all
 Clément = User.create!(first_name: "Clément", email: "clemdelatang@gmail.com", password: "testtest")
-Céline = User.create!(first_name: "Céline", email: "clemdelatang@gmail.com", password: "testtest")
-Pierre = User.create!(first_name: "Pierre", email: "clemdelatang@gmail.com", password: "testtest")
-Paul = User.create!(first_name: "Jean-Paul", email: "clemdelatang@gmail.com", password: "testtest")
-Jacques = User.create!(first_name: "Jean-Paul", email: "tanguyclement@sfr.fr", password: "testtest")
-David = User.create!(first_name: "David", email: "tanguyclement@sfr.fr", password: "testtest")
-Gaspard = User.create!(first_name: "Gaspard", email: "tanguyclement@sfr.fr", password: "testtest")
+Céline = User.create!(first_name: "Céline", email: "tanguyclement@sfr.fr", password: "testtest")
+Pierre = User.create!(first_name: "Pierre", email: "pierre@me.fr", password: "testtest")
+Paul = User.create!(first_name: "Jean-Paul", email: "paul@me.fr", password: "testtest")
+Jacques = User.create!(first_name: "Jacques", email: "jacques@me.fr", password: "testtest")
+David = User.create!(first_name: "David", email: "david@me.fr", password: "testtest")
+Gaspard = User.create!(first_name: "Gaspard", email: "gaspard@me.fr", password: "testtest")
 
 Cook.delete_all
 Cook_1 = Cook.create!(user: Clément, age: "46", bio: "Bon réchauffeur, devenu cordon bleu improvisateur")
@@ -21,8 +21,8 @@ Cook_2 = Cook.create!(user: Céline, age: "46", bio: "Autodidacte, j'ai appris �
 Cook_3 = Cook.create!(user: Pierre, age: "75", bio: "Encyclopédie de la cuisine romantique")
 Cook_4 = Cook.create!(user: Paul, age: "53", bio: "Génie de la mise en scène culinaire")
 Cook_5 = Cook.create!(user: Jacques, age: "38", bio: "Cynique des fourneaux")
-Cook_6 = Cook.create!(user: David, age: "20", bio: "")
-Cook_7 = Cook.create!(user: Gaspard, age: "19", bio: "")
+Cook_6 = Cook.create!(user: David, age: "20", bio: "Génie de la mise en scène culinaire")
+Cook_7 = Cook.create!(user: Gaspard, age: "19", bio: "Génie de la mise en scène culinaire")
 
 Cart.delete_all
 

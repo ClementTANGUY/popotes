@@ -26,7 +26,7 @@
     </div>
   </div>
 
-   <p>&nbsp</p>
+  <hr>
 
   <div class="form-inline">
     <div class="form-inputs">
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-   <p>&nbsp</p>
+  <hr>
 
   <div class="form-inputs">
     <%= f.input :portion_size, label: 'Taille de la portion', collection: ["Petite (env. 150g)", "Moyenne (200-300g)", "Grande (>300g)"], as: :select %>
@@ -44,12 +44,12 @@
     <%= f.input :price, label: "Prix (à partir d'1€)", placeholder: "15 % de frais s'ajoutent automatiquement pour votre acheteur" %>
   </div>
 
-  <div class='row datetimerange'>
+  <div class="row datetimerange">
       <%= f.input :exp_date, label: "Date/heure limites pour commander ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
       <%= f.input :collect_date, label: "Date/heure précises pour récupérer votre popote ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
   </div>
 
-  <p>&nbsp</p>
+  <hr>
 
   <div class="form-inputs">
     <%= f.input :photos, as: :attachinary, label: "Photos (2 max)" %>
@@ -61,7 +61,7 @@
     <%= f.input :terms_of_service, inline_label: "J'accepte", as: :boolean %>
   </div>
 
-  <p>&nbsp</p>
+  <hr>
 
   <div class="form-actions">
     <% if f.object.new_record? %>

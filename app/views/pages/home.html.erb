@@ -26,7 +26,7 @@
               <div class="panel-body">
                 <%= form_tag cooks_path, method: :get, class:"row" do %>
                   <div class="col-sm-10">
-                    <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Entrez une adresse"%>
+                    <%= text_field_tag :location, params[:location], id:"user_input_autocomplete_address", class: "form-control", placeholder: "Où ça ?"%>
                   </div>
                   <div class="col-sm-2">
                     <%= submit_tag "Trouve !", class: "btn btn-popote" %>
