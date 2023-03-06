@@ -10,12 +10,12 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder'
 gem 'redis'
-gem 'devise', '~> 4.8.1'
+gem 'devise'
 gem 'omniauth-facebook'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails", '~> 5.0.0'
+gem "coffee-rails"
 
 gem "geocoder"
 gem "gmaps4rails"
@@ -24,17 +24,17 @@ source "https://rails-assets.org" do
   gem "rails-assets-underscore"
 end
 
-gem 'rails-i18n', '~> 7.0.5'
+gem 'rails-i18n'
 gem 'sassc-rails'
-gem 'jquery-rails', '~> 4.5.0'
+gem 'jquery-rails'
 gem 'uglifier'
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'sprockets-rails', '~> 3.4.2'
-gem 'font-awesome-sass', '~> 6.3.0'
-gem 'simple_form', '~> 5.2.0', github: 'plataformatec/simple_form'
+gem 'bootstrap-sass'
+gem 'sprockets-rails'
+gem 'font-awesome-sass'
+gem 'simple_form'
 gem 'autoprefixer-rails'
 
-gem 'momentjs-rails'
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 
@@ -49,9 +49,9 @@ group :development, :test do
 
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'spring', '~> 2.1.1'
-  gem 'listen', '~> 3.7.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'spring'
+  gem 'listen'
+  gem 'spring-watcher-listen'
 end
 
 group :production do

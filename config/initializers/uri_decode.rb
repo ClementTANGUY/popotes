@@ -1,5 +1,3 @@
-=begin
-
 require 'cgi'
 
 module URI
@@ -38,6 +36,10 @@ module URI
   end
 end
 
+=begin
+
+require 'cgi'
+
 module URI
   module_function
 
@@ -49,7 +51,6 @@ module URI
     CGI.escape(url)
   end
 end
-
 
 #CGI.escape, URI.encode_www_form or URI.encode_www_form_component
 #CGI::escape

@@ -45,8 +45,8 @@
   </div>
 
   <div class="row datetimerange">
-      <%= f.input :exp_date, label: "Date/heure limites pour commander ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
-      <%= f.input :collect_date, label: "Date/heure précises pour récupérer votre popote ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}}  %>
+      <%= f.input :exp_date, label: "Date limite pour commander du rab ?", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now}}} %>
+      <%= f.input :collect_date, label: "Quand le récupérer ? (+ 36 h max après commande !)", as: :datetime_picker, wrapper: :ranged_datetime, input_html: {data: {date_options: {locale: 'fr', minDate: Time.now }}}  %>
   </div>
 
   <hr>

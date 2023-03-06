@@ -1,10 +1,9 @@
 GIT
-  remote: https://github.com/plataformatec/simple_form.git
-  revision: 921ce9c3fc100e1737125ba1b5a2037c03f2de1b
+  remote: https://github.com/derekprior/momentjs-rails.git
+  revision: de473b81db40d0dc19e277895746c79b41a0607a
   specs:
-    simple_form (5.2.0)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
+    momentjs-rails (2.29.4.1)
+      railties (>= 3.1)
 
 GIT
   remote: https://github.com/zpaulovics/datetimepicker-rails.git
@@ -197,8 +196,6 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    momentjs-rails (2.29.4.1)
-      railties (>= 3.1)
     multi_xml (0.6.0)
     net-imap (0.3.4)
       date
@@ -314,6 +311,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -356,23 +356,23 @@ DEPENDENCIES
   autoprefixer-rails
   better_errors
   binding_of_caller
-  bootstrap-sass (~> 3.4.1)
+  bootstrap-sass
   capybara
   cloudinary
-  coffee-rails (~> 5.0.0)
+  coffee-rails
   datetimepicker-rails!
-  devise (~> 4.8.1)
+  devise
   figaro
-  font-awesome-sass (~> 6.3.0)
+  font-awesome-sass
   geocoder
   gmaps4rails
   jbuilder
   jquery-fileupload-rails
-  jquery-rails (~> 4.5.0)
+  jquery-rails
   launchy
-  listen (~> 3.7.1)
+  listen
   minitest-reporters
-  momentjs-rails
+  momentjs-rails (~> 2.9)!
   omniauth-facebook
   pg
   poltergeist
@@ -381,14 +381,14 @@ DEPENDENCIES
   puma
   rails (~> 6.1.7.2)
   rails-assets-underscore!
-  rails-i18n (~> 7.0.5)
+  rails-i18n
   rails_12factor
   redis
   sassc-rails
-  simple_form (~> 5.2.0)!
-  spring (~> 2.1.1)
-  spring-watcher-listen (~> 2.0.1)
-  sprockets-rails (~> 3.4.2)
+  simple_form
+  spring
+  spring-watcher-listen
+  sprockets-rails
   uglifier
 
 RUBY VERSION
