@@ -1,21 +1,12 @@
 <div class="wrapper" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_url "ustenciles.jpg" %>');">
-  <div class="container">
+  <div class="container welcome">
 
-    <h1><em>Rab It</em></h1>
+    <h1>
+      <em>Rab It</em>
+    </h1>
 
-    <div class="wrapper-hooks">
-      <div class="hook-client">
-        <h3>
-          De la cuisine faite maison<br>
-          Par un particulier
-        </h3>
-      </div>
-      <div class="hook-client-2">
-        <h3>
-          Autour de toi<br>
-          Au travail, à la maison, en vacances...
-        </h3>
-      </div>
+    <div class="container hook-client">
+      <h3 id="hook_client"></h3>
     </div>
 
     <div class="container search">
@@ -39,68 +30,81 @@
       </div>
     </div>
 
-    <div class="wrapper-hooks">
-      <div class="hook-cook-1">
-        <h3>
-          Tu cuisines toujours trop ?<br>
-          Partage tes plats
-        </h3>
-      </div>
-      <div class="hook-cook-2">
-        <h3>
-          Évite le gâchis<br>
-          Dans nos récipients éco-responsables
-        </h3>
-      </div>
+    <div class=" container hook-cook">
+      <h3 id="hook_cook"></h3>
     </div>
+
   </div>
 </div>
 
 <div class="container">
   <p class="home-banner">
-    T'en fais toujours pour un régiment ? Fais en profiter autour de toi.<br>
-    Gagne un peu d'oseille. Mets du beurre dans les épinards.<br>
-    On connecte juste la communauté et on fournit des récipients biodégradables.
+    Tu cuisines ? T'en fais toujours pour un régiment ? <br>
+    Fais en profiter autour de toi et mets du beurre dans les épinards...
   </p>
-
-   <p>&nbsp;</p>
-
   <p class="home-banner">
-    Gâchis, minis portions & prix forts, malbouffe, enseignes innombrables, concepts insensés, paude dej' express...<br>
+    On connecte la communauté en fournissant des récipients écologiques (biodégradables & compostables).
+  </p>
+  <p class="home-banner">
+    Minis portions aux prix forts, malbouffe, enseignes innombrables, pause repas express et surtout gâchis...<br>
+  </p>
+  <p class="home-banner">
     <em>
       "Nous avons pensé à ceux qui cuisinent... et aux autres"<br>
     </em>
   </p>
 </div>
 
-<!-- Custom JS code to bind to Autocomplete API -->
 <% content_for(:after_js) do %>
 
   <script type="text/javascript">
+    const hook1 = "Commande de la cuisine faite maison à un particulier où tu veux à proximité";
+    const str1 = hook1.split("");
+    let el1 = document.getElementById('hook_client');
+    const animation1 = () => {
+      let running = setTimeout(animation1, 90);
+      str1.length > 0 ? el1.innerHTML += str1.shift() : clearTimeout(running);
+    };
+    animation1();
+  </script>
+  <script type="text/javascript">
+    const hook2 = "Évite le gachis, partage tes plats dans nos récipients éco-responsables";
+    const str2 = hook2.split("");
+    let el2 = document.getElementById('hook_cook');
+    const animation2 = () => {
+      let running = setTimeout(animation2, 90);
+      str2.length > 0 ? el2.innerHTML += str2.shift() : clearTimeout(running);
+    };
+    setTimeout(animation2, 6500);
+  </script>
+
+  <!-- Custom JS code to bind to Autocomplete API -->
+
+  <script type="text/javascript">
     function initializeAutocomplete(id) {
-      var element = document.getElementById(id);
-      var options = { types: ['geocode'],
+      let address = document.getElementById(id);
+      let options = { types: ['geocode'],
           componentRestrictions: {country: 'fr'}
       };
-      if (element) {
-        var autocomplete = new google.maps.places.Autocomplete(element, options);
+      if (address) {
+        let autocomplete = new google.maps.places.Autocomplete(address, options);
         google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
       }
     }
     function onPlaceChanged() {
-      var place = this.getPlace();
+      let place = this.getPlace();
       // console.log(place);  // Uncomment this line to view the full object returned by Google API.
-      for (var i in place.address_components) {
-        var component = place.address_components[i];
-         for (var j in component.types) {  // Some types are ["country", "political"]
-          var type_element = document.getElementById(component.types[j]);
+      for (let i in place.address_components) {
+        let component = place.address_components[i];
+         for (let j in component.types) {  // Some types are ["country", "political"]
+          let type_element = document.getElementById(component.types[j]);
           if (type_element) {
             type_element.value = component.long_name;
           }
         }
       }
     }
-    google.maps.event.addDomListener(window, 'load', function() {
+    google.maps.event.addDomListener(window, 'load', () => {
       initializeAutocomplete('user_input_autocomplete_address');
     });
   </script>
